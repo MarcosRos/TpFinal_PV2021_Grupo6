@@ -1,0 +1,156 @@
+package ar.edu.unju.edm.model;
+
+//import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.OneToMany;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Table(name="PsOI")
+@Component
+public class POI {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private Integer idPOI;
+	
+	@Column
+	@NotBlank
+	private String nombre;
+	
+	@Column
+	@NotBlank
+	private String calle;
+	
+	@Column
+	@NotNull
+	private int numero;
+	
+	@Column
+	@NotBlank
+	private String barrio;
+	
+	@Column
+	@NotBlank
+	private String localidad;
+	
+	@Column
+	private String descripcion;
+	
+	//fotografias (hasta 3)
+	
+	@Column
+	private String categoria; //es opcional y se elige una sola (cultura, naturaleza, aventura, deportivo, gastronomía) o sitio web
+	
+	@Column
+	@NotNull
+	private Double latitud;
+	
+	@Column
+	@NotNull
+	private Double longitud;
+	
+	/*@ManyToOne se lee: un turista puede tener muchos POI		 (cascade = CascadeType.ALL)
+	@JoinColumn(name = "idTurista")	
+	private Turista turista;*/
+	
+	
+	/*@OneToMany		//muchos comentarios puede tener un POI?	(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idComentario")
+	private Comentario comentario;*/
+	
+	public POI() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getIdPOI() {
+		return idPOI;
+	}
+
+	public void setIdPOI(Integer idPOI) {
+		this.idPOI = idPOI;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getBarrio() {
+		return barrio;
+	}
+
+	public void setBarrio(String barrio) {
+		this.barrio = barrio;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public Double getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(Double latitud) {
+		this.latitud = latitud;
+	}
+
+	public Double getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(Double longitud) {
+		this.longitud = longitud;
+	}
+}
