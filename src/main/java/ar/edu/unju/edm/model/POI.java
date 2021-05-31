@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.OneToMany;
 //import javax.persistence.JoinColumn;
@@ -17,7 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="PsOI")
+@Table(name="POIS")
 @Component
 public class POI {
 	@Id
@@ -28,6 +30,15 @@ public class POI {
 	@Column
 	@NotBlank
 	private String nombre;
+	
+	@Column
+	private String descripcion;
+	
+	@Column
+	private String etiqueta;
+	
+	@Column
+	private String sitioWeb; //es opcional y se elige una sola (cultura, naturaleza, aventura, deportivo, gastronomía) o sitio web
 	
 	@Column
 	@NotBlank
@@ -46,14 +57,6 @@ public class POI {
 	private String localidad;
 	
 	@Column
-	private String descripcion;
-	
-	//fotografias (hasta 3)
-	
-	@Column
-	private String categoria; //es opcional y se elige una sola (cultura, naturaleza, aventura, deportivo, gastronomía) o sitio web
-	
-	@Column
 	@NotNull
 	private Double latitud;
 	
@@ -61,14 +64,9 @@ public class POI {
 	@NotNull
 	private Double longitud;
 	
-	/*@ManyToOne se lee: un turista puede tener muchos POI		 (cascade = CascadeType.ALL)
-	@JoinColumn(name = "idTurista")	
-	private Turista turista;*/
-	
-	
-	/*@OneToMany		//muchos comentarios puede tener un POI?	(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idComentario")
-	private Comentario comentario;*/
+	@ManyToOne
+	@JoinColumn(name = "email")
+	private Turista turista;
 	
 	public POI() {
 		// TODO Auto-generated constructor stub
@@ -130,14 +128,6 @@ public class POI {
 		this.descripcion = descripcion;
 	}
 
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
 	public Double getLatitud() {
 		return latitud;
 	}
@@ -152,5 +142,29 @@ public class POI {
 
 	public void setLongitud(Double longitud) {
 		this.longitud = longitud;
+	}
+
+	public String getEtiqueta() {
+		return etiqueta;
+	}
+
+	public void setEtiqueta(String etiqueta) {
+		this.etiqueta = etiqueta;
+	}
+
+	public String getSitioWeb() {
+		return sitioWeb;
+	}
+
+	public void setSitioWeb(String sitioWeb) {
+		this.sitioWeb = sitioWeb;
+	}
+
+	public Turista getTurista() {
+		return turista;
+	}
+
+	public void setTurista(Turista turista) {
+		this.turista = turista;
 	}
 }
