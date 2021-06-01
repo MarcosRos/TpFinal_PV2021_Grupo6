@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<div th:insert="layouts/header :: header"></div>
+		<div class="col-sm-4">
+			<div>
+				<h2>Log In</h2>
+				<form>
+					<div class="form-group row">
+						<label for="idusuario">Nombre de Usuario</label>
+						<input type="text" class="form-control" id="idusuario" required>
+					</div>
+					<div class="form-group row">
+						<label for="contraseña">Contraseña</label>
+						<input type="password" class="form-control" id="contraseña" required>
+					</div>
+					<div class="form-group form-check">
+						<input type="checkbox" class="form-check-input" id="recordarme">
+						<label class="form-check-label" for="recordarme">Recordar nombre de usuario</label>
+					</div>
+					<input type="submit" class="btn btn-success btn-block"  value="Acceder">
+					<br>
+					<a href="#">¿Olvidó su nombre de usuario o contraseña?</a>
+				</form>
+			</div>
+		</div>
+		<div th:insert="layouts/footer :: footer"></div>
+	</div>
+
+</body>
+</html>
