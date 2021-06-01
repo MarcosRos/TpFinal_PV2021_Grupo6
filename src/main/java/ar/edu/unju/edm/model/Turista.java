@@ -17,14 +17,24 @@ import org.springframework.stereotype.Component;
 @Table (name="TURISTAS")
 @Component
 public class Turista {
-	@Id
+	
+	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer idTurista;
+	private Integer idTurista;*/ //También queda comentado
 	
-	@Column //no se debe repetir
+	/*@Column //no se debe repetir
 	@NotBlank(message="Es necesario un nombre de usuario")
-	private String nombreDeUsuario;
+	private String nombreDeUsuario;*/ //Esto queda comentado porque la imagen no lo requiere. En lugar de esta columna, pongo email
+	
+	@Id
+	@Column
+	@NotBlank(message="Incluir email")
+	private String email;
+	
+	@Column
+	@NotBlank
+	private String password;
 	
 	@Column
 	@NotBlank(message="Incluir almenos un nombre")
@@ -45,10 +55,6 @@ public class Turista {
 	private String pais;
 	
 	@Column
-	@NotBlank
-	private String contraseña;
-	
-	@Column
 	private int puntos; //son los puntos para canjear
 	
 	public Turista() {
@@ -61,14 +67,6 @@ public class Turista {
 
 	public void setIdTurista(Integer idTurista) {
 		this.idTurista = idTurista;
-	}
-
-	public String getNombreDeUsuario() {
-		return nombreDeUsuario;
-	}
-
-	public void setNombreDeUsuario(String nombreDeUsuario) {
-		this.nombreDeUsuario = nombreDeUsuario;
 	}
 
 	public String getNombres() {
@@ -103,12 +101,12 @@ public class Turista {
 		this.pais = pais;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getPuntos() {
