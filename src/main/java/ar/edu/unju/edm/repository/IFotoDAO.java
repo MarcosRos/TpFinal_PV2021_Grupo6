@@ -11,7 +11,7 @@ import ar.edu.unju.edm.model.Foto;
 
 @Repository
 public interface IFotoDAO extends CrudRepository<Foto, Integer>{
-	//@Query ("from Foto f order by f.idFoto")
-	//public List<Foto> obtenerFotos();
-	//public Optional <Foto> findByIdFoto(int idf);
+	@Query ("from Foto f order by f.idFoto")
+	public List<Foto> obtenerFotos();
+	public Optional <Foto> findByIdFoto(int idf);
 }

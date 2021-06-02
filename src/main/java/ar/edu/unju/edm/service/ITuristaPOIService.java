@@ -9,4 +9,6 @@ public interface ITuristaPOIService {
 	public List<TuristaPOI> obtenerTodosTuristaPOIs();
 	public void guardarTuristaPOI(TuristaPOI unTuristaPOI);
 	public TuristaPOI encontrarUnTuristaPOI(int idtp) throws Exception;
+	public void modificarTuristaPOI(TuristaPOI turistaPOIModificado) throws Exception;
+	public void eliminarTuristaPOI(int idtp) throws Exception;
 }

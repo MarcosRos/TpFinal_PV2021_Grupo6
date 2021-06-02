@@ -37,9 +37,38 @@ public class TuristaServiceMySQL implements ITuristaService{
 	}
 
 	@Override
-	public Turista encontrarUnTurista(int ema) throws Exception {
+	public Turista encontrarUnTurista(int idt) throws Exception {
 		// TODO Auto-generated method stub
-		return turistaDAO.findByEmail(ema).orElseThrow(()->new Exception ("El turista NO existe"));
+		return turistaDAO.findByIdTurista(idt).orElseThrow(()->new Exception ("El turista NO existe"));
+	}
+
+	@Override
+	public void modificarTurista(Turista turistaModificado) throws Exception {
+		// TODO Auto-generated method stub
+		Turista turistaAModificar = turistaDAO.findByIdTurista(turistaModificado.getIdTurista()).orElseThrow(()->new Exception("El Turista no fue encontrado"));
+		cambiarTurista(turistaModificado, turistaAModificar);
+		
+		turistaDAO.save(turistaAModificar);
+	}
+
+	private void cambiarTurista(Turista desde, Turista hacia){
+		// TODO Auto-generated method stub
+		hacia.setEmail(desde.getEmail());
+		hacia.setApellidos(desde.getApellidos());
+		hacia.setDocumento(desde.getDocumento());
+		hacia.setIdTurista(desde.getIdTurista());
+		hacia.setNombres(desde.getNombres());
+		hacia.setPais(desde.getPais());
+		hacia.setPassword(desde.getPassword());
+		hacia.setPuntos(desde.getPuntos());
+		//hacia.setIdTurista(desde.getIdTurista());
+	}
+	
+	@Override
+	public void eliminarTurista(int idt) throws Exception {
+		// TODO Auto-generated method stub
+		Turista turistaEliminar = turistaDAO.findByIdTurista(idt).orElseThrow(()->new Exception("El turista no fue encontrado"));
+	    turistaDAO.delete(turistaEliminar);
 	}
 	
 }
