@@ -52,18 +52,18 @@
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
-						<th>Nombre y apellido</th>
-						<th>E-mail</th>
+						<th>Nombre y apellido</th>	
 						<th>Pais de Origen</th>
+						<th>E-mail</th>
 					</tr>
 				</thead>
 				<tr th:if="${turistas.empty}">
 					<td colspan="2">No hay turistas registrados aún</td>
 				</tr>
 				<tr th:each="tur : ${turistas}">
-					<td th:text="${tur.nombre}"></td>
-					<td th:text="${tur.email}"></td>
+					<td th:text="${tur.nombre}"></td>				
 					<td th:text="${tur.pais}"></td>
+					<td th:text="${tur.email}"></td>
 					<td><a href="#"
 						th:href="@{/turista/editar'+${tur.correo}}"> 
 						<i class="fa fa-edit"></i></a> 
@@ -103,14 +103,14 @@
 
 	</div>
 	<script type="text/javascript">
-		function confirmarEliminar(correo) {
+		function confirmarEliminar(email) {
 			$('#modalEliminar').modal('show');
 			$("#identificadorTurista").val(email);
 		}
 
 		function eliminarTurista() {
 			var id = $("#identificadorTurista").val();
-			window.location = "eliminarTurista/" + correo;
+			window.location = "eliminarTurista/" + email;
 		}
 		</script>
 		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
