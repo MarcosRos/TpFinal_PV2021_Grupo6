@@ -13,8 +13,7 @@
 
 		<div th:insert="layouts/header :: header"></div>
 
-		<h1>Registrarte</h1>
-		<h4>Rapido y fácil</h4>
+		<h1>Ingrese datos del nuevo PoI</h1>
 		<br>
 		
 		<form id="" th:object="${}"
@@ -81,7 +80,69 @@
 				<!-- <button type="submit" class="btn btn-primary" value="Agregar">Agregar</button> -->
 		</div>
 		</form>
+		
+		<div class="table-responsive">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Nombre del PoI</th>
+						<th>Calle del PoI</th>
+						<th>Numero</th>
+						<th>Barrio</th>
+						<th>Localidad</th>
+						<th>Descripcion</th>
+					</tr>
+				</thead>
+				<tr th:if="${turistas.empty}">
+					<td colspan="2">No hay turistas registrados aún</td>
+				</tr>
+				<tr th:each="tur : ${turistas}">
+					<td th:text="${poi.nombrepoi}"></td>
+					<td th:text="${poi.calle}"></td>
+					<td th:text="${poi.num}"></td>
+					<td th:text="${poi.barrio}"></td>
+					<td th:text="${poi.localidad}"></td>
+					<td th:text="${poi.desc}"></td>
+					<td><a href="#"
+						th:href="@{/poi/editar'+${poi.id}}"> 
+						<i class="fa fa-edit"></i></a> 
+					<a th:onclick="'javascript:confirmarEliminar(\''+${poi.id}+'\');'"><i class="fa fa-trash-alt"></i>
+					</a></td>
+				</tr>
+			</table>
 		</div>
+		
+		<!--Modal Eliminar--> 
+							<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="eliminarModalTitulo">Confirmar Eliminar</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body"><h6>Are you sure you want to delete this user?</h6></div>
+										<input type="hidden" id="identificadorUsuarioHiddenInput" name="userIdHiddenInput"/>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"	data-dismiss="modal">Cancelar</button>
+											<button type="button" class="btn btn-primary" th:onclick="eliminarUsuario()">Borrar PoI</button>
+										</div>
+									</div>
+								</div>
+							</div>
+		
+		<script type="text/javascript">
+function confirmarEliminar(id){
+	$('#modalEliminar').modal('show');
+	$("#identificadorUsuarioHiddenInput").val(id);
+}
+
+function eliminarUsuario(){
+	var id = $("#identificadorUsuarioHiddenInput").val();
+    window.location = "eliminarCliente/"+id;
+}
+</script>
 
 
 <!-- ---------------------------------------------------------------- -->
@@ -116,6 +177,7 @@
 </form>
 
 <img src="">
+</div>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
