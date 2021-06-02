@@ -1,11 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/misestilos.css}">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>PoI</title>
 </head>
 <body>
+	<div class="container">
 
+		<div th:insert="layouts/header :: header"></div>
+
+		<h1>Registrarte</h1>
+		<h4>Rapido y fácil</h4>
+		<br>
+		
+		<form id="" th:object="${}"
+			th:action="${editMode}?@{}:@{}"
+			method="post">
+			
+		<div class="form-group row">
+			<label for="nombrepoi" class="col-sm-2 col-form-label">Nombre del PoI</label>
+			<div class="col-sm-10">
+				<input type="text" id="nombrepoi" class="form-control" th:field="*{nombrepoi}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="calle" class="col-sm-2 col-form-label">Calle del PoI</label>
+			<div class="col-sm-10">
+				<input type="text" id="calle" class="form-control" th:field="{calle}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="num" class="col-sm-2 col-form-label">Numero</label>
+			<div class="col-sm-10">
+				<input type="number" id="num" class="form-control" th:field="*{num}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="barrio" class="col-sm-2 col-form-label">Barrio</label>
+			<div class="col-sm-10">
+				<input type="text" id="barrio" class="form-control" th:field="*{barrio}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="localidad" class="col-sm-2 col-form-label">Localidad</label>
+			<div class="col-sm-10">
+				<input type="text" id="localidad" class="form-control" th:field="*{localidad}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="desc" class="col-sm-2 col-form-label">Descripcion</label>
+			<div class="col-sm-10">
+				<input type="text" id="desc" class="form-control" th:field="*{}desc" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="infoadicional" class="col-sm-2 col-form-label">Informacion Adicional del PoI</label>
+			<div class="col-sm-10">
+				<select id="tipo" class="form-control" th:field="*{tipoDocumento}">
+						<option value="cultura">Cultura</option>
+						<option value="naturaleza">Naturaleza</option>
+						<option value="aventura">Aventura</option>
+						<option value="deportivo">Deportivo</option>
+						<option value="gastronomía">Gastronomía</option>
+					</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="web" class="col-sm-2 col-form-label">Sitio web</label>
+			<div class="col-sm-10">
+				<input type="text" id="web" class="form-control" th:field="*{web}desc">
+			</div>
+		</div>
+		<div>
+				<input type="submit" class="btn btn-success btn-block"
+					th:value="${editMode}?'Modificar Producto':'Crear Producto'">
+				<!-- <button type="submit" class="btn btn-primary" value="Agregar">Agregar</button> -->
+		</div>
+		</form>
+		</div>
+
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
   <label class="form-check-label" for="inlineRadio1">1</label>
@@ -26,7 +106,8 @@
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
   <label class="form-check-label" for="inlineRadio1">5</label>
 </div>
-
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
 <form>
   <div class="form-group">
     <label for="guardar imagen 1">ingrese imagen</label>
@@ -34,5 +115,16 @@
   </div>
 </form>
 
+<img src="">
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+			type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+			type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+			type="text/javascript"
+			src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<div th:insert="layouts/footer :: footer"></div>
 </body>
 </html>
