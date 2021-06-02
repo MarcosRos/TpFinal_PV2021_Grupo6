@@ -18,10 +18,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Turista {
 	
-	/*@Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer idTurista;*/ //También queda comentado
+	private Integer idTurista; //También queda comentado
 	
 	/*@Column //no se debe repetir
 	@NotBlank(message="Es necesario un nombre de usuario")
