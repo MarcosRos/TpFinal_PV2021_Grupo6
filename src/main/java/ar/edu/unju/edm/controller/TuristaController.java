@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.edm.model.Turista;
+import ar.edu.unju.edm.service.ITuristaService;
 
 public class TuristaController {
 	@Autowired
