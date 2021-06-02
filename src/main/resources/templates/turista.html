@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/misestilos.css}">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Registro Turista</title>
+</head>
+<body>
+	<div class="container">
+
+		<div th:insert="layouts/header :: header"></div>
+
+		<h1>Registrarte</h1>
+		<h4>Rapido y fácil</h4>
+		<br>
+		
+		<form id="" th:object="${}"
+			th:action="${editMode}?@{}:@{}"
+			method="post">
+			
+		<div class="form-group row">
+			<label for="nombre" class="col-sm-2 col-form-label">Nombre/s y Apellido/s</label>
+			<div class="col-sm-10">
+				<input type="text" id="nombre" class="form-control" th:field="*{nombreApellido}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="pais" class="col-sm-2 col-form-label">Pais de Procedencia</label>
+			<div class="col-sm-10">
+				<input type="text" id="pais" class="form-control" th:field="{pais}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="email" class="col-sm-2 col-form-label">Email</label>
+			<div class="col-sm-10">
+				<input type="email" id="email" class="form-control" th:field="*{email}" required>
+			</div>
+		</div>
+		<div>
+				<input type="submit" class="btn btn-success btn-block"
+					th:value="${editMode}?'Modificar Producto':'Crear Producto'">
+				<!-- <button type="submit" class="btn btn-primary" value="Agregar">Agregar</button> -->
+		</div>
+		</form>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<div class="table-responsive">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Nombre y apellido</th>	
+						<th>Pais de Origen</th>
+						<th>E-mail</th>
+					</tr>
+				</thead>
+				<tr th:if="${turistas.empty}">
+					<td colspan="2">No hay turistas registrados aún</td>
+				</tr>
+				<tr th:each="tur : ${turistas}">
+					<td th:text="${tur.nombre}"></td>				
+					<td th:text="${tur.pais}"></td>
+					<td th:text="${tur.email}"></td>
+					<td><a href="#"
+						th:href="@{/turista/editar'+${tur.correo}}"> 
+						<i class="fa fa-edit"></i></a> 
+					<a th:onclick="'javascript:confirmarEliminar(\''+${tur.correo}+'\');'"><i class="fa fa-trash-alt"></i>
+					</a></td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		
+		<!--Modal Eliminar--> 
+		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog"
+			aria-labelledby="eliminarModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="eliminarModalTitulo">Confirme si desea borrar turista</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h6>¿Borrar este turista?</h6>
+					</div>
+					<input type="hidden" id="identificadorProducto"
+						name="productoId" />
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary"
+							th:onclick="eliminarTurista()">Borrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		function confirmarEliminar(email) {
+			$('#modalEliminar').modal('show');
+			$("#identificadorTurista").val(email);
+		}
+
+		function eliminarTurista() {
+			var id = $("#identificadorTurista").val();
+			window.location = "eliminarTurista/" + email;
+		}
+		</script>
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+			type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+			type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+			type="text/javascript"
+			src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<div th:insert="layouts/footer :: footer"></div>
+
+</body>
+</html>
