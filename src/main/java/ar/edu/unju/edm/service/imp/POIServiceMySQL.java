@@ -1,8 +1,9 @@
-package ar.edu.unju.edm.imp;
+package ar.edu.unju.edm.service.imp;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.POI;
@@ -10,6 +11,7 @@ import ar.edu.unju.edm.repository.IPOIDAO;
 import ar.edu.unju.edm.service.IPOIService;
 
 @Service
+@Qualifier("imppoi")
 public class POIServiceMySQL implements IPOIService{
 	
 	@Autowired
@@ -64,8 +66,7 @@ public class POIServiceMySQL implements IPOIService{
 		hacia.setNombre(desde.getNombre());
 		hacia.setNumero(desde.getNumero());
 		hacia.setSitioWeb(desde.getSitioWeb());
-		//hacia.setTurista(desde.getTurista());
-		//hacia.setIdPOI(desde.getIdPOI());
+		//colocar foto
 	}
 	
 	@Override

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.OneToMany;
@@ -26,6 +27,10 @@ public class POI {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Integer idPOI;
+	
+	@Lob
+	@Column(name = "imagen", columnDefinition = "LONGBLOB")
+	private String imagen;
 	
 	@Column
 	@NotBlank
@@ -166,5 +171,13 @@ public class POI {
 
 	public void setTurista(Turista turista) {
 		this.turista = turista;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }
