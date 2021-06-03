@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="POIS")
+@Table (name="POIS")
 @Component
 public class POI {
 	@Id
