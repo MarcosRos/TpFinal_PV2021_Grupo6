@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 	
-	/*@Autowired
-	Home unHome;*/
-
-	/*@GetMapping({ "/home"})
+	@Autowired
+    Main unMain;
+	
+	@GetMapping({ "/", "/login", "/home", "/index", "/login?error=true" })
 	public String cargarHome(Model model) {
 		return "home";
-	}*/
+	}
+}
+
 }
