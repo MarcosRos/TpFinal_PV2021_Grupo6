@@ -3,6 +3,7 @@ package ar.edu.unju.edm.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.Turista;
@@ -10,6 +11,7 @@ import ar.edu.unju.edm.repository.ITuristaDAO;
 import ar.edu.unju.edm.service.ITuristaService;
 
 @Service
+@Qualifier("impturista")
 public class TuristaServiceMySQL implements ITuristaService{
 	
 	@Autowired
@@ -32,7 +34,8 @@ public class TuristaServiceMySQL implements ITuristaService{
 
 	@Override
 	public void guardarTurista(Turista unTurista) {
-		// TODO Auto-generated method stub
+		// falta encriptar la contraseña y setearla nuevamente
+		
 		turistaDAO.save(unTurista);
 	}
 
@@ -56,11 +59,9 @@ public class TuristaServiceMySQL implements ITuristaService{
 		hacia.setEmail(desde.getEmail());
 		hacia.setApellidos(desde.getApellidos());
 		hacia.setDocumento(desde.getDocumento());
-		hacia.setIdTurista(desde.getIdTurista());
 		hacia.setNombres(desde.getNombres());
 		hacia.setPais(desde.getPais());
 		hacia.setPassword(desde.getPassword());
-		hacia.setPuntos(desde.getPuntos());
 		//hacia.setIdTurista(desde.getIdTurista());
 	}
 	
