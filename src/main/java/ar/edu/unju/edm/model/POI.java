@@ -64,8 +64,8 @@ public class POI {
 	@NotNull
 	private Double longitud;
 	
-	@ManyToOne
-	@JoinColumn(name = "email")
+	@ManyToOne //no va cascade
+	@JoinColumn(name = "idTurista")
 	private Turista turista;
 	
 	public POI() {

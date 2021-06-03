@@ -22,11 +22,11 @@ public class TuristaPOI {
 	private Integer idTuristaPOI;
 	
 	@ManyToOne
-	@JoinColumn(name = "email")
+	@JoinColumn(name = "idTurista") //no se coloca cascada
 	private Turista turista;
 	
 	@ManyToOne
-	@JoinColumn(name = "idPOI")
+	@JoinColumn(name = "codigoPOI")	//no se coloca cascada
 	private POI poi;
 	
 	@Column
