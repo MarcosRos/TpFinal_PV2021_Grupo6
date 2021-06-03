@@ -14,7 +14,7 @@
 		<div th:insert="layouts/header :: header"></div>
 
 		<h1>Registrarte</h1>
-		<h4>Rapido y fácil</h4>
+		<h4>Rapido y fï¿½cil</h4>
 		<br>
 		
 		<form id="" th:object="${}"
@@ -58,7 +58,7 @@
 					</tr>
 				</thead>
 				<tr th:if="${turistas.empty}">
-					<td colspan="2">No hay turistas registrados aún</td>
+					<td colspan="2">No hay turistas registrados aï¿½n</td>
 				</tr>
 				<tr th:each="tur : ${turistas}">
 					<td th:text="${tur.nombre}"></td>				
@@ -87,7 +87,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<h6>¿Borrar este turista?</h6>
+						<h6>ï¿½Borrar este turista?</h6>
 					</div>
 					<input type="hidden" id="identificadorProducto"
 						name="productoId" />
@@ -102,6 +102,35 @@
 		</div>
 
 	</div>
+	
+	<!--Modal Editar-->
+		<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" >
+				<div class="modal-content">
+				
+				</div>
+			</div>
+		</div>
+		
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+			type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+			type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+			type="text/javascript"
+			src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() { $(".link-compra").on("click", function(event) {
+									event.preventDefault();
+									$("#modalEditar").modal("show").find(".modal-content").load($(this).attr("href"));
+								});
+					});
+		</script>
+
+		<div th:insert="layout/footer :: footer"></div>
+	</div>
+	
 	<script type="text/javascript">
 		function confirmarEliminar(email) {
 			$('#modalEliminar').modal('show');
