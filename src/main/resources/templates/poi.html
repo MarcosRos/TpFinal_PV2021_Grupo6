@@ -26,7 +26,7 @@
 		<div class="form-group row">
 			<label for="calle" class="col-sm-2 col-form-label">Calle del PoI</label>
 			<div class="col-sm-10">
-				<input type="text" id="calle" class="form-control" th:field="{calle}" required>
+				<input type="text" id="calle" class="form-control" th:field="{calle}" required pattern="[A-Za-z]+">>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -61,8 +61,8 @@
 						<option value="naturaleza">Naturaleza</option>
 						<option value="aventura">Aventura</option>
 						<option value="deportivo">Deportivo</option>
-						<option value="gastronom�a">Gastronom�a</option>
-					</select>
+						<option value="gastronomia">Gastronomia</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -73,9 +73,10 @@
 		</div>
 		<div>
 				<input type="submit" class="btn btn-success btn-block"
-					th:value="${editMode}?'Modificar Producto':'Crear Producto'">
+					th:value="${editMode}?'Modificar PoI':'Crear PoI'">
 				<!-- <button type="submit" class="btn btn-primary" value="Agregar">Agregar</button> -->
 		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 		
 		<div class="table-responsive">
