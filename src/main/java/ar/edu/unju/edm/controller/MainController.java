@@ -13,8 +13,8 @@ public class MainController {
 	/*@Autowired
 	Home unHome;*/
 
-	@GetMapping({ "/", "/login", "/home", "/index", "/login?error=true" })
+	/*@GetMapping({ "/home"})
 	public String cargarHome(Model model) {
 		return "home";
-	}
+	}*/
 }
