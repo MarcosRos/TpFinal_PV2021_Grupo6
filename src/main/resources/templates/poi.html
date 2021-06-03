@@ -26,7 +26,7 @@
 		<div class="form-group row">
 			<label for="calle" class="col-sm-2 col-form-label">Calle del PoI</label>
 			<div class="col-sm-10">
-				<input type="text" id="calle" class="form-control" th:field="{calle}" required>
+				<input type="text" id="calle" class="form-control" th:field="{calle}" required pattern="[A-Za-z]+">>
 			</div>
 		</div>
 		<div class="form-group row">
