@@ -21,13 +21,12 @@ public class Turista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer idTurista; //También queda comentado
+	private Integer idTurista;
 	
 	/*@Column //no se debe repetir
 	@NotBlank(message="Es necesario un nombre de usuario")
 	private String nombreDeUsuario;*/ //Esto queda comentado porque la imagen no lo requiere. En lugar de esta columna, pongo email
 	
-	@Id
 	@Column
 	@NotBlank(message="Incluir email")
 	private String email;
