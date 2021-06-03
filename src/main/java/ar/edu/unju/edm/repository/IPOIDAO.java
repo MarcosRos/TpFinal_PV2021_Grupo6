@@ -12,8 +12,8 @@ import ar.edu.unju.edm.model.POI;
 @Repository
 public interface IPOIDAO extends CrudRepository<POI, Integer>{
 	
-	 @Query("frmo POI p order by p.idPOI")
+	 @Query("from POI p order by p.idPOI")
 	 public List<POI> obtenerPOIs();
 	 
-	 public Optional<POI> findBbyIdPOI(int idp);
+	 public Optional<POI> findByIdPOI(int idp);
 }

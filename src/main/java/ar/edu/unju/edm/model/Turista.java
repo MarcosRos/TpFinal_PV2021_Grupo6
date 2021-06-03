@@ -23,10 +23,6 @@ public class Turista {
 	@Column
 	private Integer idTurista;
 	
-	/*@Column //no se debe repetir
-	@NotBlank(message="Es necesario un nombre de usuario")
-	private String nombreDeUsuario;*/ //Esto queda comentado porque la imagen no lo requiere. En lugar de esta columna, pongo email
-	
 	@Column
 	@NotBlank(message="Incluir email")
 	private String email;

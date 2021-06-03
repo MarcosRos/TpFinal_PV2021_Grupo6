@@ -1,4 +1,4 @@
-package ar.edu.unju.edm.service.imp;
+package ar.edu.unju.edm.imp;
 
 import java.util.List;
 
