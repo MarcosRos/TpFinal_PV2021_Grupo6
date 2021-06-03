@@ -8,5 +8,7 @@ public interface ITuristaService {
 	public Turista crearTurista();
 	public List<Turista> obtenerTodosTuristas();
 	public void guardarTurista(Turista unTurista);
-	public Turista encontrarUnTurista(int ema) throws Exception;
+	public Turista encontrarUnTurista(int idt) throws Exception;
+	public void modificarTurista(Turista turistaModificado) throws Exception;
+	public void eliminarTurista(int idt) throws Exception;
 }

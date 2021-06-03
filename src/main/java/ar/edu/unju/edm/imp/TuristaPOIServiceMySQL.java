@@ -28,8 +28,7 @@ public class TuristaPOIServiceMySQL implements ITuristaPOIService{
 	@Override
 	public List<TuristaPOI> obtenerTodosTuristaPOIs() {
 		// TODO Auto-generated method stub
-		//return (List<TuristaPOI>) turistaPOIDAO.findAll();
-		return null;
+		return (List<TuristaPOI>) turistaPOIDAO.findAll();
 	}
 
 	@Override
@@ -41,8 +40,32 @@ public class TuristaPOIServiceMySQL implements ITuristaPOIService{
 	@Override
 	public TuristaPOI encontrarUnTuristaPOI(int idtp) throws Exception {
 		// TODO Auto-generated method stub
-		//return turistaPOIDAO.findByIdTuristaPOI(idtp).orElseThrow(()->new Exception ("El turistaPOI NO existe"));
-		return null;
+		return turistaPOIDAO.findByIdTuristaPOI(idtp).orElseThrow(()->new Exception ("El turistaPOI NO existe"));
+	}
+
+	@Override
+	public void modificarTuristaPOI(TuristaPOI turistaPOIModificado) throws Exception {
+		// TODO Auto-generated method stub
+		TuristaPOI turistaPOIAModificar = turistaPOIDAO.findByIdTuristaPOI(turistaPOIModificado.getIdTuristaPOI()).orElseThrow(()->new Exception("El TuristaPOI no fue encontrado"));
+		cambiarTuristaPOI(turistaPOIModificado, turistaPOIAModificar);
+		
+		turistaPOIDAO.save(turistaPOIAModificar);
+	}
+	
+	public void cambiarTuristaPOI(TuristaPOI desde, TuristaPOI hacia) {
+		hacia.setComentario(desde.getComentario());
+		hacia.setValoracion(desde.getValoracion());
+		//hacia.setPoi(desde.getPoi());
+		//hacia.setTurista(desde.getTurista());
+		//hacia.setIdTuristaPOI(desde.getIdTuristaPOI());
+		
+	}
+	
+	@Override
+	public void eliminarTuristaPOI(int idtp) throws Exception {
+		// TODO Auto-generated method stub
+		TuristaPOI turistaPOIEliminar = turistaPOIDAO.findByIdTuristaPOI(idtp).orElseThrow(()->new Exception("El TuristaPOI no fue encontrado"));
+		turistaPOIDAO.delete(turistaPOIEliminar);
 	}
 
 }

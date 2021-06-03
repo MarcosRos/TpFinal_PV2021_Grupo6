@@ -27,4 +27,34 @@ public class Foto {
 	@ManyToOne
 	@JoinColumn(name = "IdPOI")
 	private POI poi;
+	
+	public Foto() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getIdFoto() {
+		return idFoto;
+	}
+
+	public void setIdFoto(Integer idFoto) {
+		this.idFoto = idFoto;
+	}
+
+	public String getLinkFoto() {
+		return linkFoto;
+	}
+
+	public void setLinkFoto(String linkFoto) {
+		this.linkFoto = linkFoto;
+	}
+
+	public POI getPoi() {
+		return poi;
+	}
+
+	public void setPoi(POI poi) {
+		this.poi = poi;
+	}
+	
+	
 }

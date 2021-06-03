@@ -9,4 +9,6 @@ public interface IFotoService {
 	public List<Foto> obtenerTodosFotos();
 	public void guardarFoto(Foto unaFoto);
 	public Foto encontrarUnaFoto(int idf) throws Exception;
+	public void modificarFoto(Foto FotoModificado) throws Exception;
+	public void eliminarFoto(int idf) throws Exception;
 }

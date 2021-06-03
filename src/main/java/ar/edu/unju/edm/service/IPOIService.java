@@ -10,4 +10,6 @@ public interface IPOIService {
 	public List<POI> obtenerTodosPOIs();
 	public void guardarPOI(POI unPOI);
 	public POI encontrarUnPOI(int idp) throws Exception;
+	public void modificarPOI(POI POIModificado) throws Exception;
+	public void eliminarPOI(int idp) throws Exception;
 }
