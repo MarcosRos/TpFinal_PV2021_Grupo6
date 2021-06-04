@@ -52,6 +52,9 @@ public class Turista {
 	@Column
 	private int puntos; //son los puntos para canjear
 	
+	@Column
+	private String tipo;
+	
 	public Turista() {
 		// TODO Auto-generated constructor stub
 	}
@@ -119,4 +122,13 @@ public class Turista {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 }
