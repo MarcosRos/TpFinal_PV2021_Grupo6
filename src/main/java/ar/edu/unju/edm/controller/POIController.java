@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.edm.model.POI;
@@ -29,7 +30,21 @@ public class POIController {
 		return("poi");
 	}
 	
-	//getmapping editar poi
+	@GetMapping("/producto/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
+	public String editarPoi(Model model, @PathVariable(name="idPOI") int id) throws Exception {
+		try {
+			POI poiEncontrado = poiService.encontrarUnPOI(id);
+			model.addAttribute("unPoi", poiEncontrado);
+			model.addAttribute("editMode", "true");
+		}
+		catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unPoi", poiService.crearPOI());
+			model.addAttribute("editMode", "false");
+		}
+		model.addAttribute("productos", poiService.obtenerTodosPOIs());
+		return("poi");
+	}
 	
 	@PostMapping("/poi/guardar")
 	public String guardarNuevoPoi(@ModelAttribute("unPoi") POI nuevoPoi, BindingResult resultado, Model model) {
