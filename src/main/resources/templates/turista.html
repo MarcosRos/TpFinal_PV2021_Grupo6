@@ -18,6 +18,8 @@
 
 		<form id="formTurista" th:object="${unTurista}" th:action="${editMode}?@{/turista/modificar}:@{/turista/guardar}" method="post">
 			
+			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}"> <!-- agregado -->
+						
 		<div class="form-group row">
 			<label for="nombre" class="col-sm-2 col-form-label">Nombre/s</label>
 			<div class="col-sm-10">
