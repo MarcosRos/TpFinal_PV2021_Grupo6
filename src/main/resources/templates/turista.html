@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
 	<link th:rel="stylesheet" type="text/css" th:href="@{/css/misestilos.css}">
 	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
@@ -14,7 +13,7 @@
 		<div th:insert="layouts/header :: header"></div>
 
 		<h1>Registrarte</h1>
-		<h4>Rapido y f�cil</h4>
+		<h4>Rapido y fácil</h4>
 		<br>
 
 		<form id="formTurista" th:object="${unTurista}" th:action="${editMode}?@{/turista/modificar}:@{/turista/guardar}" method="post">
@@ -59,7 +58,7 @@
 					</tr>
 				</thead>
 				<tr th:if="${turistas.empty}">
-					<td colspan="2">No hay turistas registrados a�n</td>
+					<td colspan="2">No hay turistas registrados aï¿½n</td>
 				</tr>
 				<tr th:each="tur : ${turistas}">
 					<td th:text="${tur.nombre}"></td>				
@@ -88,7 +87,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<h6>�Borrar este turista?</h6>
+						<h6>ï¿½Borrar este turista?</h6>
 					</div>
 					<input type="hidden" id="identificadorProducto"
 						name="productoId" />
