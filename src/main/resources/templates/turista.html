@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link th:rel="stylesheet" type="text/css" th:href="@{/css/misestilos.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}">
 <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 <title>Registro Turista</title>
 </head>
-<body>
-	<div class="container">
+<body class="body-home">
 
-		<div th:insert="layouts/header :: header"></div>
+	<div th:insert="layouts/header :: header"></div>
+	<div class="container">
 
 		<h1>Registrarte</h1>
 		<h4>Rapido y fácil</h4>
@@ -20,6 +20,8 @@
 			
 			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}"> <!-- agregado -->
 						
+			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}">
+			<input class="form-control" type=hidden th:field="*{password}" th:if="${editMode}">
 		<div class="form-group row">
 			<label for="nombre" class="col-sm-2 col-form-label">Nombre/s</label>
 			<div class="col-sm-10">
@@ -44,6 +46,21 @@
 			<input type="email" id="email" class="form-control" th:field="*{email}" required>
 			</div>
 		</div>
+		
+		<div class="form-group row">
+			<label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+			<div class="col-sm-10">
+			<input type="text" id="password" class="form-control" th:field="*{password}" required>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label for="documento" class="col-sm-2 col-form-label">Documento</label>
+			<div class="col-sm-10">
+			<input type="number" id="documento" class="form-control" th:field="*{documento}" required>
+			</div>
+		</div>
+		<!--  tipo set-->
 		<div class="form-group row">
 				<div class="col-sm-6">
 				<input type="submit" class="btn btn-success btn-block"  th:value="${editMode}?'Modificar Turista':'Crear Turista'">
@@ -64,21 +81,25 @@
 						<th>Apellido/s</th>		
 						<th>Pais de Origen</th>
 						<th>E-mail</th>
+						<th>Documento</th>
+						<th>Tipo</th>
 					</tr>
 				</thead>
-				<tr th:if="${turistas.empty}">
-					<td colspan="2">No hay turistas registrados aï¿½n</td>
-				</tr>
+				<!--  <tr th:if="${turistas.empty}">
+					<td colspan="2">No hay turistas registrados aqui</td>
+				</tr>-->
 				<tr th:each="tur : ${turistas}">
 					<td th:text="${tur.nombres}"></td>	
 					<td th:text="${tur.apellidos}"></td>				
 					<td th:text="${tur.pais}"></td>
 					<td th:text="${tur.email}"></td>
+					<td th:text="${tur.documento}"></td>
+					<td th:text="${tur.tipo}"></td>
 					<td><a href="#"
-						th:href="@{/turista/editar'+${tur.correo}}"> 
+						th:href="@{'/turista/editar/'+${tur.idTurista}}"> 
 						<i class="fa fa-edit"></i></a> 
-					<!--<a th:onclick="'javascript:confirmarEliminar(\''+${tur.email}+'\');'"><i class="fa fa-trash-alt"></i>
-					</a></td>-->
+					<!--  <a th:onclick="'javascript:confirmarEliminar(\''+${tur.email}+'\');'"><i class="fa fa-trash-alt"></i>
+				 </a></td> -->
 				</tr>
 			</table>
 		</div>
@@ -97,15 +118,15 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<h6>ï¿½Borrar este turista?</h6>
+						<h6>Borrar este turista?</h6>
 					</div>
-					<input type="hidden" id="identificadorProducto"
-						name="productoId" />
+					<input type="hidden" id="identificadorProductoHiddenInput"
+						name="productoIdHiddenInput" />
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary"
-							th:onclick="eliminarTurista()">Borrar</button>
+						<!--  <button type="button" class="btn btn-primary"
+							th:onclick="eliminarTurista()">Borrar</button>-->
 					</div>
 				</div>
 			</div>
@@ -114,41 +135,30 @@
 	</div>
 	
 	<!--Modal Editar-->
-		<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+		<!-- <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-dialog-centered" >
 				<div class="modal-content">
 				
 				</div>
 			</div>
 		</div>
-		
-		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
-			type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
-		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
-			type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
-		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
-			type="text/javascript"
-			src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-		<script type="text/javascript">
+		 <script type="text/javascript">
 			$(document).ready(function() { $(".link-compra").on("click", function(event) {
 									event.preventDefault();
 									$("#modalEditar").modal("show").find(".modal-content").load($(this).attr("href"));
 								});
 					});
-		</script>
-
-
-	
+		</script>-->
 	
 	<script type="text/javascript">
 		function confirmarEliminar(email) {
 			$('#modalEliminar').modal('show');
-			$("#identificadorTurista").val(email);
+			$("#identificadorTuristaHiddenInput").val(email);
 		}
 
 		function eliminarTurista() {
-			var id = $("#identificadorTurista").val();
+			var id = $("#identificadorTuristaHiddenInput").val();
 			window.location = "eliminarTurista/" + email;
 		}
 		</script>
