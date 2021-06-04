@@ -30,6 +30,12 @@ body {
 	height: 100vh;
 }
 
+.imgmain {
+	right: 3.33333%;
+	top: 3.33333%;
+	width: 100px;
+}
+
 .titulos {
 	background: white;
 }
@@ -41,4 +47,18 @@ body {
 	bottom: 0;
 	position: fixed;
 	text-align: center;
+}
+.containermio {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 50px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 900px;
+}
+
+.titulomain {
+	text-align: center;
+	text-transform: uppercase;
+	font: 'arial';
 }

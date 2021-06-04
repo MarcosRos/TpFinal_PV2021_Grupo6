@@ -17,13 +17,15 @@
 
 	<div>
 		<div th:insert="layouts/header :: header"></div>
-		<div class="container">				
-						<h1>Bienvenido a la provincia de Jujuy</h1>
-						<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
-			<div class="row align-items-center">
-			<div class="home-title img" style="transform: scale(0.666667); right: 3.33333%; top: 3.33333%;"><img alt="" src="../img/chikorita.jpg"></div>
+			<div class="titulomain">
+			<h1>Bienvenido a la provincia de Jujuy</h1>
+			<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
+			</div>
+			<!--<div class="imgmain">			
+			<img src="../img/chikorita.jpg" alt="chikorita">
+			</div> -->
+			<div class="containermio">
 				<div class="col">
-				
 					<br>
 					<div class="inicio-de-sesion">
 
@@ -55,7 +57,7 @@
 				</div>
 
 			</div>
-		</div>
+		
 	<!--
 	<div class="footer-lang__wrap">      
 	<div class="footer-lang__content opened">        
@@ -83,6 +85,6 @@
 		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		
 	<div th:insert="layouts/footer :: footer"></div>
-	</div>
+</div>
 </body>
 </html>
