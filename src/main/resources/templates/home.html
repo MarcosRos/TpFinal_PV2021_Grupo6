@@ -17,14 +17,16 @@
 <body class="body-home">
 
 	<div>
-	<div class="titulos">
-		<h1>Bienvenido a la provincia de Jujuy</h1>
-		<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
-		<br></div>
+	
 		<div class="container">
-			<!-- Header -->
+			<div class="titulos">
+					<h1>Bienvenido a la provincia de Jujuy</h1>
+					<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
+				</div>
 			<div class="row align-items-center">
+			
 				<div class="col">
+				
 					<br>
 					<div class="inicio-de-sesion">
 
@@ -58,14 +60,10 @@
 					</div>
 					<br> <br> <br> <br>
 				</div>
-				<div class="col"></div>
-				<div class="col"></div>
+
 			</div>
 		</div>
-		<footer>
-			<div th:insert="layouts/footer :: footer"></div>
-		</footer>
-	</div>
+	
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
@@ -73,5 +71,7 @@
 	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
 		type="text/javascript"
 		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<div th:insert="layouts/footer :: footer"></div>
+	</div>
 </body>
 </html>
