@@ -5,11 +5,6 @@ body {
 	padding: 0;
 }
 
-.main {
-	background-image: url("../img/imghome.jpg");
-	overflow: hidden;
-	height: 100%;
-}
 .inicio-de-sesion {
 	width: 320px;
 	height: 440px;
@@ -26,18 +21,13 @@ body {
 	padding: 0;
 	background: url(../img/imghome.jpg) no-repeat center top;
 	background-size: cover;
-	font-family: sans-serif;
-	height: 100vh;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 .imgmain {
 	right: 3.33333%;
 	top: 3.33333%;
-	width: 100px;
-}
-
-.titulos {
-	background: white;
 }
 
 .footer {
@@ -50,11 +40,9 @@ body {
 }
 .containermio {
 	width: 100%;
-	padding-right: 15px;
-	padding-left: 50px;
 	margin-right: auto;
 	margin-left: auto;
-	height: 900px;
+	height: 1000px;
 }
 
 .titulomain {
