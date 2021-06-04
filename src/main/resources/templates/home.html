@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}" />
 <link th:rel="stylesheet" type="text/css"
 	th:href="@{/css/misestilos.css}">
@@ -9,21 +9,21 @@
 	th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet"
 	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <title>home</title>
 
 </head>
 <body class="body-home">
 
 	<div>
-	<div class="titulos">
-		<h1>Bienvenido a la provincia de Jujuy</h1>
-		<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
-		<br></div>
-		<div class="container">
-			<!-- Header -->
-			<div class="row align-items-center">
+		<div th:insert="layouts/header :: header"></div>
+			<div class="titulomain">
+			<h1>Bienvenido a la provincia de Jujuy</h1>
+			<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
+			</div>
+			<!--<div class="imgmain">			
+			<img src="../img/chikorita.jpg" alt="chikorita">
+			</div> -->
+			<div class="containermio">
 				<div class="col">
 					<br>
 					<div class="inicio-de-sesion">
@@ -36,21 +36,17 @@
 								<label for="usuario" class="col-sm-2 col-form-label">Usuario</label>
 								<br> <input type="text" name="correo"
 									placeholder="Ingrese su Usuario" class="form-control">
-
 							</div>
-
-
 							<div class="form-group row">
-								<label for="contrase�a" class="col-sm-2 col-form-label">Contrase�a</label>
+								<label for="contraseña" class="col-sm-2 col-form-label">Contraseña</label>
 								<br> <input type="password" name="password"
-									placeholder="Ingrese su Contrase�a" class="form-control">
+									placeholder="Ingrese su Contraseña" class="form-control">
 
 							</div>
-
 							<div class="d-grid gap-2">
 								<input type="submit" class="btn btn-primary" value="Entrar">
 							</div>
-							<br> <a href="#">Olvidaste tu contrase�a?</a><br> <a
+							<br> <a href="#">Olvidaste tu contraseña?</a><br> <a
 								href="#">Registrarse</a>
 
 
@@ -58,14 +54,27 @@
 					</div>
 					<br> <br> <br> <br>
 				</div>
-				<div class="col"></div>
-				<div class="col"></div>
+
 			</div>
-		</div>
-		<footer>
-			<div th:insert="layouts/footer :: footer"></div>
-		</footer>
+		
+	<!--
+	<div class="footer-lang__wrap">      
+	<div class="footer-lang__content opened">        
+	<div class="lang-icon"></div>        
+	<div class="lang-text">          English        </div>      
+	::after
+	</div>      
+	<div class="footer-lang__panel" style="display: block;">        
+	<div class="footer-lang-items  ">                      
+	<div class="lang-item" data-lang="zh-tw">              中文(繁體)            </div>                      
+	<div class="lang-item active" data-lang="en-us">              English            </div>                      
+	<div class="lang-item" data-lang="ko-kr">              한국어            </div>                      
+	<div class="lang-item" data-lang="pt-pt">              Português            </div>                      
+	<div class="lang-item" data-lang="es-es">              Español            </div>                  
+	</div>      
+	</div>    
 	</div>
+	  -->
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
@@ -73,5 +82,8 @@
 	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
 		type="text/javascript"
 		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		
+	<div th:insert="layouts/footer :: footer"></div>
+</div>
 </body>
 </html>

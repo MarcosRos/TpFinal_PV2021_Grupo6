@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
 	<div id="header" th:fragment="header">
@@ -20,11 +19,18 @@
 				  		 <a class="nav-link" href="/poi/view">Ver puntos de interes</a>
 				 	</li>
 				 	<li class="nav-item">
-				   		 <a class="nav-link" href="/poi/new">Añadir nuevo punto de interes</a>
+				   		 <a class="nav-link" href="/poi/new">AÃ±adir nuevo punto de interes</a>
 				  	</li>
 				  	<li class="nav-item">
 				   		 <a class="nav-link" href="/user/new">Registrarse</a>
 				  	</li>
+				</ul>
+				<ul class="navbar-nav mt-2 mt-lg-0">
+					<li class="nav-item"><a class="btn btn-outline-dark" href="#"
+						th:href="@{/logout}"> <span
+							th:text="${#authentication.getPrincipal().getUsername()}">
+						</span> - <span> Salir </span><span class="float-right"> <i
+								class="fas fa-sign-out-alt"></i></span></a></li>
 				</ul>
 			</div>
 		</nav>

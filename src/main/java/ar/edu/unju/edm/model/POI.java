@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
+//import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.OneToMany;
@@ -28,9 +28,9 @@ public class POI {
 	@Column
 	private Integer idPOI;
 	
-	@Lob
+	/*@Lob
 	@Column(name = "imagen", columnDefinition = "LONGBLOB")
-	private String imagen;
+	private String imagen;*/
 	
 	@Column
 	@NotBlank
@@ -173,11 +173,11 @@ public class POI {
 		this.turista = turista;
 	}
 
-	public String getImagen() {
+	/*public String getImagen() {
 		return imagen;
 	}
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}
+	}*/
 }
