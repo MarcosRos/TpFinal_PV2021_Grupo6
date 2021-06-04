@@ -28,7 +28,7 @@ public class TpFinalPv2021Grupo6Application implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 //		// TODO Auto-generated method stub
 //		//inicializo Usuario ROOT
-				turista.setEmail("root@gmail.com");
+				/*turista.setEmail("root@gmail.com");
 				turista.setNombres("root");
 				turista.setApellidos("admin");
 				turista.setDocumento(12345678);
@@ -36,7 +36,7 @@ public class TpFinalPv2021Grupo6Application implements CommandLineRunner{
 				turista.setPassword("root");	
 				turista.setPuntos(0);
 				turista.setTipo("root");							
-				turistaService.guardarTurista(turista);
+				turistaService.guardarTurista(turista);*/
 //					
 }
 }
