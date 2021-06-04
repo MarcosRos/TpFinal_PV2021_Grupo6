@@ -17,6 +17,9 @@
 		<br>
 
 		<form id="formTurista" th:object="${unTurista}" th:action="${editMode}?@{/turista/modificar}:@{/turista/guardar}" method="post">
+			
+			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}"> <!-- agregado -->
+						
 			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}">
 			<input class="form-control" type=hidden th:field="*{password}" th:if="${editMode}">
 		<div class="form-group row">
