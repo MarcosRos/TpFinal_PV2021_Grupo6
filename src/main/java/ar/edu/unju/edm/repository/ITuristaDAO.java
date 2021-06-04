@@ -18,4 +18,6 @@ public interface ITuristaDAO extends CrudRepository<Turista, Integer>{
 	/*public List<Turista> findByOrderByPuntos();] "posible forma de ordenar la lista" */
 	
 	public Optional<Turista> findByIdTurista(int idt);
+	
+	public Optional<Turista> findByEmail(String email);
 }

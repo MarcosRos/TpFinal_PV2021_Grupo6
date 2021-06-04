@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}" />
 <link th:rel="stylesheet" type="text/css"
 	th:href="@{/css/misestilos.css}">
 <link th:rel="stylesheet" type="text/css"
@@ -9,13 +10,62 @@
 <link th:rel="stylesheet"
 	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <title>home</title>
-<body>
-	<h1>Bienvenido a la provincia de Jujuy</h1>
-	<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
-	<br>
+
+</head>
+<body class="body-home">
+
+	<div>
+	<div class="titulos">
+		<h1>Bienvenido a la provincia de Jujuy</h1>
+		<h2>Aqui encontraras los puntos mas importantes de la provincia</h2>
+		<br></div>
+		<div class="container">
+			<!-- Header -->
+			<div class="row align-items-center">
+				<div class="col">
+					<br>
+					<div class="inicio-de-sesion">
+
+						<form th:action="@{/login}" method="post">
+							<h1>Iniciar Sesion</h1>
+
+							<div class="form-group row">
+
+								<label for="usuario" class="col-sm-2 col-form-label">Usuario</label>
+								<br> <input type="text" name="correo"
+									placeholder="Ingrese su Usuario" class="form-control">
+
+							</div>
 
 
+							<div class="form-group row">
+								<label for="contraseña" class="col-sm-2 col-form-label">Contraseña</label>
+								<br> <input type="password" name="password"
+									placeholder="Ingrese su Contraseña" class="form-control">
+
+							</div>
+
+							<div class="d-grid gap-2">
+								<input type="submit" class="btn btn-primary" value="Entrar">
+							</div>
+							<br> <a href="#">Olvidaste tu contraseña?</a><br> <a
+								href="#">Registrarse</a>
+
+
+						</form>
+					</div>
+					<br> <br> <br> <br>
+				</div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+		</div>
+		<footer>
+			<div th:insert="layouts/footer :: footer"></div>
+		</footer>
+	</div>
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
