@@ -25,6 +25,15 @@ body {
 	background-attachment: fixed;
 }
 
+.body-tur {
+	margin: 0;
+	padding: 0;
+	background: #1F618D;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
 .footer {
 	background-color: #ffffff;
 	width: 100%;
