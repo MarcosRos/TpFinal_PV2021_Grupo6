@@ -17,6 +17,4 @@ public class MainController {
     public String cargarHome(Model model) {
         return "home";
     }
-    
 }
-

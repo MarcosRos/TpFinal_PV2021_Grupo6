@@ -25,13 +25,13 @@ public class AutenticationHandler implements AuthenticationSuccessHandler {
 		// TODO Auto-generated method stub
 		boolean userConsultor = false;
 		boolean userRegistrador = false;
-		boolean userAdmin = false;
+		boolean DNI = false;
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
 		for (GrantedAuthority grantedAuthority : authorities) {
 			if (grantedAuthority.getAuthority().equals("root")) {
-				userAdmin = true;
+				DNI = true;
 				break;
 			} else {
 				if (grantedAuthority.getAuthority().equals("CONSULTOR")) {
@@ -43,7 +43,7 @@ public class AutenticationHandler implements AuthenticationSuccessHandler {
 				}
 			}
 		}
-		if (userAdmin) {
+		if (DNI) {
 			redirectStrategy.sendRedirect(request, response, "/turista/mostrar");
 		} else {
 			if (userConsultor) {

@@ -55,9 +55,6 @@ public class Turista {
 	@Column
 	private String tipo;
 	
-	@Column
-	private Boolean activa;
-	
 	public Turista() {
 		// TODO Auto-generated constructor stub
 	}

@@ -35,8 +35,6 @@ public class TuristaServiceMySQL implements ITuristaService{
 
 	@Override
 	public void guardarTurista(Turista unTurista) {
-		unTurista.setPuntos(0);
-		unTurista.setTipo("root");
 		String pw = unTurista.getPassword();
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		unTurista.setPassword(bCryptPasswordEncoder.encode(pw));
@@ -66,7 +64,7 @@ public class TuristaServiceMySQL implements ITuristaService{
 		hacia.setNombres(desde.getNombres());
 		hacia.setPais(desde.getPais());
 		hacia.setPassword(desde.getPassword());
-		//hacia.setTipoTurista(desde.getTipoTurista());
+		//hacia.setIdTurista(desde.getIdTurista());
 	}
 	
 	@Override
@@ -81,5 +79,6 @@ public class TuristaServiceMySQL implements ITuristaService{
 		// TODO Auto-generated method stub
 		return turistaDAO.findByEmail(emailt).orElseThrow(()->new Exception ("El turista NO existe"));
 	}
+	
 	
 }

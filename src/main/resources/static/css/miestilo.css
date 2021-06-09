@@ -25,6 +25,15 @@ body {
 	background-attachment: fixed;
 }
 
+.body-tur {
+	margin: 0;
+	padding: 0;
+	background: #1F618D;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
 .footer {
 	background-color: #ffffff;
 	width: 100%;
@@ -40,6 +49,13 @@ body {
 	height: 1000px;
 }
 
+.tituloheader {
+	text-align: center;
+	text-transform: uppercase;
+	font: 'arial';
+	color: #dc3a46;
+}
+
 .titulomain {
 	text-align: center;
 	text-transform: uppercase;
@@ -50,12 +66,11 @@ body {
 .header {
   overflow: hidden;
   padding: 20px 10px;
-
+  
 }
 
 .header a {
   float: right;
-  color: black;
   text-align: center;
   padding: 12px;
   text-decoration: none;
@@ -70,7 +85,9 @@ body {
 }
 
 .contenedor-galeria {
+	float: right;
 	display: flex;
-	width: 50%;
-	margin: auto;
-} 
+	width: 100px; height: 100px;
+	margin-right:60%;
+	border-radius: 80px;
+}
