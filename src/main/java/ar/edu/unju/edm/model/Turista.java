@@ -40,9 +40,9 @@ public class Turista {
 	private String apellidos;
 	
 	@Column
-	@Min(100000)
+	@Min(100000) 
 	@Max(99999999)
-	@NotNull //funciona para cualquier tipo de dato
+	@NotNull (message="Incluir documento")
 	private long documento;
 	
 	@Column
