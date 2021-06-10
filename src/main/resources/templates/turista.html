@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}">
-	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
-	<title>Registro Turista</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}">
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet"
+	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+<title>Registro Turista</title>
 </head>
 <body class="body-tur">
 
 	<div th:insert="layouts/header :: header"></div>
-	
+
 	<div class="container">
 		<h1>Registrarte</h1>
 		<h4>Rapido y fácil</h4>
 		<br>
 
-		<form id="formTurista" th:object="${unTurista}" th:action="${editMode}?@{/turista/modificar}:@{/turista/guardar}" method="post">
-			
-			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}"> <!-- agregado -->
-			<input class="form-control" type=hidden th:field="*{password}" th:if="${editMode}">
+		<form id="formTurista" th:object="${unTurista}"
+			th:action="${editMode}?@{/turista/modificar}:@{/turistaRoot/guardar}"
+			method="post">
+
+			<input class="form-control" type=hidden th:field="*{idTurista}"
+				th:if="${editMode}">
+			<!-- agregado -->
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Nombre/s</label>
 				<div class="col-sm-10">
-				<input type="text" id="nombre" class="form-control" th:field="*{nombres}" required pattern="[A-Za-z]+">
+					<input type="text" id="nombre" class="form-control"
+						th:field="*{nombres}" required pattern="[A-Za-z]+">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Apellido/s</label>
 				<div class="col-sm-10">
-				<input type="text" id="nombre" class="form-control" th:field="*{apellidos}" required pattern="[A-Za-z]+">
+					<input type="text" id="nombre" class="form-control"
+						th:field="*{apellidos}" required pattern="[A-Za-z]+">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="pais" class="col-sm-2 col-form-label">Pais de Origen</label>
+				<label for="pais" class="col-sm-2 col-form-label">Pais de
+					Origen</label>
 				<div class="col-sm-10">
 					<select id="pais" class="form-control" th:field="*{pais}" required>
 						<option value="Elegir" id="AF">Elegir opción</option>
@@ -44,8 +52,10 @@
 						<option value="Angola" id="AO">Angola</option>
 						<option value="Anguila" id="AI">Anguila</option>
 						<option value="Antártida" id="AQ">Antártida</option>
-						<option value="Antigua y Barbuda" id="AG">Antigua y Barbuda</option>
-						<option value="Antillas holandesas" id="AN">Antillas holandesas</option>
+						<option value="Antigua y Barbuda" id="AG">Antigua y
+							Barbuda</option>
+						<option value="Antillas holandesas" id="AN">Antillas
+							holandesas</option>
 						<option value="Arabia Saudí" id="SA">Arabia Saudí</option>
 						<option value="Argelia" id="DZ">Argelia</option>
 						<option value="Argentina" id="AR">Argentina</option>
@@ -66,7 +76,8 @@
 						<option value="Bielorrusia" id="BY">Bielorrusia</option>
 						<option value="Birmania" id="MM">Birmania</option>
 						<option value="Bolivia" id="BO">Bolivia</option>
-						<option value="Bosnia y Herzegovina" id="BA">Bosnia y Herzegovina</option>
+						<option value="Bosnia y Herzegovina" id="BA">Bosnia y
+							Herzegovina</option>
 						<option value="Botsuana" id="BW">Botsuana</option>
 						<option value="Brasil" id="BR">Brasil</option>
 						<option value="Brunei" id="BN">Brunei</option>
@@ -81,7 +92,8 @@
 						<option value="Chile" id="CL">Chile</option>
 						<option value="China" id="CN">China</option>
 						<option value="Chipre" id="CY">Chipre</option>
-						<option value="Ciudad estado del Vaticano" id="VA">Ciudad estado del Vaticano</option>
+						<option value="Ciudad estado del Vaticano" id="VA">Ciudad
+							estado del Vaticano</option>
 						<option value="Colombia" id="CO">Colombia</option>
 						<option value="Comores" id="KM">Comores</option>
 						<option value="Congo" id="CG">Congo</option>
@@ -97,7 +109,8 @@
 						<option value="Ecuador" id="EC">Ecuador</option>
 						<option value="Egipto" id="EG">Egipto</option>
 						<option value="El Salvador" id="SV">El Salvador</option>
-						<option value="Emiratos Arabes Unidos" id="AE">Emiratos Arabes Unidos</option>
+						<option value="Emiratos Arabes Unidos" id="AE">Emiratos
+							Arabes Unidos</option>
 						<option value="Eritrea" id="ER">Eritrea</option>
 						<option value="Eslovaquia" id="SK">Eslovaquia</option>
 						<option value="Eslovenia" id="SI">Eslovenia</option>
@@ -105,14 +118,16 @@
 						<option value="Estados Unidos" id="US">Estados Unidos</option>
 						<option value="Estonia" id="EE">Estonia</option>
 						<option value="c" id="ET">Etiopía</option>
-						<option value="Ex-República Yugoslava de Macedonia" id="MK">Ex-República Yugoslava de Macedonia</option>
+						<option value="Ex-República Yugoslava de Macedonia" id="MK">Ex-República
+							Yugoslava de Macedonia</option>
 						<option value="Filipinas" id="PH">Filipinas</option>
 						<option value="Finlandia" id="FI">Finlandia</option>
 						<option value="Francia" id="FR">Francia</option>
 						<option value="Gabón" id="GA">Gabón</option>
 						<option value="Gambia" id="GM">Gambia</option>
 						<option value="Georgia" id="GE">Georgia</option>
-						<option value="Georgia del Sur y las islas Sandwich del Sur" id="GS">Georgia del Sur y las islas Sandwich del Sur</option>
+						<option value="Georgia del Sur y las islas Sandwich del Sur"
+							id="GS">Georgia del Sur y las islas Sandwich del Sur</option>
 						<option value="Ghana" id="GH">Ghana</option>
 						<option value="Gibraltar" id="GI">Gibraltar</option>
 						<option value="Granada" id="GD">Granada</option>
@@ -124,12 +139,14 @@
 						<option value="Guayana" id="GY">Guayana</option>
 						<option value="Guayana francesa" id="GF">Guayana francesa</option>
 						<option value="Guinea" id="GN">Guinea</option>
-						<option value="Guinea Ecuatorial" id="GQ">Guinea Ecuatorial</option>
+						<option value="Guinea Ecuatorial" id="GQ">Guinea
+							Ecuatorial</option>
 						<option value="Guinea-Bissau" id="GW">Guinea-Bissau</option>
 						<option value="Haití" id="HT">Haití</option>
 						<option value="Holanda" id="NL">Holanda</option>
 						<option value="Honduras" id="HN">Honduras</option>
-						<option value="Hong Kong R. A. E" id="HK">Hong Kong R. A. E</option>
+						<option value="Hong Kong R. A. E" id="HK">Hong Kong R. A.
+							E</option>
 						<option value="Hungría" id="HU">Hungría</option>
 						<option value="India" id="IN">India</option>
 						<option value="Indonesia" id="ID">Indonesia</option>
@@ -138,23 +155,31 @@
 						<option value="Irlanda" id="IE">Irlanda</option>
 						<option value="Isla Bouvet" id="BV">Isla Bouvet</option>
 						<option value="Isla Christmas" id="CX">Isla Christmas</option>
-						<option value="Isla Heard e Islas McDonald" id="HM">Isla Heard e Islas McDonald</option>
+						<option value="Isla Heard e Islas McDonald" id="HM">Isla
+							Heard e Islas McDonald</option>
 						<option value="Islandia" id="IS">Islandia</option>
 						<option value="Islas Caimán" id="KY">Islas Caimán</option>
 						<option value="Islas Cook" id="CK">Islas Cook</option>
-						<option value="Islas de Cocos o Keeling" id="CC">Islas de Cocos o Keeling</option>
+						<option value="Islas de Cocos o Keeling" id="CC">Islas de
+							Cocos o Keeling</option>
 						<option value="Islas Faroe" id="FO">Islas Faroe</option>
 						<option value="Islas Fiyi" id="FJ">Islas Fiyi</option>
-						<option value="Islas Malvinas Islas Falkland" id="FK">Islas Malvinas Islas Falkland</option>
-						<option value="Islas Marianas del norte" id="MP">Islas Marianas del norte</option>
+						<option value="Islas Malvinas Islas Falkland" id="FK">Islas
+							Malvinas Islas Falkland</option>
+						<option value="Islas Marianas del norte" id="MP">Islas
+							Marianas del norte</option>
 						<option value="Islas Marshall" id="MH">Islas Marshall</option>
-						<option value="Islas menores de Estados Unidos" id="UM">Islas menores de Estados Unidos</option>
+						<option value="Islas menores de Estados Unidos" id="UM">Islas
+							menores de Estados Unidos</option>
 						<option value="Islas Palau" id="PW">Islas Palau</option>
 						<option value="Islas Salomón" d="SB">Islas Salomón</option>
 						<option value="Islas Tokelau" id="TK">Islas Tokelau</option>
-						<option value="Islas Turks y Caicos" id="TC">Islas Turks y Caicos</option>
-						<option value="Islas Vírgenes EE.UU." id="VI">Islas Vírgenes EE.UU.</option>
-						<option value="Islas Vírgenes Reino Unido" id="VG">Islas Vírgenes Reino Unido</option>
+						<option value="Islas Turks y Caicos" id="TC">Islas Turks
+							y Caicos</option>
+						<option value="Islas Vírgenes EE.UU." id="VI">Islas
+							Vírgenes EE.UU.</option>
+						<option value="Islas Vírgenes Reino Unido" id="VG">Islas
+							Vírgenes Reino Unido</option>
 						<option value="Israel" id="IL">Israel</option>
 						<option value="Italia" id="IT">Italia</option>
 						<option value="Jamaica" id="JM">Jamaica</option>
@@ -206,37 +231,48 @@
 						<option value="Nueva Zelanda" id="NZ">Nueva Zelanda</option>
 						<option value="Omán" id="OM">Omán</option>
 						<option value="Panamá" id="PA">Panamá</option>
-						<option value="Papua Nueva Guinea" id="PG">Papua Nueva Guinea</option>
+						<option value="Papua Nueva Guinea" id="PG">Papua Nueva
+							Guinea</option>
 						<option value="Paquistán" id="PK">Paquistán</option>
 						<option value="Paraguay" id="PY">Paraguay</option>
 						<option value="Perú" id="PE">Perú</option>
 						<option value="Pitcairn" id="PN">Pitcairn</option>
-						<option value="Polinesia francesa" id="PF">Polinesia francesa</option>
+						<option value="Polinesia francesa" id="PF">Polinesia
+							francesa</option>
 						<option value="Polonia" id="PL">Polonia</option>
 						<option value="Portugal" id="PT">Portugal</option>
 						<option value="Puerto Rico" id="PR">Puerto Rico</option>
 						<option value="Qatar" id="QA">Qatar</option>
 						<option value="Reino Unido" id="UK">Reino Unido</option>
-						<option value="República Centroafricana" id="CF">República Centroafricana</option>
+						<option value="República Centroafricana" id="CF">República
+							Centroafricana</option>
 						<option value="República Checa" id="CZ">República Checa</option>
-						<option value="República de Sudáfrica" id="ZA">República de Sudáfrica</option>
-						<option value="República Democrática del Congo Zaire" id="CD">República Democrática del Congo Zaire</option>
-						<option value="República Dominicana" id="DO">República Dominicana</option>
+						<option value="República de Sudáfrica" id="ZA">República
+							de Sudáfrica</option>
+						<option value="República Democrática del Congo Zaire" id="CD">República
+							Democrática del Congo Zaire</option>
+						<option value="República Dominicana" id="DO">República
+							Dominicana</option>
 						<option value="Reunión" id="RE">Reunión</option>
 						<option value="Ruanda" id="RW">Ruanda</option>
 						<option value="Rumania" id="RO">Rumania</option>
 						<option value="Rusia" id="RU">Rusia</option>
 						<option value="Samoa" id="WS">Samoa</option>
 						<option value="Samoa occidental" id="AS">Samoa occidental</option>
-						<option value="San Kitts y Nevis" id="KN">San Kitts y Nevis</option>
+						<option value="San Kitts y Nevis" id="KN">San Kitts y
+							Nevis</option>
 						<option value="San Marino" id="SM">San Marino</option>
-						<option value="San Pierre y Miquelon" id="PM">San Pierre y Miquelon</option>
-						<option value="San Vicente e Islas Granadinas" id="VC">San Vicente e Islas Granadinas</option>
+						<option value="San Pierre y Miquelon" id="PM">San Pierre
+							y Miquelon</option>
+						<option value="San Vicente e Islas Granadinas" id="VC">San
+							Vicente e Islas Granadinas</option>
 						<option value="Santa Helena" id="SH">Santa Helena</option>
 						<option value="Santa Lucía" id="LC">Santa Lucía</option>
-						<option value="Santo Tomé y Príncipe" id="ST">Santo Tomé y Príncipe</option>
+						<option value="Santo Tomé y Príncipe" id="ST">Santo Tomé
+							y Príncipe</option>
 						<option value="Senegal" id="SN">Senegal</option>
-						<option value="Serbia y Montenegro" id="YU">Serbia y Montenegro</option>
+						<option value="Serbia y Montenegro" id="YU">Serbia y
+							Montenegro</option>
 						<option value="Sychelles" id="SC">Seychelles</option>
 						<option value="Sierra Leona" id="SL">Sierra Leona</option>
 						<option value="Singapur" id="SG">Singapur</option>
@@ -253,12 +289,15 @@
 						<option value="Taiwán" id="TW">Taiwán</option>
 						<option value="Tanzania" id="TZ">Tanzania</option>
 						<option value="Tayikistán" id="TJ">Tayikistán</option>
-						<option value="Territorios británicos del océano Indico" id="IO">Territorios británicos del océano Indico</option>
-						<option value="Territorios franceses del sur" id="TF">Territorios franceses del sur</option>
+						<option value="Territorios británicos del océano Indico" id="IO">Territorios
+							británicos del océano Indico</option>
+						<option value="Territorios franceses del sur" id="TF">Territorios
+							franceses del sur</option>
 						<option value="Timor Oriental" id="TP">Timor Oriental</option>
 						<option value="Togo" id="TG">Togo</option>
 						<option value="Tonga" id="TO">Tonga</option>
-						<option value="Trinidad y Tobago" id="TT">Trinidad y Tobago</option>
+						<option value="Trinidad y Tobago" id="TT">Trinidad y
+							Tobago</option>
 						<option value="Túnez" id="TN">Túnez</option>
 						<option value="Turkmenistán" id="TM">Turkmenistán</option>
 						<option value="Turquía" id="TR">Turquía</option>
@@ -280,42 +319,56 @@
 			<div class="form-group row">
 				<label for="email" class="col-sm-2 col-form-label">Email</label>
 				<div class="col-sm-10">
-				<input type="email" id="email" class="form-control" th:field="*{email}" required>
+					<input type="email" id="email" class="form-control"
+						th:field="*{email}" required>
 				</div>
 			</div>
-		
+
 			<div class="form-group row">
 				<label for="password" class="col-sm-2 col-form-label">Contraseña</label>
 				<div class="col-sm-10">
-				<input type="text" id="password" class="form-control" th:field="*{password}" required >
+					<input type="text" id="password" class="form-control"
+						th:field="*{password}" required>
 				</div>
 			</div>
-		
+
 			<div class="form-group row">
 				<label for="documento" class="col-sm-2 col-form-label">Documento</label>
 				<div class="col-sm-10">
-				<input type="number" id="documento" class="form-control" th:field="*{documento}" pattern="{100000,99999999}"  title="This is an error message">
+					<input type="number" id="documento" class="form-control"
+						th:field="*{documento}" pattern="{100000,99999999}"
+						title="This is an error message">
 				</div>
 			</div>
-			<!--  tipo set-->
-			<div class="form-group row">
-					<div class="col-sm-6">
-					<input type="submit" class="btn btn-success btn-block"  th:value="${editMode}?'Modificar Turista':'Crear Turista'">
-					</div>
-					<div class="col-sm-6">				
-					<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
-					</div>
-					</div>
-			</form>
 
-<!-- ---------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------- -->
-<div class="table-responsive">
+			<div class="form-group row">
+				<label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
+				<div class="col-sm-10">
+					<input type="radio" name="tipo" value="root" id="tipo"
+						th:field="*{tipo}"> Root <br> <input type="radio"
+						name="tipo" value="comun" id="tipo" th:field="*{tipo}">
+					Comun
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-6">
+					<input type="submit" class="btn btn-success btn-block"
+						th:value="${editMode}?'Modificar Turista':'Crear Turista'">
+				</div>
+				<div class="col-sm-6">
+					<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>
+				</div>
+			</div>
+		</form>
+
+		<!-- ---------------------------------------------------------------- -->
+		<!-- ---------------------------------------------------------------- -->
+		<div class="table-responsive">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
 						<th>Nombre/s</th>
-						<th>Apellido/s</th>		
+						<th>Apellido/s</th>
 						<th>Pais de Origen</th>
 						<th>E-mail</th>
 						<th>Documento</th>
@@ -324,38 +377,40 @@
 						<th>Eliminar</th>
 					</tr>
 				</thead>
+
 				<tr th:if="${turistas.empty}">
 					<td colspan="2">No hay turistas registrados aqui</td>
 				</tr>
 				<tr th:each="tur : ${turistas}">
-					<td th:text="${tur.nombres}"></td>	
-					<td th:text="${tur.apellidos}"></td>				
+					<td th:text="${tur.nombres}"></td>
+					<td th:text="${tur.apellidos}"></td>
 					<td th:text="${tur.pais}"></td>
 					<td th:text="${tur.email}"></td>
 					<td th:text="${tur.documento}"></td>
 					<td th:text="${tur.tipo}"></td>
-					<td align="center">
-						<a href ="#" th:href="@{'/turista/editar/'+${tur.idTurista}}"> 
-							<i class ="fa fa-edit"></i>
-						</a> 
-					</td>
-					<td align="center">
-						<a href="#" th:href="'javascript:confirmarEliminar(\''+${tur.idTurista}+'\');'">
+					<td align="center"><a href="#"
+						th:href="@{'/turista/editar/'+${tur.idTurista}}"> <i
+							class="fa fa-edit"></i>
+					</a></td>
+					<td align="center"><a href="#"
+						th:href="'javascript:confirmarEliminar(\''+${tur.idTurista}+'\');'">
 							<i class="fa fa-trash-alt"></i>
-						</a>
-				 	</td>
+					</a></td>
 				</tr>
 			</table>
 		</div>
 		<br>
-		
-		<!--Modal Eliminar--> 
-		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+
+		<!--Modal Eliminar-->
+		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog"
+			aria-labelledby="eliminarModal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="eliminarModalTitulo">Confirme Eliminar</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<h5 class="modal-title" id="eliminarModalTitulo">Confirme
+							Eliminar</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -364,15 +419,17 @@
 					</div>
 					<input type="hidden" id="identificadorTurista" name="turistaId" />
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary" th:onclick="eliminarTurista()">Borrar</button>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-primary"
+							th:onclick="eliminarTurista()">Borrar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 	</div>
-	
+
 	<script type="text/javascript">
 		function confirmarEliminar(id) {
 			$('#modalEliminar').modal('show');
@@ -383,14 +440,14 @@
 			var id = $("#identificadorTurista").val();
 			window.location = "eliminarTurista/" + id;
 		}
-		</script>
-		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
-			type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
-		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
-			type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
-		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
-			type="text/javascript"
-			src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<div th:insert="layouts/footer :: footer"></div>
+	</script>
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+		type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+		type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<div th:insert="layouts/footer :: footer"></div>
 </body>
 </html>

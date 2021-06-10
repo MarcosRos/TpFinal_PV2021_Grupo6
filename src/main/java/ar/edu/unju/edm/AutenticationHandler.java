@@ -23,19 +23,19 @@ public class AutenticationHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		boolean userConsultor = false;
+		boolean comun = false;
 		boolean userRegistrador = false;
-		boolean DNI = false;
+		boolean root = false;
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
 		for (GrantedAuthority grantedAuthority : authorities) {
 			if (grantedAuthority.getAuthority().equals("root")) {
-				DNI = true;
+				root = true;
 				break;
 			} else {
-				if (grantedAuthority.getAuthority().equals("CONSULTOR")) {
-					userConsultor = true;
+				if (grantedAuthority.getAuthority().equals("comun")) {
+					comun = true;
 					break;
 				} else {
 					userRegistrador = true;
@@ -43,11 +43,11 @@ public class AutenticationHandler implements AuthenticationSuccessHandler {
 				}
 			}
 		}
-		if (DNI) {
+		if (root) {
 			redirectStrategy.sendRedirect(request, response, "/turista/mostrar");
 		} else {
-			if (userConsultor) {
-				redirectStrategy.sendRedirect(request, response, "/consultor");
+			if (comun) {
+				redirectStrategy.sendRedirect(request, response, "/poi/mostrar");
 			} else {
 				if (userRegistrador) {
 					redirectStrategy.sendRedirect(request, response, "/registrador");
