@@ -16,15 +16,13 @@
 		<h4>Rapido y fácil</h4>
 		<br>
 
-		<form id="formTurista" th:object="${unTurista}" th:action="${editMode}?@{/turista/modificar}:@{/turista/guardar}" method="post">
+		<form id="formTurista" th:object="${unTurista}" th:action="${editMode}?@{/turista/modificar}:@{/turistaRoot/guardar}" method="post">
 			
-			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}"> <!-- agregado -->
-			<input class="form-control" type=hidden th:field="*{password}" th:if="${editMode}">
-			<div class="form-group row">
-				<label for="nombre" class="col-sm-2 col-form-label">Nombre/s</label>
-				<div class="col-sm-10">
-				<input type="text" id="nombre" class="form-control" th:field="*{nombres}" required pattern="[A-Za-z]+">
-				</div>
+			<input class="form-control" type=hidden th:field="*{idTurista}" th:if="${editMode}"> <!-- agregado -->						
+		<div class="form-group row">
+			<label for="nombre" class="col-sm-2 col-form-label">Nombre/s</label>
+			<div class="col-sm-10">
+			<input type="text" id="nombre" class="form-control" th:field="*{nombres}" required pattern="[A-Za-z]+">
 			</div>
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Apellido/s</label>
@@ -291,22 +289,31 @@
 				</div>
 			</div>
 		
-			<div class="form-group row">
+<div class="form-group row">
 				<label for="documento" class="col-sm-2 col-form-label">Documento</label>
 				<div class="col-sm-10">
-				<input type="number" id="documento" class="form-control" th:field="*{documento}" pattern="{100000,99999999}"  title="This is an error message">
+				<input type="number" id="documento" class="form-control" th:field="*{documento}" pattern="{100000,99999999}"  title="This is an error message">  
 				</div>
 			</div>
-			<!--  tipo set-->
-			<div class="form-group row">
-					<div class="col-sm-6">
-					<input type="submit" class="btn btn-success btn-block"  th:value="${editMode}?'Modificar Turista':'Crear Turista'">
-					</div>
-					<div class="col-sm-6">				
+      
+		<div class="form-group row">
+				<label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
+				<div class="col-sm-10">
+					<input type="radio" name="tipo" value="root" id="tipo"
+						th:field="*{tipo}"> Root <br> <input
+						type="radio" name="tipo" value="comun" id="tipo"
+						th:field="*{tipo}"> Comun
+				</div>
+			</div>
+		<div class="form-group row">
+				<div class="col-sm-6">
+				  <input type="submit" class="btn btn-success btn-block"  th:value="${editMode}?'Modificar Turista':'Crear Turista'">
+			  </div>
+				<div class="col-sm-6">				
 					<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
-					</div>
-					</div>
-			</form>
+				</div>
+		</div>
+   </form>
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
@@ -324,6 +331,7 @@
 						<th>Eliminar</th>
 					</tr>
 				</thead>
+
 				<tr th:if="${turistas.empty}">
 					<td colspan="2">No hay turistas registrados aqui</td>
 				</tr>

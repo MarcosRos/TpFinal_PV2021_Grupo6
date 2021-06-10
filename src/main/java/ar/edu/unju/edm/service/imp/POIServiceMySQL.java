@@ -63,7 +63,7 @@ public class POIServiceMySQL implements IPOIService{
 		hacia.setLatitud(desde.getLatitud());
 		hacia.setLocalidad(desde.getLocalidad());
 		hacia.setLongitud(desde.getLongitud());
-		hacia.setNombre(desde.getNombre());
+		hacia.setNombrePoi(desde.getNombrePoi());
 		hacia.setNumero(desde.getNumero());
 		hacia.setSitioWeb(desde.getSitioWeb());
 		//colocar foto
