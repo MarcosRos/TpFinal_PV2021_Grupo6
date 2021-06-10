@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="pais" class="col-sm-2 col-form-label">Pais de Procedencia</label>
+			<label for="pais" class="col-sm-2 col-form-label">Pais de Origen</label>
 			<div class="col-sm-10">
 			<select id="pais" class="form-control" th:field="*{pais}">
 <option value="Afganistan">Afghanistan</option>
@@ -296,14 +296,14 @@
 		<div class="form-group row">
 			<label for="password" class="col-sm-2 col-form-label">Contraseña</label>
 			<div class="col-sm-10">
-			<input type="text" id="password" class="form-control" th:field="*{password}" required>
+			<input type="text" id="password" class="form-control" th:field="*{password}" required >
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="documento" class="col-sm-2 col-form-label">Documento</label>
 			<div class="col-sm-10">
-			<input type="number" id="documento" class="form-control" th:field="*{documento}" required>
+			<input type="text" id="documento" class="form-control" th:field="*{documento}" pattern="{100000,99999999}"  title="This is an error message">
 			</div>
 		</div>
 		<!--  tipo set-->
@@ -329,11 +329,13 @@
 						<th>E-mail</th>
 						<th>Documento</th>
 						<th>Tipo</th>
+						<th>Modificar</th>
+						<th>Eliminar</th>
 					</tr>
 				</thead>
-				<!--  <tr th:if="${turistas.empty}">
+				<tr th:if="${turistas.empty}">
 					<td colspan="2">No hay turistas registrados aqui</td>
-				</tr>-->
+				</tr>
 				<tr th:each="tur : ${turistas}">
 					<td th:text="${tur.nombres}"></td>	
 					<td th:text="${tur.apellidos}"></td>				
@@ -341,10 +343,12 @@
 					<td th:text="${tur.email}"></td>
 					<td th:text="${tur.documento}"></td>
 					<td th:text="${tur.tipo}"></td>
-					<td><a href="#"
+					<td align="center"><a href ="#"
 						th:href="@{'/turista/editar/'+${tur.idTurista}}"> 
-						<i class="fa fa-edit"></i></a> 
-					<!--  <a th:onclick="'javascript:confirmarEliminar(\''+${tur.email}+'\');'"><i class="fa fa-trash-alt"></i>
+						<i class ="fa fa-edit"></i></a> 
+					</td>
+					<!--<td align="center">
+					<a th:onclick="'javascript:confirmarEliminar(\''+${tur.email}+'\');'"><i class="fa fa-trash-alt"></i>
 				 </a></td> -->
 				</tr>
 			</table>
@@ -371,31 +375,14 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
-						<!--  <button type="button" class="btn btn-primary"
-							th:onclick="eliminarTurista()">Borrar</button>-->
+						<button type="button" class="btn btn-primary"
+							th:onclick="eliminarTurista()">Borrar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 	</div>
-	
-	<!--Modal Editar-->
-		<!-- <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
-			<div class="modal-dialog modal-dialog-centered" >
-				<div class="modal-content">
-				
-				</div>
-			</div>
-		</div>
-
-		 <script type="text/javascript">
-			$(document).ready(function() { $(".link-compra").on("click", function(event) {
-									event.preventDefault();
-									$("#modalEditar").modal("show").find(".modal-content").load($(this).attr("href"));
-								});
-					});
-		</script>-->
 	
 	<script type="text/javascript">
 		function confirmarEliminar(email) {
