@@ -35,12 +35,21 @@ public class TuristaServiceMySQL implements ITuristaService{
 
 	@Override
 	public void guardarTurista(Turista unTurista) {
+		unTurista.setTipo("comun");
 		String pw = unTurista.getPassword();
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		unTurista.setPassword(bCryptPasswordEncoder.encode(pw));
 		turistaDAO.save(unTurista);
 	}
 
+	@Override
+	public void guardarTuristaRoot(Turista unTurista) {
+		String pw = unTurista.getPassword();
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		unTurista.setPassword(bCryptPasswordEncoder.encode(pw));
+		turistaDAO.save(unTurista);
+	}
+	
 	@Override
 	public Turista encontrarUnTurista(int idt) throws Exception {
 		// TODO Auto-generated method stub
@@ -58,12 +67,17 @@ public class TuristaServiceMySQL implements ITuristaService{
 
 	private void cambiarTurista(Turista desde, Turista hacia){
 		// TODO Auto-generated method stub
+		String pw = desde.getPassword();
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		hacia.setPassword(bCryptPasswordEncoder.encode(pw));
+		
 		hacia.setEmail(desde.getEmail());
 		hacia.setApellidos(desde.getApellidos());
 		hacia.setDocumento(desde.getDocumento());
 		hacia.setNombres(desde.getNombres());
 		hacia.setPais(desde.getPais());
-		hacia.setPassword(desde.getPassword());
+		//hacia.setPassword(desde.getPassword());
+		hacia.setTipo(desde.getTipo());
 		//hacia.setIdTurista(desde.getIdTurista());
 	}
 	

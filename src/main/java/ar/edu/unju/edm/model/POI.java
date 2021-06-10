@@ -34,7 +34,7 @@ public class POI {
 	
 	@Column
 	@NotBlank
-	private String nombre;
+	private String nombrePoi;
 	
 	@Column
 	private String descripcion;
@@ -85,12 +85,12 @@ public class POI {
 		this.idPOI = idPOI;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombrePoi() {
+		return nombrePoi;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePoi(String nombrePoi) {
+		this.nombrePoi = nombrePoi;
 	}
 
 	public String getCalle() {
