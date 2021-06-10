@@ -36,7 +36,7 @@ public class TpFinalPv2021Grupo6Application implements CommandLineRunner{
 				turista.setPassword("root");	
 				turista.setPuntos(0);
 				turista.setTipo("root");							
-				turistaService.guardarTurista(turista);*/
+				turistaService.guardarTuristaRoot(turista);*/
 //					
 }
 }

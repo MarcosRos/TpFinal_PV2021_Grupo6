@@ -40,9 +40,24 @@ public class TuristaController {
 		{
 			model.addAttribute("unTurista", nuevoTurista);
 			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
-			return "turista";
+			return "/";
 		}else {
 			turistaService.guardarTurista(nuevoTurista);		
+			LOGGER.info("Tamaño del Listado: "+ turistaService.obtenerTodosTuristas().size());
+			return "redirect:/";
+		}
+	}
+	
+	@PostMapping("/turistaRoot/guardar")
+	public String guardarNuevoTuristaRoot(@Valid @ModelAttribute("unTurista") Turista nuevoTurista, BindingResult resultado,Model model) {		
+		LOGGER.info("METHOD: ingresando el metodo Guardar");
+		if (resultado.hasErrors())
+		{
+			model.addAttribute("unTurista", nuevoTurista);
+			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+			return "/turista/mostrar";
+		}else {
+			turistaService.guardarTuristaRoot(nuevoTurista);		
 			LOGGER.info("Tamaño del Listado: "+ turistaService.obtenerTodosTuristas().size());
 			return "redirect:/turista/mostrar";
 		}
@@ -99,6 +114,13 @@ public class TuristaController {
 	
 	@GetMapping("/cancelar")
 	public String cancelar() {
-		return "redirect:/turista/mostrar";
+		return "redirect:/";
 	}
+	
+	@GetMapping("/turista/registrar")
+	public String registrarTurista(Model model) {
+		model.addAttribute("unTurista", turistaService.crearTurista());
+		return("registroTurista");
+	}
+	
 }
