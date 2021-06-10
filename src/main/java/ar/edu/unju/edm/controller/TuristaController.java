@@ -27,6 +27,7 @@ public class TuristaController {
 	
 	@GetMapping("/turista/mostrar")
 	public String cargarTurista(Model model) {
+		LOGGER.info("Hola"+turistaService.crearTurista().getApellidos());
 		model.addAttribute("unTurista", turistaService.crearTurista());
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("turista");
@@ -60,13 +61,6 @@ public class TuristaController {
 			LOGGER.info("Tamaño del Listado: "+ turistaService.obtenerTodosTuristas().size());
 			return "redirect:/turista/mostrar";
 		}
-	}
-	
-	@GetMapping("/turistaRoot/mostrar")
-	public String cargarTuristaRoot(Model model) {
-		model.addAttribute("unTurista", turistaService.crearTurista());
-		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
-		return("turistaRoot");
 	}
 	
 	@GetMapping("/turista/editar/{idTurista}")
