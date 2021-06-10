@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 			.authorizeRequests()
 				.antMatchers(resources).permitAll()
-				.antMatchers("/**").hasAuthority("root")
+				.antMatchers("/turista/guardar","/turista/registrar","/turista/mostrar").hasAuthority("root")
 				.antMatchers("/","/home","/index","/turista/registrar","/turista/guardar").permitAll()
 				.antMatchers("/poi/mostrar").hasAuthority("comun")
 				.anyRequest().authenticated()
