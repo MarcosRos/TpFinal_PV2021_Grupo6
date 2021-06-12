@@ -1,5 +1,10 @@
 package ar.edu.unju.edm.controller;
 
+import java.io.IOException;
+import java.util.Base64;
+
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unju.edm.model.POI;
 import ar.edu.unju.edm.service.IPOIService;
@@ -46,8 +53,8 @@ public class POIController {
 		return("poi");
 	}
 	
-	@PostMapping("/poi/guardar")
-	public String guardarNuevoPoi(@ModelAttribute("unPoi") POI nuevoPoi, BindingResult resultado, Model model) {
+	@PostMapping(value="/poi/guardar", consumes = "multipart/form-data"/*esto tambien es de la foto*/)
+	public String guardarNuevoPoi(@Valid @RequestParam("file") MultipartFile file/* Esto tambien es de la foto*/, @ModelAttribute("unPoi") POI nuevoPoi, BindingResult resultado, Model model) throws IOException{
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoi", nuevoPoi);
 			model.addAttribute("pois", poiService.obtenerTodosPOIs());
@@ -55,9 +62,12 @@ public class POIController {
 		}
 		else {
 			LOGGER.info("METHOD: ingresando el metodo Guardar");
+			byte[] content = file.getBytes();//desde aca
+			String base64 = Base64.getEncoder().encodeToString(content);
+			nuevoPoi.setImagen(base64);//hasta aca es lo de la foto
 			poiService.guardarPOI(nuevoPoi);
 			LOGGER.info("Tamaño del Listado: "+ poiService.obtenerTodosPOIs().size());
-			return "redirect:/poi/mostrar";
+			return ("redirect:/poi/mostrar");
 		}
 	}
 	
