@@ -5,103 +5,120 @@
 <link th:rel="stylesheet" type="text/css" th:href="@{/css/misestilos.css}">
 <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
-
 <title>PoI</title>
 </head>
 <body class="body-tur">
-		<div th:insert="layouts/header :: header"></div>
-		<div class="container">
+	<div th:insert="layouts/header :: header"></div>
+	<div class="container">
 		<h1>Ingrese datos del nuevo PoI</h1>
-
-		
-		<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post" enctype="multipart/form-data">
-		
-		<div class="form-group row">
-			<label for="nombrepoi" class="col-sm-2 col-form-label">Nombre del PoI</label>
-			<div class="col-sm-10">
-				<input type="text" id="nombrepoi" class="form-control" th:field="*{nombre}" required>
-			</div>
-			
-		</div>
-		
-		<div class="form-group row">
-			<label for="calle" class="col-sm-2 col-form-label">Calle del PoI</label>
-			<div class="col-sm-10">
-				<input type="text" id="calle" class="form-control" th:field="*{calle}" required pattern="[A-Za-z]+">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="numero" class="col-sm-2 col-form-label">Número</label>
-			<div class="col-sm-10">
-				<input type="number" id="numero" class="form-control" th:field="*{numero}">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="barrio" class="col-sm-2 col-form-label">Barrio</label>
-			<div class="col-sm-10">
-				<input type="text" id="barrio" class="form-control" th:field="*{barrio}">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="localidad" class="col-sm-2 col-form-label">Localidad</label>
-			<div class="col-sm-10">
-				<input type="text" id="localidad" class="form-control" th:field="*{localidad}">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
-			<div class="col-sm-10">
-				<input type="text" id="descripcion" class="form-control" th:field="*{descripcion}">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="etiqueta" class="col-sm-2 col-form-label">Informacion Adicional del PoI</label>
-			<div class="col-sm-10">
-
-				<select id="etiqueta" class="form-control" th:field="*{etiqueta}">
-						<option value="cultura">Cultura</option>
-						<option value="naturaleza">Naturaleza</option>
-						<option value="aventura">Aventura</option>
-						<option value="deportivo">Deportivo</option>
-						<option value="gastronomia">Gastronomia</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="sitioWeb" class="col-sm-2 col-form-label">Sitio web</label>
-			<div class="col-sm-10">
-				<input type="text" id="sitioWeb" class="form-control" th:field="*{sitioWeb}">
-			</div>
-		</div>
-		
-		<div class="form-group row">
-		<label for="file" class="col-sm-2 col-form-label">Subir Imagen </label>
+	<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post" enctype="multipart/form-data">
+	
+	<div class="form-group row">
+		<label for="nombrepoi" class="col-sm-2 col-form-label">Nombre del PoI</label>
 		<div class="col-sm-10">
-		<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)" >
-		<img id="output" style="padding-top: 2px; width: 146px;" />
-		</div>
+			<input type="text" id="nombrepoi" class="form-control" th:field="*{nombre}" required>
 		</div>
 		
-		<p class="clasificacion">
-    <input id="radio1" type="radio" name="estrellas" value="5"><!--
-      --><label for="radio1">★</label><!--
-    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-    --><label for="radio2">★</label><!--
-    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-    --><label for="radio3">★</label><!--
-    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-    --><label for="radio4">★</label><!--
-    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-    --><label for="radio5">★</label>
-  </p>
-		<div class="form-group row">
-				<div class="col-sm-6">
-				<input type="submit" class="btn btn-success btn-block"  th:value="${editMode}?'Modificar Poi':'Crear Poi'">
-				</div>
-				<div class="col-sm-6">				
-				<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
-				</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="calle" class="col-sm-2 col-form-label">Calle del PoI</label>
+		<div class="col-sm-10">
+			<input type="text" id="calle" class="form-control" th:field="*{calle}" required pattern="[A-Za-z]+">
 		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="numero" class="col-sm-2 col-form-label">Número</label>
+		<div class="col-sm-10">
+			<input type="number" id="numero" class="form-control" th:field="*{numero}">
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="barrio" class="col-sm-2 col-form-label">Barrio</label>
+		<div class="col-sm-10">
+			<input type="text" id="barrio" class="form-control" th:field="*{barrio}">
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="localidad" class="col-sm-2 col-form-label">Localidad</label>
+		<div class="col-sm-10">
+			<input type="text" id="localidad" class="form-control" th:field="*{localidad}">
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="Latitud" class="col-sm-2 col-form-label">Latitud</label>
+		<div class="col-sm-10">
+			<input type="number" id="Latitud" class="form-control" th:field="*{latitud}">
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="Longitud" class="col-sm-2 col-form-label">Longitud</label>
+		<div class="col-sm-10">
+			<input type="number" id="Longitud" class="form-control" th:field="*{longitud}">
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+		<div class="col-sm-10">
+			<input type="text" id="descripcion" class="form-control" th:field="*{descripcion}">
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="etiqueta" class="col-sm-2 col-form-label">Informacion Adicional del PoI</label>
+		<div class="col-sm-10">
+			<select id="etiqueta" class="form-control" th:field="*{etiqueta}">
+					<option value="cultura">Cultura</option>
+					<option value="naturaleza">Naturaleza</option>
+					<option value="aventura">Aventura</option>
+					<option value="deportivo">Deportivo</option>
+					<option value="gastronomia">Gastronomia</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="sitioWeb" class="col-sm-2 col-form-label">Sitio web</label>
+		<div class="col-sm-10">
+			<input type="text" id="sitioWeb" class="form-control" th:field="*{sitioWeb}">
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<label for="file" class="col-sm-2 col-form-label">Subir Imagen</label>
+		<div class="col-sm-10">
+			<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+			<img id="output" style="padding-top: 2px; width: 146px;" />
+		</div>
+	</div>
+	
+	<p class="clasificacion">
+	    <input id="radio1" type="radio" name="estrellas" value="5">
+	    <label for="radio1">★</label>
+	    <input id="radio2" type="radio" name="estrellas" value="4">
+	    <label for="radio2">★</label>
+		<input id="radio3" type="radio" name="estrellas" value="3"><!--
+	    --><label for="radio3">★</label><!--
+	    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+	    --><label for="radio4">★</label><!--
+	    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+	    --><label for="radio5">★</label>
+  </p>
+  
+	<div class="form-group row">
+		<div class="col-sm-6">
+			<input type="submit" class="btn btn-success btn-block"  th:value="${editMode}?'Modificar Poi':'Crear Poi'">
+		</div>
+		<div class="col-sm-6">				
+			<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
+		</div>
+	</div>
 		</form>
 
 
@@ -118,6 +135,12 @@
 						<th>Barrio</th>
 						<th>Localidad</th>
 						<th>Descripcion</th>
+						<th>Etiqueta</th>
+						<th>Sitio Web</th>
+						<th>Latitud</th>
+						<th>Longitud</th>
+						<th>Imagen</th>
+						<th>Edición</th>
 					</tr>
 				</thead>
 
@@ -127,13 +150,22 @@
 				<tr th:each="poi : ${pois}">
 					<td th:text="${poi.nombre}"></td>
 					<td th:text="${poi.calle}"></td>
-					<td th:text="${poi.num}"></td>
+					<td th:text="${poi.numero}"></td>
 					<td th:text="${poi.barrio}"></td>
 					<td th:text="${poi.localidad}"></td>
-					<td th:text="${poi.desc}"></td>
-					<td><a href="#"
-						th:href="@{/poi/editar'+${poi.id}}"> 
-						<i class="fa fa-edit"></i></a> 
+					<td th:text="${poi.descripcion}"></td>
+					<td th:text="${poi.etiqueta}"></td>
+					<td th:text="${poi.sitioWeb}"></td>
+					<td th:text="${poi.latitud}"></td>
+					<td th:text="${poi.longitud}"></td>
+					<td>
+						<img th:src="*{'data:;base64,'+poi.imagen}" class="card-img-top" alt="hola">
+					</td>
+					<td>
+						<a href="#" th:href="@{/poi/editar'+${poi.idPOI}}"> 
+							<i class="fa fa-edit"></i>
+						</a>
+					</td>
 					<!--<a th:onclick="'javascript:confirmarEliminar(\''+${poi.id}+'\');'"><i class="fa fa-trash-alt"></i>
 					</a></td>-->
 				</tr>
@@ -146,7 +178,7 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="eliminarModalTitulo">Confirme si desea borrar turista</h5>
+						<h5 class="modal-title" id="eliminarModalTitulo">Confirme si desea borrar poi</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>

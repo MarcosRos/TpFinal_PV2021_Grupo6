@@ -71,9 +71,37 @@ public class POIController {
 		}
 	}
 	
-	//postmapping modificar
+	@PostMapping("/poi/modificar")
+	public String modificarPoi(@ModelAttribute("unPoi") POI poiModificado, Model model) {
+		try {
+			poiService.modificarPOI(poiModificado);
+			model.addAttribute("unPoi", new POI());
+			model.addAttribute("editMode", "false");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			// pasar las excepciones al html
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unProducto", poiModificado);			
+			model.addAttribute("productos", poiService.obtenerTodosPOIs());
+			model.addAttribute("editMode", "true");
+		}
+		model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		return("poi");
+	}
 	
-	//cancelar
+	@GetMapping("/poi/cancelar")
+	public String cancelar() {
+		return "redirect:/poi/mostrar";
+	}
 	
-	//eliminarpoi
+	@GetMapping("/producto/eliminarPoi/{idPOI}")
+	public String eliminarProducto(Model model, @PathVariable(name="id") int id) {
+		try {
+			poiService.eliminarPOI(id);
+		}
+		catch(Exception e){
+			model.addAttribute("listErrorMessage",e.getMessage());
+		}			
+		return "redirect:/poi/mostrar";
+	}
 }
