@@ -37,7 +37,7 @@ public class POIController {
 		return("poi");
 	}
 	
-	@GetMapping("/producto/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
+	@GetMapping("/poi/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
 	public String editarPoi(Model model, @PathVariable(name="idPOI") int id) throws Exception {
 		try {
 			POI poiEncontrado = poiService.encontrarUnPOI(id);
@@ -49,7 +49,7 @@ public class POIController {
 			model.addAttribute("unPoi", poiService.crearPOI());
 			model.addAttribute("editMode", "false");
 		}
-		model.addAttribute("productos", poiService.obtenerTodosPOIs());
+		model.addAttribute("pois", poiService.obtenerTodosPOIs());
 		return("poi");
 	}
 	
@@ -72,22 +72,21 @@ public class POIController {
 	}
 	
 	@PostMapping("/poi/modificar")
-	public String modificarPoi(@ModelAttribute("unPoi") POI poiModificado, Model model) {
-		try {
-			poiService.modificarPOI(poiModificado);
-			model.addAttribute("unPoi", new POI());
-			model.addAttribute("editMode", "false");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			// pasar las excepciones al html
-			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-			model.addAttribute("unProducto", poiModificado);			
-			model.addAttribute("productos", poiService.obtenerTodosPOIs());
-			model.addAttribute("editMode", "true");
-		}
-		model.addAttribute("pois", poiService.obtenerTodosPOIs());
-		return("poi");
-	}
+    public String modificarPoi(@RequestParam("file") MultipartFile file, @ModelAttribute("unPoi") POI poiModificado, Model model){
+        try {
+        	poiService.modificarPOI(file, poiModificado);
+            model.addAttribute("unPoi", new POI());
+            model.addAttribute("editMode", "false");
+        }
+        catch (Exception e) {
+            model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+            model.addAttribute("unProducto", poiModificado);
+            model.addAttribute("productos", poiService.obtenerTodosPOIs());
+            model.addAttribute("editMode", "true");
+        }
+        model.addAttribute("productos", poiService.obtenerTodosPOIs());
+        return("poi");
+    }
 	
 	@GetMapping("/poi/cancelar")
 	public String cancelar() {

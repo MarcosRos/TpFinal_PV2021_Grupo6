@@ -144,9 +144,9 @@
 					</tr>
 				</thead>
 
-				<tr th:if="${pois.empty}">
+				<!-- <tr th:if="${pois.empty}">
 					<td colspan="2">No hay pois agregados aun</td>
-				</tr>
+				</tr> -->
 				<tr th:each="poi : ${pois}">
 					<td th:text="${poi.nombre}"></td>
 					<td th:text="${poi.calle}"></td>
@@ -162,7 +162,7 @@
 						<img th:src="*{'data:;base64,'+poi.imagen}" class="card-img-top" alt="hola">
 					</td>
 					<td>
-						<a href="#" th:href="@{/poi/editar'+${poi.idPOI}}"> 
+						<a href="#" th:href="@{'/poi/editar/'+${poi.idPOI}}"> 
 							<i class="fa fa-edit"></i>
 						</a>
 					</td>

@@ -1,10 +1,13 @@
 package ar.edu.unju.edm.service.imp;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unju.edm.model.POI;
 import ar.edu.unju.edm.repository.IPOIDAO;
@@ -47,11 +50,13 @@ public class POIServiceMySQL implements IPOIService{
 	}
 
 	@Override
-	public void modificarPOI(POI POIModificado) throws Exception {
+	public void modificarPOI(@RequestParam("file") MultipartFile file, POI POIModificado) throws Exception {
 		// TODO Auto-generated method stub
 		POI POIAModificar = POIDAO.findByIdPOI(POIModificado.getIdPOI()).orElseThrow(()->new Exception("El POI no fue encontrado"));
 		cambiarPOI(POIModificado, POIAModificar);
-		
+		byte[] content = file.getBytes();
+        String base64 = Base64.getEncoder().encodeToString(content);
+        POIAModificar.setImagen(base64);
 		POIDAO.save(POIAModificar);
 	}
 
@@ -75,5 +80,7 @@ public class POIServiceMySQL implements IPOIService{
 		POI POIEliminar = POIDAO.findByIdPOI(idp).orElseThrow(()->new Exception("El POI no fue encontrado"));
 		POIDAO.delete(POIEliminar);
 	}
+
+	
 	
 }
