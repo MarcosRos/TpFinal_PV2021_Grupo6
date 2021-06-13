@@ -388,9 +388,9 @@
 					<td th:text="${tur.email}"></td>
 					<td th:text="${tur.documento}"></td>
 					<td th:text="${tur.tipo}"></td>
-					<td align="center"><a href="#"
-						th:href="@{'/turista/editar/'+${tur.idTurista}}"> <i
-							class="fa fa-edit"></i>
+					<td align="center">
+						<a href="#" th:href="@{'/turista/editar/'+${tur.idTurista}}">
+					<i class="fa fa-edit"></i>
 					</a></td>
 					<td align="center"><a href="#"
 						th:href="'javascript:confirmarEliminar(\''+${tur.idTurista}+'\');'">
