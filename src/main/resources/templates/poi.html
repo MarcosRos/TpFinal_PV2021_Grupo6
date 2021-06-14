@@ -2,16 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link th:rel="stylesheet" type="text/css" th:href="@{/css/misestilos.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}">
 <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 <title>PoI</title>
 </head>
 <body class="body-tur">
+
+	
 	<div th:insert="layouts/header :: header"></div>
+	
 	<div class="container">
 		<h1>Ingrese datos del nuevo PoI</h1>
-	<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post" enctype="multipart/form-data">
+		<br>
+	<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post">
 	
 	<div class="form-group row">
 		<label for="nombrepoi" class="col-sm-2 col-form-label">Nombre del PoI</label>
@@ -71,7 +75,7 @@
 	</div>
 	
 	<div class="form-group row">
-		<label for="etiqueta" class="col-sm-2 col-form-label">Informacion Adicional del PoI</label>
+		<label for="etiqueta" class="col-sm-2 col-form-label">Etiqueta</label>
 		<div class="col-sm-10">
 			<select id="etiqueta" class="form-control" th:field="*{etiqueta}">
 					<option value="cultura">Cultura</option>
@@ -99,21 +103,22 @@
 	</div>
 	
 	<p class="clasificacion">
-	    <input id="radio1" type="radio" name="estrellas" value="5">
-	    <label for="radio1">★</label>
-	    <input id="radio2" type="radio" name="estrellas" value="4">
-	    <label for="radio2">★</label>
-		<input id="radio3" type="radio" name="estrellas" value="3"><!--
-	    --><label for="radio3">★</label><!--
-	    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-	    --><label for="radio4">★</label><!--
-	    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-	    --><label for="radio5">★</label>
+    <input id="radio1" type="radio" name="estrellas" value="5"><!--
+    --><label for="radio1">★</label><!--
+    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+    --><label for="radio2">★</label><!--
+    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+    --><label for="radio3">★</label><!--
+    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+    --><label for="radio4">★</label><!--
+    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+    --><label for="radio5">★</label>
   </p>
   
 	<div class="form-group row">
 		<div class="col-sm-6">
-			<input type="submit" class="btn btn-success btn-block"  th:value="${editMode}?'Modificar Poi':'Crear Poi'">
+			<input type="submit" class="btn btn-success btn-block"
+				th:value="${editMode}?'Modificar Poi':'Crear Poi'">
 		</div>
 		<div class="col-sm-6">				
 			<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>				
@@ -134,13 +139,14 @@
 						<th>Numero</th>
 						<th>Barrio</th>
 						<th>Localidad</th>
-						<th>Descripcion</th>
-						<th>Etiqueta</th>
-						<th>Sitio Web</th>
 						<th>Latitud</th>
 						<th>Longitud</th>
+						<th>Descripcion</th>
+						<th>Etiqueta</th>
+						<th>Sitio Web</th>	
 						<th>Imagen</th>
-						<th>Edición</th>
+						<th>Modificar</th>
+						<th>Eliminar</th>
 					</tr>
 				</thead>
 
@@ -153,21 +159,24 @@
 					<td th:text="${poi.numero}"></td>
 					<td th:text="${poi.barrio}"></td>
 					<td th:text="${poi.localidad}"></td>
-					<td th:text="${poi.descripcion}"></td>
-					<td th:text="${poi.etiqueta}"></td>
-					<td th:text="${poi.sitioWeb}"></td>
 					<td th:text="${poi.latitud}"></td>
 					<td th:text="${poi.longitud}"></td>
-					<td>
+					<td th:text="${poi.descripcion}"></td>
+					<td th:text="${poi.etiqueta}"></td>
+					<td th:text="${poi.sitioWeb}"><a href="${poi.sitioWeb}"></a></td>
+					<td align="center">
 						<img th:src="*{'data:;base64,'+poi.imagen}" class="card-img-top" alt="hola">
 					</td>
-					<td>
+					<td align="center">
 						<a href="#" th:href="@{'/poi/editar/'+${poi.idPOI}}"> 
 							<i class="fa fa-edit"></i>
 						</a>
 					</td>
-					<!--<a th:onclick="'javascript:confirmarEliminar(\''+${poi.id}+'\');'"><i class="fa fa-trash-alt"></i>
-					</a></td>-->
+					<td align="center">
+						<a href="#" th:href="'javascript:confirmarEliminar(\''+${poi.idPOI}+'\');'">
+							<i class="fa fa-trash-alt"></i>
+						</a>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -178,106 +187,51 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="eliminarModalTitulo">Confirme si desea borrar poi</h5>
+						<h5 class="modal-title" id="eliminarModalTitulo">¿Desea borrar este POI?</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<h6>Borrar este turista?</h6>
+						<h6>Borrar POI</h6>
 					</div>
-					<input type="hidden" id="identificadorProductoHiddenInput"
-						name="productoIdHiddenInput" />
+					<input type="hidden" id="identificadorPoi" name="POIId" />
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<!--  <button type="button" class="btn btn-primary"
-							th:onclick="eliminarTurista()">Borrar</button>-->
+							data-dismiss="modal">Cerrar</button>
+							  <button type="button" class="btn btn-primary"
+							th:onclick="eliminarPoi()">Borrar</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<script type="text/javascript">
-			$(document).ready(function() { $(".link-compra").on("click", function(event) {
-									event.preventDefault();
-									$("#modalEditar").modal("show").find(".modal-content").load($(this).attr("href"));
-								});
-					});
-		</script>
-
 	</div>
-		
+
 		<script type="text/javascript">
-		function confirmarEliminar(email) {
+			function confirmarEliminar(id) {
 			$('#modalEliminar').modal('show');
-			$("#identificadorTuristaHiddenInput").val(email);
+			$("#identificadorPoi").val(id);
 		}
 
-		function eliminarTurista() {
-			var id = $("#identificadorTuristaHiddenInput").val();
-			window.location = "eliminarTurista/" + email;
+		function eliminarPoi() {
+			var id = $("#identificadorPoi").val();
+			window.location = "eliminarPoi/" + id;
 		}
-		</script>
+	</script>
 
 
-<!-- ---------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------- -->
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-  <label class="form-check-label" for="inlineRadio1">1★</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-  <label class="form-check-label" for="inlineRadio2">2★</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-  <label class="form-check-label" for="inlineRadio3">3★</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
-  <label class="form-check-label" for="inlineRadio2">4★</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
-  <label class="form-check-label" for="inlineRadio1">5★</label>
-</div>
+<!-- <label for="customRange2">Example range</label> -->
+<!-- <input type="range" class="custom-range" min="0" max="5" id="customRange2"> -->
 
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
-</div>
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
-</div>
-<!-- ---------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------- -->
-<form>
-  <div class="form-group">
-    <label for="guardar imagen 1">ingrese imagen</label>
-    <input type="file" class="form-control-file" id="guardar imagen 1">
-  </div>
-</form>
-
-<div class="custom-file">
-  <input type="file" class="custom-file-input" id="customFile">
-  <label class="custom-file-label" for="customFile">Choose file</label>
-</div>
-
-<label for="customRange2">Example range</label>
-<input type="range" class="custom-range" min="0" max="5" id="customRange2">
-<!-- ---------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------- -->
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
-			type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
-		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
-			type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
-		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
-			type="text/javascript"
-			src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-		<div th:insert="layouts/footer :: footer"></div>
+		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+		type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+		type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<div th:insert="layouts/footer :: footer"></div>	
+		
 </body>
 </html>
