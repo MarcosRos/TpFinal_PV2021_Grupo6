@@ -1,8 +1,14 @@
 @charset "ISO-8859-1";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
 	margin: 0;
 	padding: 0;
+	margin-bottom: 40px;
 }
 
 .inicio-de-sesion {
@@ -23,15 +29,14 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	margin-bottom: 40px;
 }
 
 .body-tur {
 	margin: 0;
 	padding: 0;
 	background: #1F618D;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+	margin-bottom: 40px;
 }
 
 .footer {
@@ -41,10 +46,13 @@ body {
 	bottom: 0;
 	
 	text-align: center;*/
-	position: sticky;
+	position: absolute;
+	bottom: 0;
 	background: black;
+	width: 100%;
 	padding: 8px 16px 8px 16px;
 	color: white;
+	height: 40px;
 	text-align: center;
 }
 .containermio {
@@ -95,4 +103,30 @@ body {
 	width: 100px; height: 100px;
 	margin-right:60%;
 	border-radius: 80px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: black;
+}
+
+.clasificacion {
+  width: 600px;
+  margin: auto;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-size: 100px;
+  text-align: center;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
 }
