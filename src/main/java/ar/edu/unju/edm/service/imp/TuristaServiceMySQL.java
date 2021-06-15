@@ -53,7 +53,11 @@ public class TuristaServiceMySQL implements ITuristaService{
 	@Override
 	public Turista encontrarUnTurista(int idt) throws Exception {
 		// TODO Auto-generated method stub
-		return turistaDAO.findByIdTurista(idt).orElseThrow(()->new Exception ("El turista NO existe"));
+		Turista turistaEncontrado=turistaDAO.findByIdTurista(idt).orElseThrow(()->new Exception ("El turista NO existe"));
+		/*String pw = turistaEncontrado.getPassword();
+		BCryptPasswordEncoder bCryptPasswordDecoder = new BCryptPasswordEncoder(0);
+		unTurista.setPassword(bCryptPasswordDecoder.encode(pw));*/
+		return turistaEncontrado; 
 	}
 
 	@Override
