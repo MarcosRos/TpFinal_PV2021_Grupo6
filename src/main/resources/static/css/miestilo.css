@@ -105,9 +105,6 @@ body {
 	border-radius: 80px;
 }
 
-input[type = "radio"]{ 
-	display:none;
-}
 
 .clasificacion {
   width: 600px;
@@ -118,11 +115,13 @@ input[type = "radio"]{
   text-align: center;
 }
 
-label:hover,
-label:hover ~ label {
+label :hover,
+label :hover ~ label a {
   color: orange;
 }
 
-input[type="radio"]:checked ~ label {
+
+input[type="radio"]:checked ~ label a {
   color: orange;
 }
+
