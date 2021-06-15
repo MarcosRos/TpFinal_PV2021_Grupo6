@@ -86,7 +86,7 @@ public class POIController {
             model.addAttribute("editMode", "true");
         }
         model.addAttribute("poi", poiService.obtenerTodosPOIs());
-        return("poi");
+        return ("redirect:/poi/mostrar");
     }
 	
 	@GetMapping("/poi/cancelar")
