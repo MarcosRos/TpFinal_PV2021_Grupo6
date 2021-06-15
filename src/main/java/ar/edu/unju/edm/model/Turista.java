@@ -23,7 +23,7 @@ public class Turista {
 	@Column
 	private Integer idTurista;
 	
-	@Column
+	@Column(unique=true)
 	@NotBlank(message="Incluir email")
 	private String email;
 	
@@ -54,6 +54,10 @@ public class Turista {
 	
 	@Column
 	private String tipo;
+	
+	@Column
+	private Boolean active=true;
+	
 	
 	public Turista() {
 		// TODO Auto-generated constructor stub
@@ -129,6 +133,14 @@ public class Turista {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 	
 }

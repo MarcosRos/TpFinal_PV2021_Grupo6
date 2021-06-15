@@ -114,6 +114,11 @@ public class TuristaController {
 	
 	@GetMapping("/cancelar")
 	public String cancelar() {
+		return "redirect:/turista/mostrar";
+	}
+	
+	@GetMapping("/turista/cancelar")
+	public String turistaCancelar() {
 		return "redirect:/";
 	}
 	
