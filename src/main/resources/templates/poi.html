@@ -15,7 +15,7 @@
 	<div class="container">
 		<h1>Ingrese datos del nuevo PoI</h1>
 		<br>
-	<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post">
+	<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post" enctype="multipart/form-data">
 	
 	<div class="form-group row">
 		<label for="nombrepoi" class="col-sm-2 col-form-label">Nombre del PoI</label>
