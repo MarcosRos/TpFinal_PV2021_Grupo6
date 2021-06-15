@@ -59,11 +59,11 @@ public class POI {
 	private String localidad;
 	
 	@Column
-	
+	@NotNull
 	private Double latitud;
 	
 	@Column
-	
+	@NotNull
 	private Double longitud;
 	
 	@ManyToOne //no va cascade
