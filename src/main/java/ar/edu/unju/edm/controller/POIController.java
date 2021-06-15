@@ -2,6 +2,7 @@ package ar.edu.unju.edm.controller;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -103,4 +104,14 @@ public class POIController {
 		}			
 		return "redirect:/poi/mostrar";
 	}
+	
+	@GetMapping("/poi/verpoi")
+	public String verpoi(Model model) {
+			model.addAttribute("unPoi", poiService.crearPOI());
+			model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		
+		return("allPoI");
+	}
+	
+	
 }
