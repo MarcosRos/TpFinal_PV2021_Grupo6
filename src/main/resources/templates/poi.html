@@ -17,6 +17,8 @@
 		<br>
 	<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post" enctype="multipart/form-data">
 	
+	<input type="hidden" th:field="*{idPOI}"th:if="${editMode}">
+	
 	<div class="form-group row">
 		<label for="nombrepoi" class="col-sm-2 col-form-label">Nombre del PoI</label>
 		<div class="col-sm-10">
@@ -185,7 +187,8 @@
 					<td th:text="${poi.longitud}"></td>
 					<td th:text="${poi.descripcion}"></td>
 					<td th:text="${poi.etiqueta}"></td>
-					<td th:text="${poi.sitioWeb}"><a href="${poi.sitioWeb}"></a></td>
+					<!-- <td th:text="${poi.sitioWeb}"><a href="${poi.sitioWeb}"></a></td> -->
+					<td><a th:text="${poi.sitioWeb}" th:href="${poi.sitioWeb}"></a></td>
 					<td align="center">
 						<img th:src="*{'data:;base64,'+poi.imagen}" class="card-img-top" alt="hola">
 					</td>
