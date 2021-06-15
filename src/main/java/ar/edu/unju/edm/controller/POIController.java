@@ -94,7 +94,7 @@ public class POIController {
 		return "redirect:/poi/mostrar";
 	}
 	
-	@GetMapping("/poi/eliminarPoi/{idPOI}")
+	@GetMapping("/poi/eliminarPoi/{id}")
 	public String eliminarPOI(Model model, @PathVariable(name="id") int id) {
 		try {
 			poiService.eliminarPOI(id);
