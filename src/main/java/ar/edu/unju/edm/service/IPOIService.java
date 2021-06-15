@@ -13,6 +13,6 @@ public interface IPOIService {
 	public List<POI> obtenerTodosPOIs();
 	public void guardarPOI(POI unPOI);
 	public POI encontrarUnPOI(int idp) throws Exception;
-	public void modificarPOI(@RequestParam("file") MultipartFile file, POI poiModificado) throws Exception;
+	public void modificarPOI(@RequestParam("file") MultipartFile file, MultipartFile file2, MultipartFile file3, POI poiModificado) throws Exception;
 	public void eliminarPOI(int idp) throws Exception;
 }

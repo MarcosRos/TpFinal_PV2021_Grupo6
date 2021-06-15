@@ -50,13 +50,23 @@ public class POIServiceMySQL implements IPOIService{
 	}
 
 	@Override
-	public void modificarPOI(@RequestParam("file") MultipartFile file, POI POIModificado) throws Exception {
+	public void modificarPOI(@RequestParam("file") MultipartFile file, MultipartFile file2, MultipartFile file3, POI POIModificado) throws Exception {
 		// TODO Auto-generated method stub
 		POI POIAModificar = POIDAO.findByIdPOI(POIModificado.getIdPOI()).orElseThrow(()->new Exception("El POI no fue encontrado"));
 		cambiarPOI(POIModificado, POIAModificar);
+		
 		byte[] content = file.getBytes();
         String base64 = Base64.getEncoder().encodeToString(content);
         POIAModificar.setImagen(base64);
+        
+        byte[] content2 = file2.getBytes();
+        String base642 = Base64.getEncoder().encodeToString(content2);
+        POIAModificar.setImagen2(base642);
+        
+        byte[] content3 = file3.getBytes();
+        String base643 = Base64.getEncoder().encodeToString(content3);
+        POIAModificar.setImagen3(base643);
+        
 		POIDAO.save(POIAModificar);
 	}
 
