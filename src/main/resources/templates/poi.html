@@ -28,14 +28,14 @@
 	<div class="form-group row">
 		<label for="calle" class="col-sm-2 col-form-label">Calle del PoI</label>
 		<div class="col-sm-10">
-			<input type="text" id="calle" class="form-control" th:field="*{calle}" required pattern="[A-Za-z]+">
+			<input type="text" id="calle" class="form-control" th:field="*{calle}" pattern="[A-Za-z]+" required>
 		</div>
 	</div>
 	
 	<div class="form-group row">
 		<label for="numero" class="col-sm-2 col-form-label">Número</label>
 		<div class="col-sm-10">
-			<input type="number" id="numero" class="form-control" th:field="*{numero}">
+			<input type="number" id="numero" class="form-control" th:field="*{numero}" min="1" pattern="^[0-9]+">
 		</div>
 	</div>
 	
@@ -91,7 +91,7 @@
 	<div class="form-group row">
 		<label for="sitioWeb" class="col-sm-2 col-form-label">Sitio web</label>
 		<div class="col-sm-10">
-			<input type="text" id="sitioWeb" class="form-control" th:field="*{sitioWeb}">
+			<input type="url" id="sitioWeb" class="form-control" th:field="*{sitioWeb}">
 		</div>
 	</div>
 	
@@ -103,7 +103,39 @@
 		</div>
 	</div>
 	
+<!-- 	<div class="form-group row"> -->
+<!-- 		<label for="puntuacion" class="col-sm-2 col-form-label">Puntuacion</label> -->
+<!-- 		<div class="col-sm-10"> -->
+<!-- 			<select id="puntuacion" class="form-control" th:field="*{puntuacion}"> -->
+<!-- 					<option value="0">0</option> -->
+<!-- 					<option value="1">1</option> -->
+<!-- 					<option value="2">2</option> -->
+<!-- 					<option value="3">3</option> -->
+<!-- 					<option value="4">4</option> -->
+<!-- 					<option value="5">5</option> -->
+<!-- 			</select> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	
+  	<p class="clasificacion">
+    <input id="radio1" type="radio" name="estrellas" value="5"><!--
+    --><label for="radio1">★</label><!--
+    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+    --><label for="radio2">★</label><!--
+    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+    --><label for="radio3">★</label><!--
+    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+    --><label for="radio4">★</label><!--
+    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+    --><label for="radio5">★</label>
+  </p>
+  
+<!--   <div class="form-group row"> -->
+<!-- 		<label for="comentario" class="col-sm-2 col-form-label">Comentario</label> -->
+<!-- 		<div class="col-sm-10"> -->
+<!-- 			<input type="text" id="comentario" class="form-control" th:field="*{comentario}"> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
   
 	<div class="form-group row">
 		<div class="col-sm-6">
