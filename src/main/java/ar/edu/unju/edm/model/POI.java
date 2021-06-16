@@ -66,6 +66,9 @@ public class POI {
 	@NotNull
 	private Double longitud;
 	
+	@Column
+	private Double valoracion=0.0; //valoración promedio
+	
 	@ManyToOne //no va cascade
 	@JoinColumn(name = "idTurista")
 	private Turista turista;
@@ -206,6 +209,14 @@ public class POI {
 		this.turista = turista;
 	}
 
+	public Double getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(Double valoracion) {
+		this.valoracion = valoracion;
+	}
+
 	/*public String getImagen() {
 		return imagen;
 	}
@@ -213,4 +224,6 @@ public class POI {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}*/
+	
+	
 }
