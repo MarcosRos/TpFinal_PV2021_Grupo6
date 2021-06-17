@@ -10,7 +10,7 @@
 </head>
 <body class="body-tur">
 	<div th:insert="layouts/header :: header"></div>
-	<div class="container">
+
 		<h1>LISTADO POIS</h1>
 		
 		<div class="container">
@@ -27,42 +27,7 @@
      		   </tr>
         
    		 </div>
-				
 
-
-
-
-</div>
-		<script type="text/javascript">
-			$(document).ready(function() { $(".link-compra").on("click", function(event) {
-									event.preventDefault();
-									$("#modalEditar").modal("show").find(".modal-content").load($(this).attr("href"));
-								});
-					});
-		</script>
-		
-		<script type="text/javascript">
-		function confirmarEliminar(email) {
-			$('#modalEliminar').modal('show');
-			$("#identificadorTuristaHiddenInput").val(email);
-		}
-
-		function eliminarTurista() {
-			var id = $("#identificadorTuristaHiddenInput").val();
-			window.location = "eliminarTurista/" + email;
-		}
-		</script>
-
-
-
-</div>
-
-<!-- ---------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------- -->
-
-
-
-<!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 			type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
@@ -75,4 +40,5 @@
 		
 </body>
 <footer th:insert="layouts/footer :: footer"></footer>
+
 </html>

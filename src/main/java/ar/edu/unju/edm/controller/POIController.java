@@ -56,7 +56,8 @@ public class POIController {
 	}
 	
 	@PostMapping(value="/poi/guardar", consumes = "multipart/form-data"/*esto tambien es de la foto*/)
-	public String guardarNuevoPoi(@Valid @RequestParam("file") MultipartFile file/* Esto tambien es de la foto*/, @ModelAttribute("unPoi") POI nuevoPoi, BindingResult resultado, Model model, Authentication auth) throws Exception{
+
+	public String guardarNuevoPoi(@Valid @RequestParam("file") MultipartFile file, MultipartFile file2, MultipartFile file3/* Esto tambien es de la foto*/, @ModelAttribute("unPoi") POI nuevoPoi, BindingResult resultado, Model model, Authentication auth) throws Exception{
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoi", nuevoPoi);
 			model.addAttribute("pois", poiService.obtenerTodosPOIs());
@@ -67,7 +68,15 @@ public class POIController {
 			byte[] content = file.getBytes();//desde aca
 			String base64 = Base64.getEncoder().encodeToString(content);
 			nuevoPoi.setImagen(base64);//hasta aca es lo de la foto
-			LOGGER.info("Usuario: "+auth.getName());
+			
+			byte[] content2 = file2.getBytes();//desde aca
+			String base642 = Base64.getEncoder().encodeToString(content2);
+			nuevoPoi.setImagen2(base642);//hasta aca es lo de la foto
+			
+			byte[] content3 = file3.getBytes();//desde aca
+			String base643 = Base64.getEncoder().encodeToString(content3);
+			nuevoPoi.setImagen3(base643);//hasta aca es lo de la foto
+      LOGGER.info("Usuario: "+auth.getName());
 			//String email= auth.getName();
 			poiService.guardarPOI(nuevoPoi,auth.getName());
 			LOGGER.info("Tamaño del Listado: "+ poiService.obtenerTodosPOIs().size());
@@ -76,9 +85,9 @@ public class POIController {
 	}
 	
 	@PostMapping("/poi/modificar")
-    public String modificarPoi(@RequestParam("file") MultipartFile file, @ModelAttribute("unPoi") POI poiModificado, Model model){
+    public String modificarPoi(@RequestParam("file") MultipartFile file, MultipartFile file2, MultipartFile file3, @ModelAttribute("unPoi") POI poiModificado, Model model){
         try {
-        	poiService.modificarPOI(file, poiModificado);
+        	poiService.modificarPOI(file, file2, file3, poiModificado);
             model.addAttribute("unPoi", new POI());
             model.addAttribute("editMode", "false");
         }

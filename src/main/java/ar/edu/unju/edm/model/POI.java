@@ -1,4 +1,4 @@
-package ar.edu.unju.edm.model;
+ package ar.edu.unju.edm.model;
 
 //import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -75,8 +75,32 @@ public class POI {
 	@Column (name = "prod_imagen", columnDefinition = "LONGBLOB")
 	private String imagen; //Esto es de foto
 	
+	@Lob
+	@Column (name = "prod_imagen2", columnDefinition = "LONGBLOB")
+	private String imagen2; //Esto es de foto
+	
+	@Lob
+	@Column (name = "prod_imagen3", columnDefinition = "LONGBLOB")
+	private String imagen3; //Esto es de foto
+	
 	public POI() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getImagen2() {
+		return imagen2;
+	}
+
+	public void setImagen2(String imagen2) {
+		this.imagen2 = imagen2;
+	}
+
+	public String getImagen3() {
+		return imagen3;
+	}
+
+	public void setImagen3(String imagen3) {
+		this.imagen3 = imagen3;
 	}
 
 	public String getImagen() {
