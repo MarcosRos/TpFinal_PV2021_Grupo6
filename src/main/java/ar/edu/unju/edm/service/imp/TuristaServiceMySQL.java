@@ -47,6 +47,7 @@ public class TuristaServiceMySQL implements ITuristaService{
 		String pw = unTurista.getPassword();
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		unTurista.setPassword(bCryptPasswordEncoder.encode(pw));
+		unTurista.setPuntos(0);
 		turistaDAO.save(unTurista);
 	}
 	
@@ -54,9 +55,6 @@ public class TuristaServiceMySQL implements ITuristaService{
 	public Turista encontrarUnTurista(int idt) throws Exception {
 		// TODO Auto-generated method stub
 		Turista turistaEncontrado=turistaDAO.findByIdTurista(idt).orElseThrow(()->new Exception ("El turista NO existe"));
-		/*String pw = turistaEncontrado.getPassword();
-		BCryptPasswordEncoder bCryptPasswordDecoder = new BCryptPasswordEncoder(0);
-		unTurista.setPassword(bCryptPasswordDecoder.encode(pw));*/
 		return turistaEncontrado; 
 	}
 
@@ -82,6 +80,7 @@ public class TuristaServiceMySQL implements ITuristaService{
 		hacia.setPais(desde.getPais());
 		//hacia.setPassword(desde.getPassword());
 		hacia.setTipo(desde.getTipo());
+		hacia.setPuntos(desde.getPuntos());
 		//hacia.setIdTurista(desde.getIdTurista());
 	}
 	

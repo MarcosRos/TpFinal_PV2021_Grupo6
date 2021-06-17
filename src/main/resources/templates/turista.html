@@ -310,7 +310,7 @@
 			<div class="form-group row">
 				<label for="password" class="col-sm-2 col-form-label" >Contraseña</label>
 				<div class="col-sm-10">
-					<input type="text" id="password" minlength="1" maxlength="15" th:field="*{password}" required>
+					<input type="text" id="password" class="form-control" th:field="*{password}" required><!-- minlength="1" maxlength="15"-->
 				</div>
 			</div>
 
@@ -330,6 +330,13 @@
 					Comun
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="puntos" class="col-sm-2 col-form-label"th:if="${editMode}">Puntos</label>
+				<div class="col-sm-10">
+					<input type="number" id="puntos" class="form-control" th:field="*{puntos}"th:if="${editMode}">
+				</div>
+			</div>
+			
 			<div class="form-group row">
 				<div class="col-sm-6">
 					<input type="submit" class="btn btn-success btn-block"
@@ -353,6 +360,7 @@
 						<th>E-mail</th>
 						<th>Documento</th>
 						<th>Tipo</th>
+						<th>Puntos</th>
 						<th>Modificar</th>
 						<th>Eliminar</th>
 					</tr>
@@ -368,6 +376,7 @@
 					<td th:text="${tur.email}"></td>
 					<td th:text="${tur.documento}"></td>
 					<td th:text="${tur.tipo}"></td>
+					<td th:text="${tur.puntos}"></td>
 					<td align="center">
 						<a href="#" th:href="@{'/turista/editar/'+${tur.idTurista}}">
 							<i class="fa fa-edit"></i>
