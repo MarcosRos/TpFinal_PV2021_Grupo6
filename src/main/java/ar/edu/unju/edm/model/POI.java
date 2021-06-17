@@ -3,6 +3,7 @@ package ar.edu.unju.edm.model;
 //import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,9 +67,9 @@ public class POI {
 	@NotNull
 	private Double longitud;
 	
-	@ManyToOne //no va cascade
-	@JoinColumn(name = "idTurista")
-	private Turista turista;
+	@Column
+	@NotNull
+	private String turistaCreador;
 	
 	@Lob
 	@Column (name = "prod_imagen", columnDefinition = "LONGBLOB")
@@ -174,12 +175,12 @@ public class POI {
 		this.sitioWeb = sitioWeb;
 	}
 
-	public Turista getTurista() {
-		return turista;
+	public String getTuristaCreador() {
+		return turistaCreador;
 	}
 
-	public void setTurista(Turista turista) {
-		this.turista = turista;
+	public void setTuristaCreador(String usuario) {
+		this.turistaCreador = usuario;
 	}
 
 	/*public String getImagen() {

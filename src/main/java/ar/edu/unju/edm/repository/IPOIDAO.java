@@ -14,6 +14,8 @@ public interface IPOIDAO extends CrudRepository<POI, Integer>{
 	
 	 @Query("from POI p order by p.idPOI")
 	 public List<POI> obtenerPOIs();
+	 //public List<POI> obtenerPOIsPorTuristaCreador(String user);
 	 
 	 public Optional<POI> findByIdPOI(int idp);
+	 //public List<POI> findByCreador(String user);
 }

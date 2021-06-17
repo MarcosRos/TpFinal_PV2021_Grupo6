@@ -11,7 +11,8 @@ import ar.edu.unju.edm.model.POI;
 public interface IPOIService {
 	public POI crearPOI();
 	public List<POI> obtenerTodosPOIs();
-	public void guardarPOI(POI unPOI);
+	//public List<POI> obtenerMisPOIs(String usuario);
+	public void guardarPOI(POI unPOI, String usuario) throws Exception;
 	public POI encontrarUnPOI(int idp) throws Exception;
 	public void modificarPOI(@RequestParam("file") MultipartFile file, POI poiModificado) throws Exception;
 	public void eliminarPOI(int idp) throws Exception;
