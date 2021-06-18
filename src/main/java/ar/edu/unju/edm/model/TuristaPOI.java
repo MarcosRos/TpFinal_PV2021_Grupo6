@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -21,13 +22,13 @@ public class TuristaPOI {
 	@Column
 	private Integer idTuristaPOI;
 	
-	@ManyToOne
-	@JoinColumn(name = "idTurista") //no se coloca cascada
-	private Turista turista;
+	@Column
+	@NotNull
+	private String turistaCreador;
 	
-	@ManyToOne
-	@JoinColumn(name = "codigoPOI")	//no se coloca cascada
-	private POI poi;
+	@Column
+	@NotNull
+	private Integer idPOI;
 	
 	@Column
 	private int valoracion;
@@ -43,20 +44,20 @@ public class TuristaPOI {
 		this.idTuristaPOI = idTuristaPOI;
 	}
 
-	public Turista getTurista() {
-		return turista;
+	public String getTuristaCreador() {
+		return turistaCreador;
 	}
 
-	public void setTurista(Turista turista) {
-		this.turista = turista;
+	public void setTuristaCreador(String turistaCreador) {
+		this.turistaCreador = turistaCreador;
 	}
 
-	public POI getPoi() {
-		return poi;
+	public Integer getIdPOI() {
+		return idPOI;
 	}
 
-	public void setPoi(POI poi) {
-		this.poi = poi;
+	public void setIdPOI(Integer idPOI) {
+		this.idPOI = idPOI;
 	}
 
 	public int getValoracion() {

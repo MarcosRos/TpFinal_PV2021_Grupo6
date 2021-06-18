@@ -219,11 +219,11 @@ label {
   text-align: center;
 }
 
-label:hover,
-label:hover ~ label {
+label.estrella:hover,
+label.estrella:hover ~ label.estrella {
   color: orange;
 }
 
-input[type="radio"]:checked ~ label {
+input[type="radio"].estrella:checked ~ label.estrella {
   color: orange;
 }
