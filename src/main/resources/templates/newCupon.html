@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}">
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+<title>Nuevo Cupon</title>
+</head>
+<body>
+
+<body class="body-tur">
+
+	<div th:insert="layouts/headerRoot :: header"></div>
+	
+	<form id="formCupon" th:object="${unCupon}" th:action="${editMode}?@{/cupon/modificar}:@{/turistaRoot/guardar}" method="post">
+
+			<input class="form-control" type="hidden" th:field="*{password}"th:if="${editMode}">
+			<input class="form-control" type=hidden th:field="*{idTurista}"
+				th:if="${editMode}">
+				
+			<div class="form-group row">
+				<label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+				<div class="col-sm-10">
+					<input type="text" id="descripcion" class="form-control"
+						th:field="*{Descripcion}">
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="coste" class="col-sm-2 col-form-label">coste</label>
+				<div class="col-sm-10">
+					<input type="number" id="coste" class="form-control"
+						th:field="*{coste}">
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="file" class="col-sm-2 col-form-label">Subir Imagen</label>
+				<div class="col-sm-10">
+					<input type="file" name="file" class="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+					<img id="output" style="padding-top: 2px; width: 146px;" />
+				</div>
+			</div>
+			
+			</form>
+	
+	
+	
+	<script type="text/javascript">
+		function confirmarEliminar(id) {
+			$('#modalEliminar').modal('show');
+			$("#identificadorCupon").val(id);
+		}
+
+		function eliminarTurista() {
+			var id = $("#identificadorCupon").val();
+			window.location = "eliminarCupon/" + id;
+		}
+	</script>
+	
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+		type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+		type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<div th:insert="layouts/footer :: footer"></div>
+</body>
+</html>
