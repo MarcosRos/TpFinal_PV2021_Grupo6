@@ -21,7 +21,7 @@
 
 		            <p><td th:text="${poi.descripcion}"></td></p>
 		      
-		           	<a href="/poi/viewpoi">Leer más</a>
+		           	<a th:href="@{'/poi/mostrar/'+${poi.idPOI}}" href=#>Leer más</a>
 		            
 		        </div>
      		   </tr>
