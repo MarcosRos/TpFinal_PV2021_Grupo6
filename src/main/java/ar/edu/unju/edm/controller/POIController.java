@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unju.edm.model.POI;
 import ar.edu.unju.edm.service.IPOIService;
+import ar.edu.unju.edm.service.ITuristaPOIService;
 
 @Controller
 public class POIController {
@@ -32,6 +33,10 @@ public class POIController {
 	@Qualifier("imppoi")
 	IPOIService poiService;
 	
+  @Autowired
+	@Qualifier("impturistapoi")
+	ITuristaPOIService turistaPoiService;
+  
 	@GetMapping("/poi/root/mostrar")
 	public String cargarPoiRoot(Model model) {
 		model.addAttribute("unPoi", poiService.crearPOI());
@@ -170,4 +175,22 @@ public class POIController {
 		
 		return("misPois");
 	}
+	
+	@GetMapping("/poi/mostrar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
+	public String mostarUnPoi(Model model, @PathVariable(name="idPOI") int id) throws Exception {
+		try {
+			POI poiEncontrado = poiService.encontrarUnPOI(id);
+			model.addAttribute("unPoi", poiEncontrado);
+			model.addAttribute("unTuristaPoi", turistaPoiService.crearTuristaPOI());
+		}
+		catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unPoi", poiService.crearPOI());
+			model.addAttribute("unTuristaPoi", turistaPoiService.crearTuristaPOI());
+		}
+		model.addAttribute("turPois", turistaPoiService.obtenerTodosTuristaPOIs());
+		return("valorarYComentar");
+	}
+	
+	
 }

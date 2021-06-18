@@ -14,6 +14,18 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.unContenedorPoi{
+	margin:auto;
+	background:#dc3a46;
+	text-align:center;
+	width:70%;
+}
+
+.imagen{
+	width:400px;
+	height: 400px;
+}
+
 .title{
     text-align: center;
     font-size: 40px;
@@ -127,7 +139,7 @@ h1{
 	padding: 8px 16px 8px 16px;
 	color: white;
 	text-align: center;
-
+	margin-top:10%;
 	bottom: 0;
 }
 
@@ -208,11 +220,11 @@ label {
   text-align: center;
 }
 
-label:hover,
-label:hover ~ label {
+label.estrella:hover,
+label.estrella:hover ~ label.estrella {
   color: orange;
 }
 
-input[type="radio"]:checked ~ label {
+input[type="radio"].estrella:checked ~ label.estrella {
   color: orange;
 }
