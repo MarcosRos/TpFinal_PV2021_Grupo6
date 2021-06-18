@@ -18,14 +18,19 @@
 			<tr th:each="poi : ${pois}"
 				th:if="${poi.turistaCreador == #authentication.getPrincipal().getUsername()}">
 				<div class="card">
-					<img th:src="*{'data:;base64,'+poi.imagen}" class="card-img">
+				
+					<div class="pic-ctn">
+						    <img th:src="*{'data:;base64,'+poi.imagen}" alt="no imagen" class="pic">
+						    <img th:src="*{'data:;base64,'+poi.imagen2}" alt="no imagen" class="pic">
+						    <img th:src="*{'data:;base64,'+poi.imagen3}" alt="no imagen" class="pic">
+					</div>
 					<h4>
 						<td th:text="${poi.nombre}"></td>
 					</h4>
 					<p>
 						<td th:text="${poi.descripcion}"></td>
 					</p>
-					<a href="/poi/viewpoi">Leer más</a>
+					<a th:href="@{'/poi/mostrar/'+${poi.idPOI}}" href=#>Leer más</a>
 				</div>
 			</tr>
 		</div>
