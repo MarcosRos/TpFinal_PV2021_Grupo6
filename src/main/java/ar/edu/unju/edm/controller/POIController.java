@@ -2,7 +2,7 @@ package ar.edu.unju.edm.controller;
 
 import java.io.IOException;
 import java.util.Base64;
-import java.util.List;
+//import java.util.List;
 
 import javax.validation.Valid;
 
@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,7 @@ public class POIController {
 	public String cargarPoi(Model model) {
 		model.addAttribute("unPoi", poiService.crearPOI());
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
-		return("poi");
+		return("poi2");
 	}
 	
 	@GetMapping("/poi/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
@@ -55,7 +56,8 @@ public class POIController {
 	}
 	
 	@PostMapping(value="/poi/guardar", consumes = "multipart/form-data"/*esto tambien es de la foto*/)
-	public String guardarNuevoPoi(@Valid @RequestParam("file") MultipartFile file, MultipartFile file2, MultipartFile file3/* Esto tambien es de la foto*/, @ModelAttribute("unPoi") POI nuevoPoi, BindingResult resultado, Model model) throws IOException{
+
+	public String guardarNuevoPoi(@Valid @RequestParam("file") MultipartFile file, MultipartFile file2, MultipartFile file3/* Esto tambien es de la foto*/, @ModelAttribute("unPoi") POI nuevoPoi, BindingResult resultado, Model model, Authentication auth) throws Exception{
 		if(resultado.hasErrors()) {
 			model.addAttribute("unPoi", nuevoPoi);
 			model.addAttribute("pois", poiService.obtenerTodosPOIs());
@@ -74,8 +76,9 @@ public class POIController {
 			byte[] content3 = file3.getBytes();//desde aca
 			String base643 = Base64.getEncoder().encodeToString(content3);
 			nuevoPoi.setImagen3(base643);//hasta aca es lo de la foto
-			
-			poiService.guardarPOI(nuevoPoi);
+      LOGGER.info("Usuario: "+auth.getName());
+			//String email= auth.getName();
+			poiService.guardarPOI(nuevoPoi,auth.getName());
 			LOGGER.info("Tamaño del Listado: "+ poiService.obtenerTodosPOIs().size());
 			return ("redirect:/poi/mostrar");
 		}
@@ -106,7 +109,9 @@ public class POIController {
 	@GetMapping("/poi/eliminarPoi/{id}")
 	public String eliminarPOI(Model model, @PathVariable(name="id") int id) {
 		try {
+			LOGGER.info("METHOD: ingresando el metodo Eliminar");
 			poiService.eliminarPOI(id);
+			LOGGER.info("METHOD: saliendo el metodo Guardar");
 		}
 		catch(Exception e){
 			model.addAttribute("listErrorMessage",e.getMessage());
@@ -122,5 +127,11 @@ public class POIController {
 		return("allPoI");
 	}
 	
-	
+	@GetMapping("/poi/misPois")
+	public String mispoi(Model model) {
+			model.addAttribute("unPoi", poiService.crearPOI());
+			model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		
+		return("misPois");
+	}
 }
