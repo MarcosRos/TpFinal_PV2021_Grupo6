@@ -18,9 +18,9 @@
 		            <img th:src="*{'data:;base64,'+poi.imagen}" class="card-img">
 		            <h4><td th:text="${poi.nombre}"></td></h4>
 		           
-		            <p><td th:text="${poi.descripcion}"></td></p>
-		            
-		            <td th:text="${poi.valoracion}"></td>
+		            <p>
+		            	<td th:text="${poi.descripcion}"></td>
+		            </p>
 		            
 		           	<a href="/poi/viewpoi">Leer más</a>
 		            
@@ -40,6 +40,4 @@
 			
 		<div th:insert="layouts/footer :: footer"></div>
 </body>
-
-
 </html>

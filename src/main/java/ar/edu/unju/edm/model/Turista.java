@@ -1,10 +1,15 @@
 package ar.edu.unju.edm.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -55,9 +60,11 @@ public class Turista {
 	@Column
 	private String tipo;
 	
+	@OneToMany(mappedBy="turistaCreador", cascade= CascadeType.ALL )
+	private List<POI> pois = new ArrayList<POI>();
+	
 	@Column
 	private Boolean active=true;
-	
 	
 	public Turista() {
 		// TODO Auto-generated constructor stub
@@ -141,6 +148,14 @@ public class Turista {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public List<POI> getPois() {
+		return pois;
+	}
+
+	public void setPois(List<POI> pois) {
+		this.pois = pois;
 	}
 	
 }

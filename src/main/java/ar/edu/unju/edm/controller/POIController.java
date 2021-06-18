@@ -32,11 +32,34 @@ public class POIController {
 	@Qualifier("imppoi")
 	IPOIService poiService;
 	
+	@GetMapping("/poi/root/mostrar")
+	public String cargarPoiRoot(Model model) {
+		model.addAttribute("unPoi", poiService.crearPOI());
+		model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		return("poi");
+	}
+	
 	@GetMapping("/poi/mostrar")
 	public String cargarPoi(Model model) {
 		model.addAttribute("unPoi", poiService.crearPOI());
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
 		return("poi2");
+	}
+	
+	@GetMapping("/poi/editar/root/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
+	public String editarPoiRoot(Model model, @PathVariable(name="idPOI") int id) throws Exception {
+		try {
+			POI poiEncontrado = poiService.encontrarUnPOI(id);
+			model.addAttribute("unPoi", poiEncontrado);
+			model.addAttribute("editMode", "true");
+		}
+		catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unPoi", poiService.crearPOI());
+			model.addAttribute("editMode", "false");
+		}
+		model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		return("poi");
 	}
 	
 	@GetMapping("/poi/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
@@ -52,7 +75,7 @@ public class POIController {
 			model.addAttribute("editMode", "false");
 		}
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
-		return("poi");
+		return("poi2");
 	}
 	
 	@PostMapping(value="/poi/guardar", consumes = "multipart/form-data"/*esto tambien es de la foto*/)
@@ -80,7 +103,7 @@ public class POIController {
 			//String email= auth.getName();
 			poiService.guardarPOI(nuevoPoi,auth.getName());
 			LOGGER.info("Tamaño del Listado: "+ poiService.obtenerTodosPOIs().size());
-			return ("redirect:/poi/mostrar");
+			return ("redirect:/poi/misPois");
 		}
 	}
 	
@@ -98,11 +121,24 @@ public class POIController {
             model.addAttribute("editMode", "true");
         }
         model.addAttribute("poi", poiService.obtenerTodosPOIs());
-        return ("redirect:/poi/mostrar");
+        return ("redirect:/poi/misPois");
     }
 	
 	@GetMapping("/poi/cancelar")
 	public String cancelar() {
+		return "redirect:/poi/misPois";
+	}
+	
+	@GetMapping("/poi/eliminarPoi/root/{id}")
+	public String eliminarPOIRoot(Model model, @PathVariable(name="id") int id) {
+		try {
+			LOGGER.info("METHOD: ingresando el metodo Eliminar");
+			poiService.eliminarPOI(id);
+			LOGGER.info("METHOD: saliendo el metodo Guardar");
+		}
+		catch(Exception e){
+			model.addAttribute("listErrorMessage",e.getMessage());
+		}			
 		return "redirect:/poi/mostrar";
 	}
 	
@@ -116,7 +152,7 @@ public class POIController {
 		catch(Exception e){
 			model.addAttribute("listErrorMessage",e.getMessage());
 		}			
-		return "redirect:/poi/mostrar";
+		return "redirect:/poi/misPois";
 	}
 	
 	@GetMapping("/poi/verpoi")

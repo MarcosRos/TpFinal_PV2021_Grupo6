@@ -11,14 +11,14 @@
 <body class="body-tur">
 
 	
-	<div th:insert="layouts/header :: header"></div>
+	<div th:insert="layouts/headerRoot :: header"></div>
 	
 	<div class="container">
 		<h1>Ingrese datos del nuevo PoI</h1>
 		<br>
 	<form id="formpoi" th:object="${unPoi}" th:action="${editMode}?@{/poi/modificar}:@{/poi/guardar}" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" th:field="*{idPOI}"th:if="${editMode}">
+	<input class="form-control" type="hidden" th:field="*{idPOI}"th:if="${editMode}">
 	
 	<div class="form-group row">
 		<label for="nombrepoi" class="col-sm-2 col-form-label">Nombre del PoI</label>
@@ -31,7 +31,7 @@
 	<div class="form-group row">
 		<label for="calle" class="col-sm-2 col-form-label">Calle del PoI</label>
 		<div class="col-sm-10">
-			<input type="text" id="calle" class="form-control" th:field="*{calle}" pattern="[A-Za-z]+" required>
+			<input type="text" id="calle" class="form-control" th:field="*{calle}" pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+" required>
 		</div>
 	</div>
 	
@@ -92,9 +92,9 @@
 	</div>
 	
 	<div class="form-group row">
-		<label for="sitioWeb" class="col-sm-2 col-form-label">Sitio web</label>
+		<label for="sitioWeb" class="col-sm-2 col-form-label" >Sitio web</label>
 		<div class="col-sm-10">
-			<input type="url" id="sitioWeb" class="form-control" th:field="*{sitioWeb}">
+			<input type="url" id="sitioWeb" class="form-control" autocomplete="off" th:field="*{sitioWeb}">
 		</div>
 	</div>
 	
@@ -134,19 +134,19 @@
 <!-- 			</select> -->
 <!-- 		</div> -->
 <!-- 	</div> -->
-	
-  	<p class="clasificacion">
-    <input id="radio1" type="radio" name="estrellas" value="5"><!--
-    --><label for="radio1">★</label><!--
-    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-    --><label for="radio2">★</label><!--
-    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-    --><label for="radio3">★</label><!--
-    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-    --><label for="radio4">★</label><!--
-    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-    --><label for="radio5">★</label>
-  </p>
+	<!--  -->
+  	<!-- <p class="clasificacion">
+    <input id="radio1" type="radio" name="estrellas" value="5">
+   <label for="radio1">★</label>
+   <input id="radio2" type="radio" name="estrellas" value="4">
+   <label for="radio2">★</label>
+   <input id="radio3" type="radio" name="estrellas" value="3">
+   <label for="radio3">★</label>
+   <input id="radio4" type="radio" name="estrellas" value="2">
+   <label for="radio4">★</label>
+   <input id="radio5" type="radio" name="estrellas" value="1">
+   <label for="radio5">★</label>
+  </p> -->
   
 <!--   <div class="form-group row"> -->
 <!-- 		<label for="comentario" class="col-sm-2 col-form-label">Comentario</label> -->
@@ -183,6 +183,7 @@
 						<th>Longitud</th>
 						<th>Descripcion</th>
 						<th>Etiqueta</th>
+						<th>Creador</th>
 						<th>Sitio Web</th>	
 						<th>Imagen1</th>
 						<th>Imagen2</th>
@@ -205,6 +206,7 @@
 					<td th:text="${poi.longitud}"></td>
 					<td th:text="${poi.descripcion}"></td>
 					<td th:text="${poi.etiqueta}"></td>
+					<td th:text="${poi.turistaCreador}"></td>
 					<!-- <td th:text="${poi.sitioWeb}"><a href="${poi.sitioWeb}"></a></td> -->
 					<td><a th:text="${poi.sitioWeb}" th:href="${poi.sitioWeb}"></a></td>
 					
@@ -221,7 +223,7 @@
 					</td>
 					
 					<td align="center">
-						<a href="#" th:href="@{'/poi/editar/'+${poi.idPOI}}"> 
+						<a href="#" th:href="@{'/poi/editar/root/'+${poi.idPOI}}"> 
 							<i class="fa fa-edit"></i>
 						</a>
 					</td>
@@ -269,7 +271,7 @@
 
 		function eliminarPoi() {
 			var id = $("#identificadorPoi").val();
-			window.location = "eliminarPoi/" + id;
+			window.location = "eliminarPoi/root/" + id;
 		}
 	</script>
 
