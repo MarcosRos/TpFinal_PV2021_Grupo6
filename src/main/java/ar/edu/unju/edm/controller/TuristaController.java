@@ -161,4 +161,9 @@ public class TuristaController {
 		return("registroTurista");
 	}
 	
+	@GetMapping("/turista/leaderboard")
+	public String mostrarTurista(Model model) {
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		return("allTuristas");
+	}
 }
