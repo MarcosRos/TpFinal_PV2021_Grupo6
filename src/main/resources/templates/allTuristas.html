@@ -3,21 +3,69 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link th:rel="stylesheet" type="text/css"
-	th:href="@{/css/misestilos.css}">
+	th:href="@{/css/miestilo.css}">
 <link th:rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 <link th:rel="stylesheet"
 	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 
-<title>Insert title here</title>
+<title>LeaderBoard</title>
 </head>
-<body>
-		<h1>Pandarex99</h1>
-	
+<body class="body-tur">
+<div th:insert="layouts/header :: header"></div>
+<div class="container">
+<br>
+		<h1>Lista de Turistas</h1>
+		<br>
+<p><button class="btn btn-success btn-block" onclick="sortTable()">Ordenar por puntos</button></p>
+	<br>
+<div class="table-responsive">
+			<table id="table" class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Nombre/s</th>
+						<th>Apellido/s</th>
+						<th>Pais de Origen</th>
+						<th>Puntos</th>
+					</tr>
+				</thead>
+
+				<!-- <tr th:if="${turistas.empty}">
+					<td colspan="2">No hay turistas registrados aqui</td>
+				</tr> -->
+				<tr th:each="tur : ${turistas}">
+					<td th:text="${tur.nombres}"></td>
+					<td th:text="${tur.apellidos}"></td>
+					<td th:text="${tur.pais}"></td>
+					<td th:text="${tur.puntos}"></td>
+				</tr>
+			</table>
+		</div>
+		</div>
 
 
-
-
+<script>function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("table");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}</script>
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
