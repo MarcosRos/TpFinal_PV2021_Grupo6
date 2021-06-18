@@ -17,7 +17,7 @@
 <br>
 		<h1>Lista de Turistas</h1>
 		<br>
-<p><button class="btn btn-success btn-block" onclick="sortTable()">Ordenar por puntos</button></p>
+<p><button class="btn btn-success btn-block" onclick="sortTable(1,'int')">Ordenar por puntos</button></p>
 	<br>
 <div class="table-responsive">
 			<table id="table" class="table">
@@ -53,9 +53,9 @@
     rows = table.rows;
     for (i = 1; i < (rows.length - 1); i++) {
       shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[0];
-      y = rows[i + 1].getElementsByTagName("TD")[0];
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+      x = rows[i].getElementsByTagName("TD")[3];
+      y = rows[i + 1].getElementsByTagName("TD")[3];
+      if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
         shouldSwitch = true;
         break;
       }
