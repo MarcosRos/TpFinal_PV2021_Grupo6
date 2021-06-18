@@ -134,4 +134,22 @@ public class POIController {
 		
 		return("misPois");
 	}
+	
+	@GetMapping("/poi/mostrar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
+	public String mostarUnPoi(Model model, @PathVariable(name="idPOI") int id) throws Exception {
+		try {
+			POI poiEncontrado = poiService.encontrarUnPOI(id);
+			model.addAttribute("unPoi", poiEncontrado);
+			model.addAttribute("editMode", "true");
+		}
+		catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unPoi", poiService.crearPOI());
+			model.addAttribute("editMode", "false");
+		}
+		model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		return("valorarYComentar");
+	}
+	
+	
 }

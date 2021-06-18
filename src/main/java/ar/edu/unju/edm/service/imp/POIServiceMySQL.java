@@ -102,7 +102,7 @@ public class POIServiceMySQL implements IPOIService{
 		// TODO Auto-generated method stub
 		unPOI.setTuristaCreador(usuario);
 		Turista unTurista = turistaDAO.findByEmail(usuario).orElseThrow(()->new Exception("El turista no se encontro"));
-		int resultadoPuntos=unTurista.getPuntos()+5;
+		int resultadoPuntos=unTurista.getPuntos()+10;
 		unTurista.setPuntos(resultadoPuntos);
 		POIDAO.save(unPOI);
 	}

@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers(resources).permitAll()
 				.antMatchers("/turista/guardar","/turista/registrar","/turista/mostrar").hasAuthority("root")
 				.antMatchers("/","/home","/index","/turista/registrar","/turista/guardar").permitAll()
-				.antMatchers("/poi/mostrar","/poi/guardar","/poi/misPois","/poi/misPois").hasAnyAuthority("root","comun")//aqui se agregan los otros
+				.antMatchers("/poi/mostrar","/poi/guardar","/poi/misPois","/poi/misPois","/turistaPoi/mostrar/{idPOI}").hasAnyAuthority("root","comun")//aqui se agregan los otros
 				.anyRequest().authenticated()
 				.and().formLogin()				
 				.loginPage("/login").permitAll()
