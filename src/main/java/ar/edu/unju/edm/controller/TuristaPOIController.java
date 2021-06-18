@@ -34,24 +34,6 @@ public class TuristaPOIController {
 	@Qualifier("imppoi")
 	IPOIService poiService;
 	
-	/*@GetMapping("/turistaPoi/mostrar/{idPOI}")
-	public String cargarTuristaPoi(Model model, @PathVariable(name="idPOI") int idp) throws Exception {
-		/*model.addAttribute("unTuristaPoi", turistaPoiService.crearTuristaPOI());
-		model.addAttribute("turistaPois", turistaPoiService.obtenerTodosTuristaPOIs());
-		//model.addAttribute("pois", poiService.obtenerTodosPOIs());
-		LOGGER.info("METHOD: ingresando el metodo Mostrar3");
-		try {
-			POI poiEncontrado = poiService.encontrarUnPOI(idp);
-			model.addAttribute("unPoi", poiEncontrado);
-		}
-		catch (Exception e) {
-			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-			model.addAttribute("unPoi", turistaPoiService.crearTuristaPOI());
-		}
-		model.addAttribute("pois", poiService.obtenerTodosPOIs());
-		return("valorarYComentar");
-	}*/
-
 	@PostMapping("/turistaPoi/guardar/{idPOI}")
 	public String guardarUnNuevoTuristarPoi(@ModelAttribute("unTuristaPoi") TuristaPOI nuevoTuristaPoi,BindingResult resultado,Model model, Authentication auth, @PathVariable(name="idPOI") int id) throws Exception {
 		if(resultado.hasErrors()) {
@@ -64,40 +46,9 @@ public class TuristaPOIController {
 			//String email= auth.getName();
 			turistaPoiService.guardarTuristaPOI(nuevoTuristaPoi,auth.getName(),id);
 			LOGGER.info("Tamaño del Listado: "+ turistaPoiService.obtenerTodosTuristaPOIs().size());
-			return ("redirect:/poi/verpoi");
+			return ("redirect:/poi/mostrar/{idPOI}");
 		}
 	}
-		/*try {
-			POI poiEncontrado = poiService.encontrarUnPOI(id);
-			model.addAttribute("unPoi", poiEncontrado);
-		}
-		catch (Exception e) {
-			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-			model.addAttribute("unPoi", poiService.crearPOI());
-		}
-		model.addAttribute("pois", poiService.obtenerTodosPOIs());
-		return("valorarYComentar");
-	}*/
-	
-	
-	
-	/*@PostMapping("/turistaPoi/guardar/valoracion/{idPOI}")
-	public String guardarNuevoTuristaPoi(@ModelAttribute("unTuristaPoi") TuristaPOI nuevoTuristaPoi, BindingResult resultado, Model model, Authentication auth,@PathVariable(name="idPOI") Integer id) throws Exception{
-		if(resultado.hasErrors()) {
-			model.addAttribute("unTuristaPoi", nuevoTuristaPoi);
-			model.addAttribute("turistaPois", turistaPoiService.obtenerTodosTuristaPOIs());
-			return("allPoI");
-		}
-		else {
-			LOGGER.info("METHOD: ingresando el metodo Guardar");
-			LOGGER.info("Usuario: "+auth.getName());
-			//String email= auth.getName();
-			turistaPoiService.guardarTuristaPOIValoracion(nuevoTuristaPoi,auth.getName(),id);
-			LOGGER.info("Tamaño del Listado: "+ turistaPoiService.obtenerTodosTuristaPOIs().size());
-			return ("redirect:/poi/verpoi");
-		}
-	}*/
-	
 	
 	@GetMapping("/turistaPoi/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
 	public String editarTuristaPoi(Model model, @PathVariable(name="idPOI") Integer id) throws Exception {
