@@ -66,8 +66,7 @@ public class POI {
 	@Column
 	@NotNull
 	private Double longitud;
-	
-	@Column
+
 	@NotNull
 	private String turistaCreador;
 	
@@ -214,4 +213,6 @@ public class POI {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}*/
+	
+	
 }
