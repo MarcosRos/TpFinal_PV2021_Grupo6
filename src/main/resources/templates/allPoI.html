@@ -16,7 +16,15 @@
 		<div class="container">
        		<tr th:each="poi : ${pois}">
 		       	 <div class="card">
-		            <img th:src="*{'data:;base64,'+poi.imagen}" class="card-img">
+		       	 
+		       	 	<div class="pic-ctn">
+						    <img th:src="*{'data:;base64,'+poi.imagen}" alt="no imagen" class="pic">
+						    <img th:src="*{'data:;base64,'+poi.imagen2}" alt="no imagen" class="pic">
+						    <img th:src="*{'data:;base64,'+poi.imagen3}" alt="no imagen" class="pic">
+					</div>
+					  
+		         <!--   <img th:src="*{'data:;base64,'+poi.imagen}" class="card-img">-->
+		            
 		            <h4><td th:text="${poi.nombre}"></td></h4>
 
 		            <p><td th:text="${poi.descripcion}"></td></p>
