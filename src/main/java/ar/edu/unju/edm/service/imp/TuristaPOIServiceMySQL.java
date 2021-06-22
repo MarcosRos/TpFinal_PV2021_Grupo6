@@ -55,8 +55,32 @@ public class TuristaPOIServiceMySQL implements ITuristaPOIService{
 		nuevoTuristaPoi.setIdPOI(id);
 		nuevoTuristaPoi.setTuristaCreador(usuario);
 		Turista unTurista = turistaDAO.findByEmail(usuario).orElseThrow(()->new Exception("El turista no se encontro"));
-		int resultadoPuntos=unTurista.getPuntos()+13;
-		unTurista.setPuntos(resultadoPuntos);
+		if (nuevoTuristaPoi.getValoracion()==null)
+		{
+			if (nuevoTuristaPoi.getComentario().isEmpty())
+			{
+				int resultadoPuntos=unTurista.getPuntos();
+				unTurista.setPuntos(resultadoPuntos);
+			}
+			else
+			{
+				int resultadoPuntos=unTurista.getPuntos()+5;
+				unTurista.setPuntos(resultadoPuntos);
+			}
+		}
+		else
+		{
+			if (nuevoTuristaPoi.getComentario().isEmpty())
+			{
+				int resultadoPuntos=unTurista.getPuntos()+8;
+				unTurista.setPuntos(resultadoPuntos);
+			}
+			else
+			{
+				int resultadoPuntos=unTurista.getPuntos()+13;
+				unTurista.setPuntos(resultadoPuntos);
+			}
+		}
 		turistaPOIDAO.save(nuevoTuristaPoi);
 	}
 	
@@ -67,11 +91,32 @@ public class TuristaPOIServiceMySQL implements ITuristaPOIService{
 	}
 	
 	@Override
-	public void modificarTuristaPOI(TuristaPOI turistaPOIModificado) throws Exception {
+	public void modificarTuristaPOI(TuristaPOI turistaPOIModificado, String usuario) throws Exception {
 		// TODO Auto-generated method stub
 		TuristaPOI turistaPOIAModificar = turistaPOIDAO.findByIdTuristaPOI(turistaPOIModificado.getIdTuristaPOI()).orElseThrow(()->new Exception("El TuristaPOI no fue encontrado"));
+		Turista unTurista = turistaDAO.findByEmail(usuario).orElseThrow(()->new Exception("El turista no se encontro"));
+		if(turistaPOIAModificar.getComentario().isEmpty())
+		{
+			cambiarTuristaPOI(turistaPOIModificado, turistaPOIAModificar);
+			if(turistaPOIModificado.getComentario().isEmpty()==false)
+			{
+				int resultadoPuntos=unTurista.getPuntos()+5;
+				unTurista.setPuntos(resultadoPuntos);
+			}
+		}
+		else if (turistaPOIAModificar.getValoracion()==null)
+		{
+			cambiarTuristaPOI(turistaPOIModificado, turistaPOIAModificar);
+			if (turistaPOIModificado.getValoracion()!=null)
+			{
+				int resultadoPuntos=unTurista.getPuntos()+8;
+				unTurista.setPuntos(resultadoPuntos);
+			}
+		}
+		else
+		{
 		cambiarTuristaPOI(turistaPOIModificado, turistaPOIAModificar);
-		
+		}
 		turistaPOIDAO.save(turistaPOIAModificar);
 	}
 	

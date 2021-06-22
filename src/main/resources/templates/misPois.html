@@ -13,6 +13,11 @@
 <body class="body-tur">
 	<div th:insert="layouts/header :: header"></div>
 		<h1>LISTADO DE TUS POIS</h1>
+		<br>
+		<tr th:each="tur: ${turistas}"
+				th:if="${tur.email == #authentication.getPrincipal().getUsername()}">
+		<h3 class="tuspuntos">Tus puntos: <td th:text="${tur.puntos}"></td></h3>
+		</tr>
 		<div class="container">
 
 			<tr th:each="poi : ${pois}"

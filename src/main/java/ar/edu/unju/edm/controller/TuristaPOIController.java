@@ -23,6 +23,7 @@ import ar.edu.unju.edm.model.POI;
 import ar.edu.unju.edm.model.TuristaPOI;
 import ar.edu.unju.edm.service.IPOIService;
 import ar.edu.unju.edm.service.ITuristaPOIService;
+import ar.edu.unju.edm.service.ITuristaService;
 
 @Controller
 public class TuristaPOIController {
@@ -34,6 +35,10 @@ public class TuristaPOIController {
 	@Qualifier("imppoi")
 	IPOIService poiService;
 	
+	@Autowired
+	@Qualifier("impturista")
+	ITuristaService turistaService;
+	 
 	@PostMapping("/turistaPoi/guardar/{idPOI}")
 	public String guardarUnNuevoTuristarPoi(@ModelAttribute("unTuristaPoi") TuristaPOI nuevoTuristaPoi,BindingResult resultado,Model model, Authentication auth, @PathVariable(name="idPOI") int id) throws Exception {
 		if(resultado.hasErrors()) {
@@ -46,12 +51,13 @@ public class TuristaPOIController {
 			//String email= auth.getName();
 			turistaPoiService.guardarTuristaPOI(nuevoTuristaPoi,auth.getName(),id);
 			LOGGER.info("Tamaño del Listado: "+ turistaPoiService.obtenerTodosTuristaPOIs().size());
+			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 			return ("redirect:/poi/mostrar/{idPOI}");
 		}
 	}
 	
-	@GetMapping("/turistaPoi/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
-	public String editarTuristaPoi(Model model, @PathVariable(name="idPOI") Integer id) throws Exception {
+	@GetMapping("/turistaPoi/editar/{idTuristaPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
+	public String editarTuristaPoi(Model model, @PathVariable(name="idTuristaPOI") Integer id) throws Exception {
 		try {
 			TuristaPOI turistaPoiEncontrado = turistaPoiService.encontrarUnTuristaPOI(id);
 			model.addAttribute("unTuristaPoi", turistaPoiEncontrado);
@@ -63,13 +69,14 @@ public class TuristaPOIController {
 			model.addAttribute("editMode", "false");
 		}
 		model.addAttribute("pois", turistaPoiService.obtenerTodosTuristaPOIs());
-		return("poi");
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		return("valorarYComentar");
 	}
 	
 	@PostMapping("/turistaPoi/modificar")
-    public String modificarTuristaPoi(@ModelAttribute("unTuristaPoi") TuristaPOI turistaPoiModificado, Model model){
+    public String modificarTuristaPoi(@ModelAttribute("unTuristaPoi") TuristaPOI turistaPoiModificado, Model model,Authentication auth){
         try {
-        	turistaPoiService.modificarTuristaPOI(turistaPoiModificado);
+        	turistaPoiService.modificarTuristaPOI(turistaPoiModificado, auth.getName());
             model.addAttribute("unTuristaPoi", new POI());
             model.addAttribute("editMode", "false");
         }
@@ -80,12 +87,12 @@ public class TuristaPOIController {
             model.addAttribute("editMode", "true");
         }
         model.addAttribute("turistaPoi", turistaPoiService.obtenerTodosTuristaPOIs());
-        return ("redirect:/poi/mostrar");
+        return ("redirect:/poi/verpoi");
     }
 	
 	@GetMapping("/turistaPoi/cancelar")
 	public String cancelar() {
-		return "redirect:/poi/mostrar";
+		return "redirect:/poi/verpoi";
 	}
 
 }

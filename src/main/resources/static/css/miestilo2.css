@@ -14,6 +14,9 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.tuspuntos{
+	text-align:center;
+}
 .unContenedorPoi{
 	border-radius: 10px;
 	overflow: hidden;
@@ -36,6 +39,10 @@ h1{
     text-align:center;
 }
 
+h3,h4.creadorvaloracion{
+	text-align:left;
+}
+
 .container{
     width: 100%;
     height: auto;
@@ -43,6 +50,27 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     bottom: 50px;
+}
+
+.comentario{
+	padding: 3px;
+	margin: 10px;
+	background: white;
+}
+
+.creador{
+	text-align: left;
+}
+
+.valoracion{
+	text-align: right;
+}
+
+h6.comentario{
+	text-align: left;
+}
+.edit{
+	text-align: right;
 }
 
 .container .card{
