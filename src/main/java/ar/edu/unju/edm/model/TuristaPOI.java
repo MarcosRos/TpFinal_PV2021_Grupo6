@@ -31,7 +31,7 @@ public class TuristaPOI {
 	private Integer idPOI;
 	
 	@Column
-	private int valoracion;
+	private String valoracion;
 	
 	@Column
 	private String comentario;
@@ -60,11 +60,11 @@ public class TuristaPOI {
 		this.idPOI = idPOI;
 	}
 
-	public int getValoracion() {
+	public String getValoracion() {
 		return valoracion;
 	}
 
-	public void setValoracion(int valoracion) {
+	public void setValoracion(String valoracion) {
 		this.valoracion = valoracion;
 	}
 

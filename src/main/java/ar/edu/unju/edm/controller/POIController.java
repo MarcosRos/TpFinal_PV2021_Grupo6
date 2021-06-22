@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ar.edu.unju.edm.model.POI;
 import ar.edu.unju.edm.service.IPOIService;
 import ar.edu.unju.edm.service.ITuristaPOIService;
+import ar.edu.unju.edm.service.ITuristaService;
 
 @Controller
 public class POIController {
@@ -37,10 +38,15 @@ public class POIController {
 	@Qualifier("impturistapoi")
 	ITuristaPOIService turistaPoiService;
   
+  @Autowired
+	@Qualifier("impturista")
+	ITuristaService turistaService;
+  
 	@GetMapping("/poi/root/mostrar")
 	public String cargarPoiRoot(Model model) {
 		model.addAttribute("unPoi", poiService.crearPOI());
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("poi");
 	}
 	
@@ -48,6 +54,7 @@ public class POIController {
 	public String cargarPoi(Model model) {
 		model.addAttribute("unPoi", poiService.crearPOI());
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("poi2");
 	}
 	
@@ -164,6 +171,7 @@ public class POIController {
 	public String verpoi(Model model) {
 			model.addAttribute("unPoi", poiService.crearPOI());
 			model.addAttribute("pois", poiService.obtenerTodosPOIs());
+			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		
 		return("allPoI");
 	}
@@ -172,6 +180,7 @@ public class POIController {
 	public String mispoi(Model model) {
 			model.addAttribute("unPoi", poiService.crearPOI());
 			model.addAttribute("pois", poiService.obtenerTodosPOIs());
+			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		
 		return("misPois");
 	}
@@ -189,6 +198,7 @@ public class POIController {
 			model.addAttribute("unTuristaPoi", turistaPoiService.crearTuristaPOI());
 		}
 		model.addAttribute("turPois", turistaPoiService.obtenerTodosTuristaPOIs());
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 		return("valorarYComentar");
 	}
 	

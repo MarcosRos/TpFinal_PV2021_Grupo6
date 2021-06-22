@@ -16,7 +16,7 @@
 		<div class="unContenedorPoi">
 		<br>
 
-       		<tr th:object="${unPoi}" >
+       		<tr th:object="${unPoi}" th:if="!${editMode}" >
        		
 					 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 						  <div class="carousel-inner">
@@ -54,34 +54,38 @@
 		        	<h5>Longitud:&nbsp;<td th:text="*{longitud}"></h5>
 		        	<h5>Creador:&nbsp;<td th:text="*{turistaCreador}"></h5>
 		         </tr>
-		         <form  th:object="${unTuristaPoi}"  th:action="@{'/turistaPoi/guardar/'+${unPoi.idPOI}}"method="post"><!--  class="clasificacion"-->
+		         <form  th:object="${unTuristaPoi}"  th:action="${editMode}?@{/turistaPoi/modificar}:@{'/turistaPoi/guardar/'+${unPoi.idPOI}}"method="post"><!--  class="clasificacion"-->
+		        <input class="form-control" type="hidden" th:field="*{idTuristaPOI}"th:if="${editMode}">
 		        <p class="clasificacion">
-		        <input id="radio1" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="5">
+		        <input id="radio1" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="★★★★★">
 			    <label for="radio1" class="estrella">★</label>
-			    <input id="radio2" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="4">
+			    <input id="radio2" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="★★★★">
 			    <label for="radio2" class="estrella">★</label>
-			    <input id="radio3" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="3">
+			    <input id="radio3" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="★★★">
 			    <label for="radio3" class="estrella">★</label>
-			    <input id="radio4" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="2">
+			    <input id="radio4" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="★★">
 			    <label for="radio4" class="estrella">★</label>
-			    <input id="radio5" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="1">
+			    <input id="radio5" class="estrella" type="radio" name="estrellas" th:field="*{valoracion}" value="★">
 			    <label for="radio5" class="estrella">★</label>
 			    </p>
 			    <br>
 		        <label for="comentario" class="col-sm-2 col-form-label">Comentario</label>
-		        <textarea id="comentario" class="form-control" placeholder="Ingrese su comentario!" th:field="*{comentario}" required></textarea>
+		        <textarea id="comentario" class="form-control" placeholder="Ingrese su comentario!" th:field="*{comentario}"></textarea>
 		      	
 		      	<input type="submit" class="btn btn-success btn-block"
 				th:value="'Comentar'">
 		      	</form>
 		      	<br>
 		      	<div>
+		      	<h3 th:if="!${editMode}">&nbsp;&nbsp;&nbsp;Comentarios:</h3>
 		      	<tr th:each="turpoi : ${turPois}" th:if="${turpoi.idPOI} == ${unPoi.idPOI}">
-		       	 <div class="card">
-		            <h4><td th:text="${turpoi.turistaCreador}"></td></h4>
-					<h5><td th:text="${turpoi.valoracion}"></td></h5>
-		            <p><td th:text="${turpoi.comentario}"></td></p>
-		      		</div>
+		       	 <div class="comentario">
+		            <h4 class="creadorvaloracion"><td class="creador" th:text="'&nbsp'+${turpoi.turistaCreador}"></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td class="valoracion" th:text="'Valoracion: '+(${turpoi.valoracion} ?: 'Sin Valoracion')"></td></h4>
+					<p class="edit">&nbsp;<a href="#" th:href="@{'/turistaPoi/editar/'+${turpoi.idTuristaPOI}}"> 
+							<i class="fa fa-edit"></i> Editar Comentario y Valoracion
+						</a></p>
+		            <h6 class="comentario"><td th:text="${turpoi.comentario}"></td></h6>
+		      	</div>
          			</tr>
          			<br>
 		        </div>
