@@ -69,9 +69,11 @@ public class TuristaServiceMySQL implements ITuristaService{
 
 	private void cambiarTurista(Turista desde, Turista hacia){
 		// TODO Auto-generated method stub
-		String pw = desde.getPassword();
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-		hacia.setPassword(bCryptPasswordEncoder.encode(pw));
+		/*
+		 * String pw = desde.getPassword(); BCryptPasswordEncoder bCryptPasswordEncoder
+		 * = new BCryptPasswordEncoder(4);
+		 * hacia.setPassword(bCryptPasswordEncoder.encode(pw));
+		 */
 		
 		hacia.setEmail(desde.getEmail());
 		hacia.setApellidos(desde.getApellidos());

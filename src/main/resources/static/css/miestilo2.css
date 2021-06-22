@@ -33,8 +33,9 @@ body{
 }
 
 h1{
-	text-align:center;
+    text-align:center;
 }
+
 .container{
     width: 100%;
     height: auto;

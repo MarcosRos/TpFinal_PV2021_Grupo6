@@ -81,6 +81,39 @@ public class TuristaController {
 		return "turista";
 	}
 	
+	/*@GetMapping("/turista/verificar")
+	public String verificarTurista(Model model) throws Exception {		
+		try {
+			LOGGER.info("METHOD: ingresando editar modificar, antes de traer el Turista");
+			Turista turistaEncontrado = turistaService.encontrarPorEmail(email);
+			LOGGER.info("METHOD: ingresando editar modificar, traje el Turista");
+			model.addAttribute("unTurista", turistaEncontrado);	
+			model.addAttribute("answerMode", "true");
+		}
+		catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unCliente", turistaService.crearTurista());
+			model.addAttribute("answerMode", "false");
+		}				
+		return "recuperarContraseña";
+	}*/	
+	
+	@GetMapping("/turista/editar/contraseña/{idTurista}")
+	public String editarContraseñaTurista(Model model, @PathVariable(name="idTurista") int id) throws Exception {		
+		try {
+			LOGGER.info("METHOD: ingresando editar modificar, antes de traer el Turista");
+			Turista turistaEncontrado = turistaService.encontrarUnTurista(id);
+			LOGGER.info("METHOD: ingresando editar modificar, traje el Turista");
+			model.addAttribute("unTurista", turistaEncontrado);	
+		}
+		catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unCliente", turistaService.crearTurista());
+		}				
+		return "ingresarNuevaContraseña";
+	}
+	
+	
 	@PostMapping("/turista/modificar")
 	public String modificarTurista(@ModelAttribute("unTurista") Turista turistaModificado, Model model) {
 		//try permite realizar una accion, pero si ocurre un error no se caera el programa
@@ -128,4 +161,9 @@ public class TuristaController {
 		return("registroTurista");
 	}
 	
+	@GetMapping("/turista/leaderboard")
+	public String mostrarTurista(Model model) {
+		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		return("allTuristas");
+	}
 }

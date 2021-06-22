@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+	<div id="header" th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="tituloheader"> WELCOME WELCOME!</div>
+				<div class=header>
+				<ul class="navbar-nav">	
+					<li class="nav-item"><a class="nav-link" href="/turista/mostrar">Lista De Turistas</a></li>
+					<li class="nav-item"><a class="nav-link" href="/poi/verpoi">Puntos de Interes</a></li>
+					<li class="nav-item"><a class="nav-link" href="/poi/root/mostrar">Añadir Un Punto de Interes</a></li>
+					<li class="nav-item"><a class="nav-link" href="/poi/misPois">Ver mis Pois</a></li>
+					<li class="nav-item"><a class="nav-link" href="/turista/leaderboard">Leaderboard</a></li>
+					<li class="nav-item"><a class="btn btn-outline-light" href="#" th:href="@{/logout}"> 
+						<span th:text="${#authentication.getPrincipal().getUsername()}">
+						</span> - 
+						<span> Salir </span>
+						<span class="right"> 
+						<i class="fas fa-sign-out-alt"></i>
+						</span>
+						</a>
+					</li>
+				</ul>
+				</div>
+				</nav>
+				</div>	
+</body>
+</html>
