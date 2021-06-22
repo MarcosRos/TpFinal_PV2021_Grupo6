@@ -15,15 +15,12 @@ body{
 }
 
 .unContenedorPoi{
+	border-radius: 10px;
+	overflow: hidden;
 	margin:auto;
 	background:#dc3a46;
 	text-align:center;
 	width:70%;
-}
-
-.imagen{
-	width:400px;
-	height: 400px;
 }
 
 .title{
@@ -125,47 +122,6 @@ img:nth-child(2) {
 img:nth-child(3) {
   animation-delay: 20s;
 }
-
-/*modificado*/
-
-@keyframes slip {
-  0% {
-    transform: translateX(0px);
-    opacity: 0;
-  }
-  30% {
-    transform: translateX(-200px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-200px);
-    opacity: 0;
-  }
-}
-
-.slip {
-  position: relative;
-   width: auto;
-  height: 400px;
-}
-
-.slip > img {
-  width: auto;
-  height: 400px;
-  position: absolute;
-  top: 0;
-  left: calc(60% - 10px);
-  opacity: 0;
-  animation: display 30s infinite;
-}
-
-img:nth-child(2) {
-  animation-delay: 10s;
-}
-img:nth-child(3) {
-  animation-delay: 20s;
-}
-
 
 
 /*Estructura Necesaria Para otras funciones*/
@@ -307,4 +263,25 @@ label.estrella:hover ~ label.estrella {
 
 input[type="radio"].estrella:checked ~ label.estrella {
   color: orange;
+}
+
+
+/*carrusel-flechitas*/
+
+.carousel{
+	position: relative;
+	width: 100%;
+	padding: 30px 30px;
+	border-radius: 10px;
+}
+
+.carousel-inner{
+	height: 400px;
+	border-radius: 10px;
+}
+
+.carousel-inner img{
+	width: 400px;
+	height: 400px;
+	border-radius: 10px;
 }

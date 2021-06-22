@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link th:rel="stylesheet" type="text/css" th:href="@{/css/miestilo2.css}">
-<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/css/miestilo2.css}">
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+<link th:rel="stylesheet"
+	th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
 <title>Tus PoIs</title>
 </head>
 <body class="body-tur">
@@ -13,78 +16,62 @@
 		<div class="container">
 
 			<tr th:each="poi : ${pois}"
-					th:if="${poi.turistaCreador == #authentication.getPrincipal().getUsername()}">
-					
+				th:if="${poi.turistaCreador == #authentication.getPrincipal().getUsername()}">
 				<div class="card">
 				
-					<img th:src="*{'data:;base64,'+poi.imagen}" class="card-img">
-					
+					<div class="pic-ctn">
+						    <img th:src="*{'data:;base64,'+poi.imagen}" alt="no imagen" class="pic">
+						    <img th:src="*{'data:;base64,'+poi.imagen2}" alt="no imagen" class="pic">
+						    <img th:src="*{'data:;base64,'+poi.imagen3}" alt="no imagen" class="pic">
+					</div>
 					<h4>
 						<td th:text="${poi.nombre}"></td>
 					</h4>
-					
 					<p>
 						<td th:text="${poi.descripcion}"></td>
 					</p>
-					
-					<p>
-						<a href="#" th:href="@{'/poi/editar/'+${poi.idPOI}}"> 
-							<i class="fa fa-edit"></i>
-						</a>
-						
-						<a href="#" th:href="'javascript:confirmarEliminar(\''+${poi.idPOI}+'\');'">
-							<i class="fa fa-trash-alt"></i>
-						</a>
-					</p>
-<!-- 					<a href="#" th:href="@{'/poi/editar/'+${poi.idPOI}}">Editar</a> -->
-					
+					<a th:href="@{'/poi/mostrar/'+${poi.idPOI}}" href=#>Leer más</a>
 				</div>
-				
 			</tr>
 		</div>
-
-
-	<!--Modal Eliminar--> 
-		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog"
-												aria-labelledby="eliminarModal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="eliminarModalTitulo">¿Desea borrar este POI?</h5>
-						<button type="button" class="close" data-dismiss="modal"
-																	aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<h6>Borrar POI</h6>
-					</div>
-					
-					<input type="hidden" id="identificadorPoi" name="POIId" />
-					
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary"
-											th:onclick="eliminarPoi()">Borrar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
+		
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					$(".link-compra").on(
+							"click",
+							function(event) {
+								event.preventDefault();
+								$("#modalEditar").modal("show").find(
+										".modal-content").load(
+										$(this).attr("href"));
+							});
+				});
+	</script>
 
 	<script type="text/javascript">
-		function confirmarEliminar(id) {
+		function confirmarEliminar(email) {
 			$('#modalEliminar').modal('show');
-			$("#identificadorPoi").val(id);
+			$("#identificadorTuristaHiddenInput").val(email);
 		}
 
-		function eliminarPoi() {
-			var id = $("#identificadorPoi").val();
-			window.location = "eliminarPoi/" + id;
+		function eliminarTurista() {
+			var id = $("#identificadorTuristaHiddenInput").val();
+			window.location = "eliminarTurista/" + email;
 		}
 	</script>
 
+
+
+	<!--  </div>-->
+
+	<!-- ---------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------- -->
+
+
+
+	<!-- ---------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------- -->
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
