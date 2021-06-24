@@ -5,13 +5,13 @@
 </head>
 <body>
 	<div id="header" th:fragment="header">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="tituloheader"> WELCOME WELCOME!</div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="tituloheader">WELCOME!</div>
 				<div class=header>
 				<ul class="navbar-nav">	
-					<li class="nav-item"><a class="nav-link" href="/poi/verpoi">Ver puntos de interes</a></li>
-					<li class="nav-item"><a class="nav-link" href="/poi/mostrar">Añadir nuevo punto de interes</a></li>
-					<li class="nav-item"><a class="nav-link" href="/poi/misPois">Ver mis Pois</a></li>
+					<li class="nav-item"><a class="nav-link" href="/poi/verpoi">Ver POI</a></li>
+					<li class="nav-item"><a class="nav-link" href="/poi/mostrar">Añadir POI</a></li>
+					<li class="nav-item"><a class="nav-link" href="/poi/misPois">Ver mis POI</a></li>
 					<li class="nav-item"><a class="nav-link" href="/turista/leaderboard">Leaderboard</a></li>
 					<li class="nav-item"><a class="nav-link" th:each="tur: ${turistas}"
 				th:if="${tur.email == #authentication.getPrincipal().getUsername()}" th:text="'Puntos: '+${tur.puntos}">
