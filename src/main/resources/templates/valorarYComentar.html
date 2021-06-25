@@ -9,7 +9,8 @@
 <title>Info del POI</title>
 </head>
 <body class="body-tur">
-	<div th:insert="layouts/header :: header"></div>
+	<div th:insert="layouts/headerRoot :: header" th:if="${turistaConectado.tipo == 'root'}"></div>
+	<div th:insert="layouts/header :: header" th:if="${turistaConectado.tipo == 'comun'}"></div>
 		<h1 id='title_allpoi'><span class="blanco-negro">MAS INFORMACION DEL POI</span></h1>
 		<br>
 		<div class="unContenedorPoi">

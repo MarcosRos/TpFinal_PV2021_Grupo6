@@ -9,7 +9,8 @@
 </head>
 <body class="body-tur">
 
-	<div th:insert="layouts/headerRoot :: header"></div>
+	<div th:insert="layouts/headerRoot :: header" th:if="${turistaConectado.tipo == 'root'}"></div>
+	<div th:insert="layouts/header :: header" th:if="${turistaConectado.tipo == 'comun'}"></div>
 
 	<div class="container">
 		<h1>VISTA ADMINISTRADOR</h1>
