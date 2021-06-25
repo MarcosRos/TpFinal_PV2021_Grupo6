@@ -1,6 +1,7 @@
 package ar.edu.unju.edm.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import ar.edu.unju.edm.model.Turista;
 
@@ -13,4 +14,5 @@ public interface ITuristaService {
 	public void eliminarTurista(int idt) throws Exception;
 	public Turista encontrarPorEmail(String emailt) throws Exception;
 	public void guardarTuristaRoot(Turista unTurista);
+	public boolean existsByEmailAndContraseña(String usuario, String contraseña);
 }

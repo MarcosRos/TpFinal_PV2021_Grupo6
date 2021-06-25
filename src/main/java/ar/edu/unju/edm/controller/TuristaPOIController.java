@@ -54,12 +54,13 @@ public class TuristaPOIController {
 			turistaPoiService.guardarTuristaPOI(nuevoTuristaPoi,auth.getName(),id,idp);
 			LOGGER.info("Tamaño del Listado: "+ turistaPoiService.obtenerTodosTuristaPOIs().size());
 			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+			model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 			return ("redirect:/poi/mostrar/{idPOI}");
 		}
 	}
 	
 	@GetMapping("/turistaPoi/editar/{idTuristaPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
-	public String editarTuristaPoi(Model model, @PathVariable(name="idTuristaPOI") Integer id) throws Exception {
+	public String editarTuristaPoi(Model model, @PathVariable(name="idTuristaPOI") Integer id, Authentication auth) throws Exception {
 		try {
 			TuristaPOI turistaPoiEncontrado = turistaPoiService.encontrarUnTuristaPOI(id);
 			model.addAttribute("unTuristaPoi", turistaPoiEncontrado);
@@ -72,11 +73,12 @@ public class TuristaPOIController {
 		}
 		model.addAttribute("pois", turistaPoiService.obtenerTodosTuristaPOIs());
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return("valorarYComentar");
 	}
 	
 	@PostMapping("/turistaPoi/modificar")
-    public String modificarTuristaPoi(@ModelAttribute("unTuristaPoi") TuristaPOI turistaPoiModificado, Model model,Authentication auth){
+    public String modificarTuristaPoi(@ModelAttribute("unTuristaPoi") TuristaPOI turistaPoiModificado, Model model,Authentication auth) throws Exception{
         try {
         	turistaPoiService.modificarTuristaPOI(turistaPoiModificado, auth.getName());
             model.addAttribute("unTuristaPoi", new POI());
@@ -89,6 +91,7 @@ public class TuristaPOIController {
             model.addAttribute("editMode", "true");
         }
         model.addAttribute("turistaPoi", turistaPoiService.obtenerTodosTuristaPOIs());
+        model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
         return ("redirect:/poi/verpoi");
     }
 	

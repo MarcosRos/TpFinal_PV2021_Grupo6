@@ -1,6 +1,7 @@
 package ar.edu.unju.edm.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -97,6 +98,20 @@ public class TuristaServiceMySQL implements ITuristaService{
 	public Turista encontrarPorEmail(String emailt) throws Exception {
 		// TODO Auto-generated method stub
 		return turistaDAO.findByEmail(emailt).orElseThrow(()->new Exception ("El turista NO existe"));
+	}
+
+	@Override
+	public boolean existsByEmailAndContraseña(String usuario, String contraseña) {
+		// TODO Auto-generated method stub
+		List<Turista> lista = obtenerTodosTuristas();
+		for (int i=0;i<lista.size();i++)
+		{
+			if (lista.get(i).getEmail()==usuario && lista.get(i).getPassword()==contraseña)
+			{
+				return true; 
+			}
+		}
+		return false;
 	}
 	
 	
