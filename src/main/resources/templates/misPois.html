@@ -11,8 +11,10 @@
 <title>Tus PoIs</title>
 </head>
 <body class="body-tur">
-	<div th:insert="layouts/header :: header"></div>
-		<h1 id='title_allpoi'><span class="blanco-negro">LISTADO DE TUS POIS</span></h1>
+
+	<div th:insert="layouts/headerRoot :: header" th:if="${turistaConectado.tipo == 'root'}"></div>
+	<div th:insert="layouts/header :: header" th:if="${turistaConectado.tipo == 'comun'}"></div>
+		<h1>LISTADO DE TUS POIS</h1>
 		<br>
 		<tr th:each="tur: ${turistas}"
 				th:if="${tur.email == #authentication.getPrincipal().getUsername()}">
