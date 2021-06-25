@@ -66,7 +66,14 @@ public class POI {
 	@Column
 	@NotNull
 	private Double longitud;
-
+	
+	@Column
+	private double valoracionTotal=0;
+	
+	@Column
+	private int cantValoraciones=0;
+	
+	@Column
 	@NotNull
 	private String turistaCreador;
 	
@@ -204,6 +211,22 @@ public class POI {
 
 	public void setTuristaCreador(String usuario) {
 		this.turistaCreador = usuario;
+	}
+
+	public double getValoracionTotal() {
+		return valoracionTotal;
+	}
+
+	public void setValoracionTotal(double valoracionTotal) {
+		this.valoracionTotal = valoracionTotal;
+	}
+
+	public double getCantValoraciones() {
+		return cantValoraciones;
+	}
+
+	public void setCantValoraciones(int cantValoraciones) {
+		this.cantValoraciones = cantValoraciones;
 	}
 
 	/*public String getImagen() {

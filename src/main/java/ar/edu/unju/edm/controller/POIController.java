@@ -186,7 +186,7 @@ public class POIController {
 	}
 	
 	@GetMapping("/poi/mostrar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
-	public String mostarUnPoi(Model model, @PathVariable(name="idPOI") int id) throws Exception {
+	public String mostarUnPoi(Model model, Authentication auth, @PathVariable(name="idPOI") int id) throws Exception {
 		try {
 			POI poiEncontrado = poiService.encontrarUnPOI(id);
 			model.addAttribute("unPoi", poiEncontrado);
@@ -199,6 +199,7 @@ public class POIController {
 		}
 		model.addAttribute("turPois", turistaPoiService.obtenerTodosTuristaPOIs());
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return("valorarYComentar");
 	}
 	
