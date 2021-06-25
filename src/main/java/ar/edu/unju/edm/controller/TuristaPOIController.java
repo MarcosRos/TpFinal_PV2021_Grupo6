@@ -49,7 +49,9 @@ public class TuristaPOIController {
 			LOGGER.info("METHOD: ingresando el metodo Guardar");
 			LOGGER.info("Usuario: "+auth.getName());
 			//String email= auth.getName();
-			turistaPoiService.guardarTuristaPOI(nuevoTuristaPoi,auth.getName(),id);
+			int idp=nuevoTuristaPoi.getIdPOI();
+			LOGGER.info("POI EN EL QUE SE COMENTA: "+idp);
+			turistaPoiService.guardarTuristaPOI(nuevoTuristaPoi,auth.getName(),id,idp);
 			LOGGER.info("Tamaño del Listado: "+ turistaPoiService.obtenerTodosTuristaPOIs().size());
 			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
 			return ("redirect:/poi/mostrar/{idPOI}");
@@ -89,6 +91,17 @@ public class TuristaPOIController {
         model.addAttribute("turistaPoi", turistaPoiService.obtenerTodosTuristaPOIs());
         return ("redirect:/poi/verpoi");
     }
+	
+	@GetMapping("/turistaPoi/eliminarTuristaPoi/{idTuristaPOI}")
+	public String eliminarTurista(Model model, @PathVariable(name="idTuristaPOI") int id) {		
+		try {			
+			turistaPoiService.eliminarTuristaPOI(id);			
+		}
+		catch(Exception e){
+			model.addAttribute("listErrorMessage",e.getMessage());
+		}			
+		return "redirect:/poi/verpoi";
+	}
 	
 	@GetMapping("/turistaPoi/cancelar")
 	public String cancelar() {
