@@ -43,23 +43,25 @@ public class POIController {
 	ITuristaService turistaService;
   
 	@GetMapping("/poi/root/mostrar")
-	public String cargarPoiRoot(Model model) {
+	public String cargarPoiRoot(Model model, Authentication auth) throws Exception {
 		model.addAttribute("unPoi", poiService.crearPOI());
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return("poi");
 	}
 	
 	@GetMapping("/poi/mostrar")
-	public String cargarPoi(Model model) {
+	public String cargarPoi(Model model, Authentication auth) throws Exception {
 		model.addAttribute("unPoi", poiService.crearPOI());
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return("poi2");
 	}
 	
 	@GetMapping("/poi/editar/root/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
-	public String editarPoiRoot(Model model, @PathVariable(name="idPOI") int id) throws Exception {
+	public String editarPoiRoot(Model model, Authentication auth, @PathVariable(name="idPOI") int id) throws Exception {
 		try {
 			POI poiEncontrado = poiService.encontrarUnPOI(id);
 			model.addAttribute("unPoi", poiEncontrado);
@@ -70,12 +72,13 @@ public class POIController {
 			model.addAttribute("unPoi", poiService.crearPOI());
 			model.addAttribute("editMode", "false");
 		}
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
 		return("poi");
 	}
 	
 	@GetMapping("/poi/editar/{idPOI}")		//recibe la petición desde el html o vista, enviandole idPOI
-	public String editarPoi(Model model, @PathVariable(name="idPOI") int id) throws Exception {
+	public String editarPoi(Model model, Authentication auth, @PathVariable(name="idPOI") int id) throws Exception {
 		try {
 			POI poiEncontrado = poiService.encontrarUnPOI(id);
 			model.addAttribute("unPoi", poiEncontrado);
@@ -87,6 +90,7 @@ public class POIController {
 			model.addAttribute("editMode", "false");
 		}
 		model.addAttribute("pois", poiService.obtenerTodosPOIs());
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return("poi2");
 	}
 	
@@ -168,19 +172,21 @@ public class POIController {
 	}
 	
 	@GetMapping("/poi/verpoi")
-	public String verpoi(Model model) {
+	public String verpoi(Model model, Authentication auth) throws Exception {
 			model.addAttribute("unPoi", poiService.crearPOI());
 			model.addAttribute("pois", poiService.obtenerTodosPOIs());
 			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+			model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		
 		return("allPoI");
 	}
 	
 	@GetMapping("/poi/misPois")
-	public String mispoi(Model model) {
+	public String mispoi(Model model, Authentication auth) throws Exception {
 			model.addAttribute("unPoi", poiService.crearPOI());
 			model.addAttribute("pois", poiService.obtenerTodosPOIs());
 			model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+			model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		
 		return("misPois");
 	}

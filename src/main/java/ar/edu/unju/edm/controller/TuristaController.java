@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,10 +27,11 @@ public class TuristaController {
 	ITuristaService turistaService;
 	
 	@GetMapping("/turista/mostrar")
-	public String cargarTurista(Model model) {
+	public String cargarTurista(Model model, Authentication auth) throws Exception {
 		LOGGER.info("Hola"+turistaService.crearTurista().getApellidos());
 		model.addAttribute("unTurista", turistaService.crearTurista());
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return("turista");
 	}
 
@@ -64,7 +66,7 @@ public class TuristaController {
 	}
 	
 	@GetMapping("/turista/editar/{idTurista}")
-	public String editarTurista(Model model, @PathVariable(name="idTurista") int id) throws Exception {		
+	public String editarTurista(Model model, Authentication auth, @PathVariable(name="idTurista") int id) throws Exception {		
 		try {
 			LOGGER.info("METHOD: ingresando editar modificar, antes de traer el Turista");
 			Turista turistaEncontrado = turistaService.encontrarUnTurista(id);
@@ -77,7 +79,8 @@ public class TuristaController {
 			model.addAttribute("unCliente", turistaService.crearTurista());
 			model.addAttribute("editMode", "false");
 		}				
-		model.addAttribute("clientes", turistaService.obtenerTodosTuristas());		
+		model.addAttribute("clientes", turistaService.obtenerTodosTuristas());	
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return "turista";
 	}
 	
@@ -98,7 +101,7 @@ public class TuristaController {
 		return "recuperarContraseña";
 	}*/	
 	
-	@GetMapping("/turista/editar/contraseña/{idTurista}")
+	/*@GetMapping("/turista/editar/contraseña/{idTurista}")
 	public String editarContraseñaTurista(Model model, @PathVariable(name="idTurista") int id) throws Exception {		
 		try {
 			LOGGER.info("METHOD: ingresando editar modificar, antes de traer el Turista");
@@ -112,7 +115,7 @@ public class TuristaController {
 		}				
 		return "ingresarNuevaContraseña";
 	}
-	
+	*/
 	
 	@PostMapping("/turista/modificar")
 	public String modificarTurista(@ModelAttribute("unTurista") Turista turistaModificado, Model model) {
@@ -162,8 +165,9 @@ public class TuristaController {
 	}
 	
 	@GetMapping("/turista/leaderboard")
-	public String mostrarTurista(Model model) {
+	public String mostrarTurista(Model model, Authentication auth) throws Exception {
 		model.addAttribute("turistas", turistaService.obtenerTodosTuristas());
+		model.addAttribute("turistaConectado", turistaService.encontrarPorEmail(auth.getName()));
 		return("allTuristas");
 	}
 }
